@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BinaryPatcherLib">
+      <HintPath>..\..\..\BinaryPatcher\BinaryPatcher\BinaryPatcherLib\bin\Debug\BinaryPatcherLib.dll</HintPath>
+    </Reference>
+    <Reference Include="IPSWlib">
+      <HintPath>..\..\..\IPSW-Editor\IPSWlib\IPSWlib\bin\Debug\IPSWlib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeviceManager.cs" />
+    <Compile Include="AppleMobileDevice.cs" />
     <Compile Include="frmDeviceSelection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +65,13 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSelectionOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectionOS.Designer.cs">
+      <DependentUpon>frmSelectionOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="iMultiBootController.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmDeviceSelection.resx">
@@ -66,6 +79,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectionOS.resx">
+      <DependentUpon>frmSelectionOS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

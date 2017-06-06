@@ -17,6 +17,8 @@ namespace iMultiBoot
             InitializeComponent();
         }
 
+        iMultiBootController Controller = new iMultiBootController();
+
         private void btnBegin_Click(object sender, EventArgs e)
         {
             pnlMain.Visible = true;
@@ -24,8 +26,14 @@ namespace iMultiBoot
 
         private void btnSelectDevice_Click(object sender, EventArgs e)
         {
-            frmDeviceSelection DeviceSelection = new frmDeviceSelection();
+            frmDeviceSelection DeviceSelection = new frmDeviceSelection(Controller);
             DeviceSelection.Show();
+        }
+
+        private void btnSelectOperatingSystems_Click(object sender, EventArgs e)
+        {
+            frmSelectionOS SelectionOS = new frmSelectionOS(Controller);
+            SelectionOS.Show();
         }
     }
 }

@@ -32,8 +32,10 @@
             this.cmbDeviceSelection = new System.Windows.Forms.ComboBox();
             this.btnValidate = new System.Windows.Forms.Button();
             this.lblCopyrights = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblSelectDevice = new System.Windows.Forms.Label();
+            this.lblTotalCapacity = new System.Windows.Forms.Label();
+            this.lblRemainingCapacity = new System.Windows.Forms.Label();
+            this.txtRemainingCapacity = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmbCapacitySelection
@@ -65,7 +67,7 @@
             // btnValidate
             // 
             this.btnValidate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidate.Location = new System.Drawing.Point(239, 131);
+            this.btnValidate.Location = new System.Drawing.Point(357, 131);
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(94, 38);
             this.btnValidate.TabIndex = 3;
@@ -78,40 +80,60 @@
             this.lblCopyrights.AutoSize = true;
             this.lblCopyrights.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCopyrights.ForeColor = System.Drawing.Color.White;
-            this.lblCopyrights.Location = new System.Drawing.Point(12, 172);
+            this.lblCopyrights.Location = new System.Drawing.Point(135, 172);
             this.lblCopyrights.Name = "lblCopyrights";
             this.lblCopyrights.Size = new System.Drawing.Size(323, 18);
             this.lblCopyrights.TabIndex = 5;
             this.lblCopyrights.Text = "©2017 Pierre-Marc Bonneau, all rights reserved.";
             // 
-            // label1
+            // lblSelectDevice
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Select Device :";
+            this.lblSelectDevice.AutoSize = true;
+            this.lblSelectDevice.ForeColor = System.Drawing.Color.White;
+            this.lblSelectDevice.Location = new System.Drawing.Point(9, 9);
+            this.lblSelectDevice.Name = "lblSelectDevice";
+            this.lblSelectDevice.Size = new System.Drawing.Size(80, 13);
+            this.lblSelectDevice.TabIndex = 6;
+            this.lblSelectDevice.Text = "Select Device :";
             // 
-            // label2
+            // lblTotalCapacity
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(207, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Select Capacity :";
+            this.lblTotalCapacity.AutoSize = true;
+            this.lblTotalCapacity.ForeColor = System.Drawing.Color.White;
+            this.lblTotalCapacity.Location = new System.Drawing.Point(207, 9);
+            this.lblTotalCapacity.Name = "lblTotalCapacity";
+            this.lblTotalCapacity.Size = new System.Drawing.Size(81, 13);
+            this.lblTotalCapacity.TabIndex = 7;
+            this.lblTotalCapacity.Text = "Total Capacity :";
+            // 
+            // lblRemainingCapacity
+            // 
+            this.lblRemainingCapacity.AutoSize = true;
+            this.lblRemainingCapacity.ForeColor = System.Drawing.Color.White;
+            this.lblRemainingCapacity.Location = new System.Drawing.Point(351, 9);
+            this.lblRemainingCapacity.Name = "lblRemainingCapacity";
+            this.lblRemainingCapacity.Size = new System.Drawing.Size(107, 13);
+            this.lblRemainingCapacity.TabIndex = 8;
+            this.lblRemainingCapacity.Text = "Remaining Capacity :";
+            // 
+            // txtRemainingCapacity
+            // 
+            this.txtRemainingCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemainingCapacity.Location = new System.Drawing.Point(354, 25);
+            this.txtRemainingCapacity.Name = "txtRemainingCapacity";
+            this.txtRemainingCapacity.Size = new System.Drawing.Size(68, 22);
+            this.txtRemainingCapacity.TabIndex = 9;
             // 
             // frmDeviceSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(345, 199);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(463, 199);
+            this.Controls.Add(this.txtRemainingCapacity);
+            this.Controls.Add(this.lblRemainingCapacity);
+            this.Controls.Add(this.lblTotalCapacity);
+            this.Controls.Add(this.lblSelectDevice);
             this.Controls.Add(this.lblCopyrights);
             this.Controls.Add(this.btnValidate);
             this.Controls.Add(this.cmbDeviceSelection);
@@ -128,7 +150,9 @@
         private System.Windows.Forms.ComboBox cmbDeviceSelection;
         private System.Windows.Forms.Button btnValidate;
         private System.Windows.Forms.Label lblCopyrights;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSelectDevice;
+        private System.Windows.Forms.Label lblTotalCapacity;
+        private System.Windows.Forms.Label lblRemainingCapacity;
+        private System.Windows.Forms.TextBox txtRemainingCapacity;
     }
 }

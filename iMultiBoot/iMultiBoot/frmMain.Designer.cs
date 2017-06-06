@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.btnSelectOperatingSystems = new System.Windows.Forms.Button();
+            this.btnSelectDevice = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnBegin = new System.Windows.Forms.Button();
             this.lblCopyrights = new System.Windows.Forms.Label();
-            this.btnSelectDevice = new System.Windows.Forms.Button();
-            this.btnSelectOperatingSystems = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,28 @@
             this.pnlMain.Size = new System.Drawing.Size(579, 293);
             this.pnlMain.TabIndex = 1;
             this.pnlMain.Visible = false;
+            // 
+            // btnSelectOperatingSystems
+            // 
+            this.btnSelectOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectOperatingSystems.Location = new System.Drawing.Point(10, 71);
+            this.btnSelectOperatingSystems.Name = "btnSelectOperatingSystems";
+            this.btnSelectOperatingSystems.Size = new System.Drawing.Size(171, 35);
+            this.btnSelectOperatingSystems.TabIndex = 1;
+            this.btnSelectOperatingSystems.Text = "Select Operating Systems";
+            this.btnSelectOperatingSystems.UseVisualStyleBackColor = true;
+            this.btnSelectOperatingSystems.Click += new System.EventHandler(this.btnSelectOperatingSystems_Click);
+            // 
+            // btnSelectDevice
+            // 
+            this.btnSelectDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectDevice.Location = new System.Drawing.Point(10, 18);
+            this.btnSelectDevice.Name = "btnSelectDevice";
+            this.btnSelectDevice.Size = new System.Drawing.Size(171, 35);
+            this.btnSelectDevice.TabIndex = 0;
+            this.btnSelectDevice.Text = "Select Device";
+            this.btnSelectDevice.UseVisualStyleBackColor = true;
+            this.btnSelectDevice.Click += new System.EventHandler(this.btnSelectDevice_Click);
             // 
             // lblTitle
             // 
@@ -79,27 +101,6 @@
             this.lblCopyrights.Size = new System.Drawing.Size(323, 18);
             this.lblCopyrights.TabIndex = 4;
             this.lblCopyrights.Text = "©2017 Pierre-Marc Bonneau, all rights reserved.";
-            // 
-            // btnSelectDevice
-            // 
-            this.btnSelectDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectDevice.Location = new System.Drawing.Point(10, 18);
-            this.btnSelectDevice.Name = "btnSelectDevice";
-            this.btnSelectDevice.Size = new System.Drawing.Size(171, 35);
-            this.btnSelectDevice.TabIndex = 0;
-            this.btnSelectDevice.Text = "Select Device";
-            this.btnSelectDevice.UseVisualStyleBackColor = true;
-            this.btnSelectDevice.Click += new System.EventHandler(this.btnSelectDevice_Click);
-            // 
-            // btnSelectOperatingSystems
-            // 
-            this.btnSelectOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectOperatingSystems.Location = new System.Drawing.Point(10, 71);
-            this.btnSelectOperatingSystems.Name = "btnSelectOperatingSystems";
-            this.btnSelectOperatingSystems.Size = new System.Drawing.Size(171, 35);
-            this.btnSelectOperatingSystems.TabIndex = 1;
-            this.btnSelectOperatingSystems.Text = "Select Operating Systems";
-            this.btnSelectOperatingSystems.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
