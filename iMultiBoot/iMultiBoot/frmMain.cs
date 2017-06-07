@@ -24,6 +24,12 @@ namespace iMultiBoot
             pnlMain.Visible = true;
         }
 
+        private void btnConfigureSoftware_Click(object sender, EventArgs e)
+        {
+            frmSoftwareConfiguration SoftwareConfiguration = new frmSoftwareConfiguration(Controller);
+            SoftwareConfiguration.Show();
+        }
+
         private void btnSelectDevice_Click(object sender, EventArgs e)
         {
             frmDeviceSelection DeviceSelection = new frmDeviceSelection(Controller);
@@ -34,6 +40,11 @@ namespace iMultiBoot
         {
             frmSelectionOS SelectionOS = new frmSelectionOS(Controller);
             SelectionOS.Show();
+        }
+
+        private void btnInstall_Click(object sender, EventArgs e)
+        {
+            Controller.PrepareMainOperatingSystemIPSW();
         }
     }
 }

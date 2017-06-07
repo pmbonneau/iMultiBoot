@@ -71,6 +71,12 @@
     <Compile Include="frmSelectionOS.Designer.cs">
       <DependentUpon>frmSelectionOS.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSoftwareConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSoftwareConfiguration.Designer.cs">
+      <DependentUpon>frmSoftwareConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="iMultiBootController.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSelectionOS.resx">
       <DependentUpon>frmSelectionOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSoftwareConfiguration.resx">
+      <DependentUpon>frmSoftwareConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

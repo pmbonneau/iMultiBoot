@@ -36,6 +36,7 @@
             this.lblSelectSecondaryOS = new System.Windows.Forms.Label();
             this.lblSelectThirdOS = new System.Windows.Forms.Label();
             this.lblSelectFourthOS = new System.Windows.Forms.Label();
+            this.btnValidate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSelectMainOS
@@ -69,6 +70,7 @@
             this.btnSelectSecondaryOS.TabIndex = 2;
             this.btnSelectSecondaryOS.Text = "Select Secondary OS";
             this.btnSelectSecondaryOS.UseVisualStyleBackColor = true;
+            this.btnSelectSecondaryOS.Click += new System.EventHandler(this.btnSelectSecondaryOS_Click);
             // 
             // btnSelectThirdOS
             // 
@@ -123,12 +125,24 @@
             this.lblSelectFourthOS.TabIndex = 7;
             this.lblSelectFourthOS.Text = "No OS Selected";
             // 
+            // btnValidate
+            // 
+            this.btnValidate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValidate.Location = new System.Drawing.Point(448, 236);
+            this.btnValidate.Name = "btnValidate";
+            this.btnValidate.Size = new System.Drawing.Size(122, 37);
+            this.btnValidate.TabIndex = 8;
+            this.btnValidate.Text = "Validate";
+            this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
+            // 
             // frmSelectionOS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(582, 285);
+            this.Controls.Add(this.btnValidate);
             this.Controls.Add(this.lblSelectFourthOS);
             this.Controls.Add(this.lblSelectThirdOS);
             this.Controls.Add(this.lblSelectSecondaryOS);
@@ -154,5 +168,6 @@
         private System.Windows.Forms.Label lblSelectSecondaryOS;
         private System.Windows.Forms.Label lblSelectThirdOS;
         private System.Windows.Forms.Label lblSelectFourthOS;
+        private System.Windows.Forms.Button btnValidate;
     }
 }

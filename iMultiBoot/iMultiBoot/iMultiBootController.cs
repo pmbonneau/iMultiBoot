@@ -9,7 +9,9 @@ namespace iMultiBoot
     public class iMultiBootController
     {
         AppleMobileDevice iDevice;
+        string TemporaryDirectory = "";
         string MainOperatingSystemPathIPSW = "";
+        string SecondaryOperatingSystemPathIPSW = "";
 
         public void setAppleMobileDevice(AppleMobileDevice iDeviceParam)
         {
@@ -21,6 +23,16 @@ namespace iMultiBoot
             return iDevice;
         }
 
+        public void setTemporaryDirectory(string pTemporaryDirectory)
+        {
+            TemporaryDirectory = pTemporaryDirectory;
+        }
+
+        public string getTemporaryDirectory()
+        {
+            return TemporaryDirectory;
+        }
+
         public void setMainOperatingSystemPathIPSW(string FilePath)
         {
             MainOperatingSystemPathIPSW = FilePath;
@@ -29,6 +41,21 @@ namespace iMultiBoot
         public string getMainOperatingSystemPathIPSW()
         {
             return MainOperatingSystemPathIPSW;
+        }
+
+        public void setSecondaryOperatingSystemPathIPSW(string FilePath)
+        {
+            SecondaryOperatingSystemPathIPSW = FilePath;
+        }
+
+        public string getSecondaryOperatingSystemPathIPSW()
+        {
+            return SecondaryOperatingSystemPathIPSW;
+        }
+
+        public void PrepareMainOperatingSystemIPSW()
+        {
+            IPSWlib.Editor MainOperatingSystemIPSW = new IPSWlib.Editor(MainOperatingSystemPathIPSW, TemporaryDirectory + "\\");
         }
     }
 }

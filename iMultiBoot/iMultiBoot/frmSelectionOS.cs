@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace iMultiBoot
 {
@@ -34,6 +35,22 @@ namespace iMultiBoot
             vOpenFileDialog.Filter = "IPSW File|*.ipsw";
             DialogResult result = vOpenFileDialog.ShowDialog();
             Controller.setMainOperatingSystemPathIPSW(vOpenFileDialog.FileName);
+            lblSelectedMainOS.Text = Path.GetFileName(vOpenFileDialog.FileName);
+        }
+
+        private void btnSelectSecondaryOS_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog vOpenFileDialog = new OpenFileDialog();
+            vOpenFileDialog.Title = "Select Secondary OS IPSW";
+            vOpenFileDialog.Filter = "IPSW File|*.ipsw";
+            DialogResult result = vOpenFileDialog.ShowDialog();
+            Controller.setSecondaryOperatingSystemPathIPSW(vOpenFileDialog.FileName);
+            lblSelectedMainOS.Text = Path.GetFileName(vOpenFileDialog.FileName);
+        }
+
+        private void btnValidate_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

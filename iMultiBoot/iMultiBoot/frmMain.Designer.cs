@@ -29,28 +29,43 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.btnInstall = new System.Windows.Forms.Button();
             this.btnSelectOperatingSystems = new System.Windows.Forms.Button();
             this.btnSelectDevice = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnBegin = new System.Windows.Forms.Button();
             this.lblCopyrights = new System.Windows.Forms.Label();
+            this.btnConfigureSoftware = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
             // 
+            this.pnlMain.Controls.Add(this.btnConfigureSoftware);
+            this.pnlMain.Controls.Add(this.btnInstall);
             this.pnlMain.Controls.Add(this.btnSelectOperatingSystems);
             this.pnlMain.Controls.Add(this.btnSelectDevice);
-            this.pnlMain.Location = new System.Drawing.Point(2, 40);
+            this.pnlMain.Location = new System.Drawing.Point(2, 38);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(579, 293);
+            this.pnlMain.Size = new System.Drawing.Size(579, 295);
             this.pnlMain.TabIndex = 1;
             this.pnlMain.Visible = false;
+            // 
+            // btnInstall
+            // 
+            this.btnInstall.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstall.Location = new System.Drawing.Point(213, 257);
+            this.btnInstall.Name = "btnInstall";
+            this.btnInstall.Size = new System.Drawing.Size(171, 35);
+            this.btnInstall.TabIndex = 2;
+            this.btnInstall.Text = "Proceed to Install";
+            this.btnInstall.UseVisualStyleBackColor = true;
+            this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
             // 
             // btnSelectOperatingSystems
             // 
             this.btnSelectOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectOperatingSystems.Location = new System.Drawing.Point(10, 71);
+            this.btnSelectOperatingSystems.Location = new System.Drawing.Point(10, 117);
             this.btnSelectOperatingSystems.Name = "btnSelectOperatingSystems";
             this.btnSelectOperatingSystems.Size = new System.Drawing.Size(171, 35);
             this.btnSelectOperatingSystems.TabIndex = 1;
@@ -61,7 +76,7 @@
             // btnSelectDevice
             // 
             this.btnSelectDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectDevice.Location = new System.Drawing.Point(10, 18);
+            this.btnSelectDevice.Location = new System.Drawing.Point(10, 67);
             this.btnSelectDevice.Name = "btnSelectDevice";
             this.btnSelectDevice.Size = new System.Drawing.Size(171, 35);
             this.btnSelectDevice.TabIndex = 0;
@@ -74,7 +89,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(229, 8);
+            this.lblTitle.Location = new System.Drawing.Point(230, 6);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(120, 29);
             this.lblTitle.TabIndex = 2;
@@ -102,6 +117,17 @@
             this.lblCopyrights.TabIndex = 4;
             this.lblCopyrights.Text = "©2017 Pierre-Marc Bonneau, all rights reserved.";
             // 
+            // btnConfigureSoftware
+            // 
+            this.btnConfigureSoftware.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfigureSoftware.Location = new System.Drawing.Point(10, 13);
+            this.btnConfigureSoftware.Name = "btnConfigureSoftware";
+            this.btnConfigureSoftware.Size = new System.Drawing.Size(171, 35);
+            this.btnConfigureSoftware.TabIndex = 3;
+            this.btnConfigureSoftware.Text = "Configure Software";
+            this.btnConfigureSoftware.UseVisualStyleBackColor = true;
+            this.btnConfigureSoftware.Click += new System.EventHandler(this.btnConfigureSoftware_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,6 +154,8 @@
         private System.Windows.Forms.Label lblCopyrights;
         private System.Windows.Forms.Button btnSelectOperatingSystems;
         private System.Windows.Forms.Button btnSelectDevice;
+        private System.Windows.Forms.Button btnInstall;
+        private System.Windows.Forms.Button btnConfigureSoftware;
     }
 }
 
