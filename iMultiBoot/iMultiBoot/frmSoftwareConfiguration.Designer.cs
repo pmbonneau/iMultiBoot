@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTemporaryDirectory = new System.Windows.Forms.Label();
-            this.txtTemporaryDirectory = new System.Windows.Forms.TextBox();
+            this.lblWorkingDirectory = new System.Windows.Forms.Label();
+            this.txtWorkingDirectory = new System.Windows.Forms.TextBox();
             this.btnBrowseTempDir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lblTemporaryDirectory
+            // lblWorkingDirectory
             // 
-            this.lblTemporaryDirectory.AutoSize = true;
-            this.lblTemporaryDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTemporaryDirectory.ForeColor = System.Drawing.Color.White;
-            this.lblTemporaryDirectory.Location = new System.Drawing.Point(12, 23);
-            this.lblTemporaryDirectory.Name = "lblTemporaryDirectory";
-            this.lblTemporaryDirectory.Size = new System.Drawing.Size(138, 16);
-            this.lblTemporaryDirectory.TabIndex = 0;
-            this.lblTemporaryDirectory.Text = "Temporary Directory :";
+            this.lblWorkingDirectory.AutoSize = true;
+            this.lblWorkingDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWorkingDirectory.ForeColor = System.Drawing.Color.White;
+            this.lblWorkingDirectory.Location = new System.Drawing.Point(12, 23);
+            this.lblWorkingDirectory.Name = "lblWorkingDirectory";
+            this.lblWorkingDirectory.Size = new System.Drawing.Size(121, 16);
+            this.lblWorkingDirectory.TabIndex = 0;
+            this.lblWorkingDirectory.Text = "Working Directory :";
             // 
-            // txtTemporaryDirectory
+            // txtWorkingDirectory
             // 
-            this.txtTemporaryDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTemporaryDirectory.Location = new System.Drawing.Point(156, 20);
-            this.txtTemporaryDirectory.Name = "txtTemporaryDirectory";
-            this.txtTemporaryDirectory.Size = new System.Drawing.Size(207, 22);
-            this.txtTemporaryDirectory.TabIndex = 1;
+            this.txtWorkingDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWorkingDirectory.Location = new System.Drawing.Point(156, 20);
+            this.txtWorkingDirectory.Name = "txtWorkingDirectory";
+            this.txtWorkingDirectory.Size = new System.Drawing.Size(207, 22);
+            this.txtWorkingDirectory.TabIndex = 1;
             // 
             // btnBrowseTempDir
             // 
@@ -70,8 +70,8 @@
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(510, 281);
             this.Controls.Add(this.btnBrowseTempDir);
-            this.Controls.Add(this.txtTemporaryDirectory);
-            this.Controls.Add(this.lblTemporaryDirectory);
+            this.Controls.Add(this.txtWorkingDirectory);
+            this.Controls.Add(this.lblWorkingDirectory);
             this.Name = "frmSoftwareConfiguration";
             this.Text = "Configure Software";
             this.ResumeLayout(false);
@@ -81,8 +81,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblTemporaryDirectory;
-        private System.Windows.Forms.TextBox txtTemporaryDirectory;
+        private System.Windows.Forms.Label lblWorkingDirectory;
+        private System.Windows.Forms.TextBox txtWorkingDirectory;
         private System.Windows.Forms.Button btnBrowseTempDir;
     }
 }

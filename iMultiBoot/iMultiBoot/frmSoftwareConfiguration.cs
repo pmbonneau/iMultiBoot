@@ -27,10 +27,10 @@ namespace iMultiBoot
         private void btnBrowseTempDir_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog vFolderBrowserDialog = new FolderBrowserDialog();
-            vFolderBrowserDialog.Description = "Select Temporary Directory";
+            vFolderBrowserDialog.Description = "Select Working Directory";
             DialogResult result = vFolderBrowserDialog.ShowDialog();
-            Controller.setTemporaryDirectory(vFolderBrowserDialog.SelectedPath);
-            txtTemporaryDirectory.Text = Controller.getTemporaryDirectory();
+            Controller.setWorkingDirectory(vFolderBrowserDialog.SelectedPath);
+            txtWorkingDirectory.Text = Controller.getWorkingDirectory();
         }
     }
 }
