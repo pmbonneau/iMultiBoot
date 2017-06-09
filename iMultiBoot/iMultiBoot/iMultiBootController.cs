@@ -62,6 +62,9 @@ namespace iMultiBoot
         {
             IPSWlib.Editor SecondaryOperatingSystemIPSW = new IPSWlib.Editor(SecondaryOperatingSystemPathIPSW, WorkingDirectory);
             string[] SecondaryOperatingSystemFiles;
+            string WorkingDirectorySecondaryOS = WorkingDirectory + SecondaryOperatingSystemIPSW.getBuildNumber() + "_Secondary";
+
+            Directory.CreateDirectory(WorkingDirectorySecondaryOS);
 
             SecondaryOperatingSystemFiles = SecondaryOperatingSystemIPSW.getAllFilesIPSW();
 
@@ -73,7 +76,12 @@ namespace iMultiBoot
                 }
                 else if (SecondaryOperatingSystemFiles[i].Contains("LLB") == true)
                 {
-                    ImagesToFlash.Add(SecondaryOperatingSystemFiles[i]);
+                    string ImageFileName = Path.GetFileName(SecondaryOperatingSystemFiles[i]);
+                    string[] SplittedImageFileName = ImageFileName.Split('.');
+                    string UpdatedImageFileName = "";
+                    SplittedImageFileName[0] = SplittedImageFileName[0] + "B";
+                    UpdatedImageFileName = SplittedImageFileName[0] + "." + SplittedImageFileName[1] + "." + SplittedImageFileName[2] + "." + SplittedImageFileName[3];
+                    File.Copy(SecondaryOperatingSystemFiles[i], WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName);
                 }
                 else if (SecondaryOperatingSystemFiles[i].Contains("DeviceTree") == true)
                 {
@@ -95,7 +103,7 @@ namespace iMultiBoot
         public void PrepareMainOperatingSystemIPSW()
         {
             IPSWlib.Editor MainOperatingSystemIPSW;
-            List<string> ImagesToFlash = new List<string>();
+            List<string> ImagesToFlashSecondaryOS = new List<string>();
 
             if (MainOperatingSystemSelected == true)
             {
@@ -108,16 +116,19 @@ namespace iMultiBoot
 
             if (SecondaryOperatingSystemSelected == true)
             {
-                ImagesToFlash = addSecondaryOperatingSystemImagesToFlash(ImagesToFlash);
+                ImagesToFlashSecondaryOS = addSecondaryOperatingSystemImagesToFlash(ImagesToFlashSecondaryOS);
+                for (int i = 0; i < ImagesToFlashSecondaryOS.Count; i++)
+                {
+                    ImagesToFlashSecondaryOS[i] = MainOperatingSystemIPSW.AddToAllFlashFolder(ImagesToFlashSecondaryOS[i], "Secondary");
+                }
+
+                for (int i = 0; i < ImagesToFlashSecondaryOS.Count; i++)
+                {
+                    MainOperatingSystemIPSW.AddToFlashManifest(ImagesToFlashSecondaryOS[i]);
+                }
             }
 
-            for (int i = 0; i < ImagesToFlash.Count; i++)
-            {
-                MainOperatingSystemIPSW.AddToAllFlashFolder(ImagesToFlash[i]);
-                MainOperatingSystemIPSW.AddToFlashManifest(Path.GetFileName(ImagesToFlash[i]));
-            }
-
-            MainOperatingSystemIPSW.RebuildIPSW(MainOperatingSystemIPSW.getFileNameIPSW(), WorkingDirectory);
+            MainOperatingSystemIPSW.RebuildIPSW(WorkingDirectory + MainOperatingSystemIPSW.getFileNameIPSW(), WorkingDirectory + MainOperatingSystemIPSW.getFileNameIPSW() + ".ipsw");
         }
     }
 }

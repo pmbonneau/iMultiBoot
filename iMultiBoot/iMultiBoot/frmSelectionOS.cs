@@ -45,7 +45,7 @@ namespace iMultiBoot
             vOpenFileDialog.Filter = "IPSW File|*.ipsw";
             DialogResult result = vOpenFileDialog.ShowDialog();
             Controller.setSecondaryOperatingSystemPathIPSW(vOpenFileDialog.FileName);
-            lblSelectedMainOS.Text = Path.GetFileName(vOpenFileDialog.FileName);
+            lblSelectSecondaryOS.Text = Path.GetFileName(vOpenFileDialog.FileName);
         }
 
         private void btnValidate_Click(object sender, EventArgs e)
