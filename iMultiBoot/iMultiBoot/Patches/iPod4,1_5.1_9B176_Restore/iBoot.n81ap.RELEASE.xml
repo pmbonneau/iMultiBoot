@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Container>
+	<Patch>
+		<ID>Sample Patch</ID>
+		<Position>00000010</Position>
+		<Data>62</Data>
+	</Patch>
+</Container>

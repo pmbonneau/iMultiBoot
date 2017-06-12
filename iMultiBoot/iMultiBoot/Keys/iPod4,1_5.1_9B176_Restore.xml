@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Container>
+	<DecryptionKeys>
+		<ID>RootFS</ID>
+		<File>038-1765-165.dmg</File>
+		<IV>NA</IV>
+		<Key>1ab3765d93aaf106b918829db85c18e724473e51106ad89f3d10e863cc3864974c2852f5</Key>
+	</DecryptionKeys>
+	<DecryptionKeys>
+		<ID>AppleLogo</ID>
+		<File>applelogo@2x.s5l8930x.img3</File>
+		<IV>9d8c3366e67a76fba95288c2da08f677</IV>
+		<Key>b165b5f5eaa3f9c4caa1ead70db3075f80f2d9ad86be84cfa42188fac3ef3c09</Key>
+	</DecryptionKeys>
+	<DecryptionKeys>
+		<ID>RecoveryModeLogo</ID>
+		<File>recoverymode@2x~iphone.s5l8930x.img3</File>
+		<IV>c5644001b41bf69c802d0cc8062dbc7a</IV>
+		<Key>dbed1f3ddd7de7f56eb9363fb45e84b0a3cdfbaf125d4e90f13490b96bbbe0dd</Key>
+	</DecryptionKeys>
+	<DecryptionKeys>
+		<ID>DeviceTree</ID>
+		<File>DeviceTree.n81ap.img3</File>
+		<IV>b59e73fad51f62ff4c70b45c0ae5b29f</IV>
+		<Key>43218cea11263379a601c3cb8b4eb4c703171d9341ca83f09d78289e1308caca</Key>
+	</DecryptionKeys>
+	<DecryptionKeys>
+		<ID>LLB</ID>
+		<File>LLB.n81ap.RELEASE.img3</File>
+		<IV>3f6f5128ae1198f57adf559123b1da1c</IV>
+		<Key>28dde68d793c8fa7abae54b479da5ce75369ae8cece745f7a435a5bf3b22e6bb</Key>
+	</DecryptionKeys>
+	<DecryptionKeys>
+		<ID>iBoot</ID>
+		<File>iBoot.n81ap.RELEASE.img3</File>
+		<IV>16641c07fe97051c445d21258722f3d1</IV>
+		<Key>d302a0ba7253453bce4431dd5a2a04fbf4da9868c340eae633a0202fe0995155</Key>
+	</DecryptionKeys>
+</Container>
