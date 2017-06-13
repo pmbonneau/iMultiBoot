@@ -121,7 +121,9 @@
     <Content Include="idevicerestore.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Keys\iPod4,1_5.1_9B176_Restore.xml" />
+    <Content Include="Keys\iPod4,1_5.1_9B176_Restore.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="libcrypto.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -161,7 +163,21 @@
     <Content Include="libzip-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Patches\iPod4,1_5.1_9B176_Restore\iBoot.n81ap.RELEASE.xml" />
+    <Content Include="Patches\iPod4,1_5.1_9B176_Restore\recoverymode%402x~iphone.s5l8930x.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patches\iPod4,1_5.1_9B176_Restore\DeviceTree.n81ap.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patches\iPod4,1_5.1_9B176_Restore\applelogo%402x.s5l8930x.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patches\iPod4,1_5.1_9B176_Restore\LLB.n81ap.RELEASE.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Patches\iPod4,1_5.1_9B176_Restore\iBoot.n81ap.RELEASE.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ssleay32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
