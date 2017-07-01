@@ -216,6 +216,53 @@ namespace iMultiBoot
             }
         }
 
+        private void DecryptRootFileSystemImage(string DecryptionKeysContainerFileName, string EncryptedRootFileSystemImagePath)
+        {
+            ToolsManagerLib.DmgUtility DmgDecryptionTool = new ToolsManagerLib.DmgUtility();
+            string[] ID;
+            string[] FileName;
+            string[] Key;
+
+            XmlDocument XmlContainer = new XmlDocument();
+            XmlContainer.Load(".\\Keys\\" + DecryptionKeysContainerFileName + ".xml");
+            int NodeCount = 0;
+            XmlNodeList DecryptionNodeListID = XmlContainer.SelectNodes("/Container/DecryptionKeys/ID");
+            ID = new string[DecryptionNodeListID.Count];
+            foreach (XmlNode DecryptionNode in DecryptionNodeListID)
+            {
+                ID[NodeCount] = DecryptionNode.InnerText;
+                NodeCount++;
+            }
+
+            NodeCount = 0;
+            XmlNodeList DecryptionNodeListFile = XmlContainer.SelectNodes("/Container/DecryptionKeys/File");
+            FileName = new string[DecryptionNodeListFile.Count];
+            foreach (XmlNode DecryptionNode in DecryptionNodeListFile)
+            {
+                FileName[NodeCount] = DecryptionNode.InnerText;
+                NodeCount++;
+            }
+
+            NodeCount = 0;
+            XmlNodeList DecryptionNodeListKey = XmlContainer.SelectNodes("/Container/DecryptionKeys/Key");
+            Key = new string[DecryptionNodeListKey.Count];
+            foreach (XmlNode DecryptionNode in DecryptionNodeListKey)
+            {
+                Key[NodeCount] = DecryptionNode.InnerText;
+                NodeCount++;
+            }
+
+            for (int i = 0; i < FileName.Length; i++)
+            {
+                if (Path.GetFileName(EncryptedRootFileSystemImagePath) == FileName[i])
+                {
+                    DmgDecryptionTool.DecryptImage(EncryptedRootFileSystemImagePath, Path.GetDirectoryName(EncryptedRootFileSystemImagePath) + "\\" + Path.GetFileNameWithoutExtension(EncryptedRootFileSystemImagePath) + "_dec.dmg", Key[i]);
+                    File.Delete(EncryptedRootFileSystemImagePath);
+                    //File.Move(ImagesToFlash[i] + "_dec", ImagesToFlash[i]);
+                }
+            }
+    }
+
         private void PatchFirmwareImages(string PatchContainerFileName, List<string> ImagesToFlash)
         {
             BinaryPatcherLib.BinaryPatcher PatchEngine;
@@ -260,6 +307,9 @@ namespace iMultiBoot
                 UpdatedImageFileName = SplittedImageFileName[0] + "." + SplittedImageFileName[1] + "." + SplittedImageFileName[2] + "." + SplittedImageFileName[3];
                 File.Copy(OperatingSystemsArray[1].LowLevelBootloader, WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName);
 
+                DecryptRootFileSystemImage(SecondaryOperatingSystemIPSW.getFileNameIPSW(), SecondaryOperatingSystemIPSW.getRootFileSystemImagePath());
+                //File.Move(SecondaryOperatingSystemIPSW.getRootFileSystemImagePath(), WorkingDirectorySecondaryOS + "\\" + Path.GetFileName(SecondaryOperatingSystemIPSW.getRootFileSystemImagePath()));
+
                 for (int i = 0; i < ImagesToFlashSecondaryOS.Count; i++)
                 {
                     ImagesToFlashSecondaryOS[i] = MainOperatingSystemIPSW.AddToAllFlashFolder(ImagesToFlashSecondaryOS[i], "Secondary");
@@ -272,6 +322,8 @@ namespace iMultiBoot
             }
 
             MainOperatingSystemIPSW.RebuildIPSW(WorkingDirectory + MainOperatingSystemIPSW.getFileNameIPSW(), WorkingDirectory + MainOperatingSystemIPSW.getFileNameIPSW() + ".ipsw");
+            ToolsManagerLib.iDeviceRestore iDeviceRestore = new ToolsManagerLib.iDeviceRestore();
+            iDeviceRestore.EraseRestore(WorkingDirectory + MainOperatingSystemIPSW.getFileNameIPSW() + ".ipsw");
         }
     }
 }
