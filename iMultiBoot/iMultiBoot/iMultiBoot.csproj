@@ -80,7 +80,10 @@
     <Compile Include="frmSoftwareConfiguration.Designer.cs">
       <DependentUpon>frmSoftwareConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="IOperatingSystem.cs" />
     <Compile Include="iMultiBootController.cs" />
+    <Compile Include="iOS5.cs" />
+    <Compile Include="iOS6.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmDeviceSelection.resx">

@@ -35,6 +35,7 @@ namespace iMultiBoot
             vOpenFileDialog.Filter = "IPSW File|*.ipsw";
             DialogResult result = vOpenFileDialog.ShowDialog();
             Controller.setMainOperatingSystemPathIPSW(vOpenFileDialog.FileName);
+            Controller.CreateOperatingSystemInstance(vOpenFileDialog.FileName,0);
             lblSelectedMainOS.Text = Path.GetFileName(vOpenFileDialog.FileName);
         }
 
@@ -45,6 +46,7 @@ namespace iMultiBoot
             vOpenFileDialog.Filter = "IPSW File|*.ipsw";
             DialogResult result = vOpenFileDialog.ShowDialog();
             Controller.setSecondaryOperatingSystemPathIPSW(vOpenFileDialog.FileName);
+            Controller.CreateOperatingSystemInstance(vOpenFileDialog.FileName,1);
             lblSelectSecondaryOS.Text = Path.GetFileName(vOpenFileDialog.FileName);
         }
 

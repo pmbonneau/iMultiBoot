@@ -17,6 +17,7 @@ namespace iMultiBoot
         bool MainOperatingSystemSelected = false;
         bool SecondaryOperatingSystemSelected = false;
         string SecondaryOperatingSystemPathIPSW = "";
+        IOperatingSystem[] OperatingSystemsArray = new IOperatingSystem[4];
 
         public void setAppleMobileDevice(AppleMobileDevice iDeviceParam)
         {
@@ -49,6 +50,43 @@ namespace iMultiBoot
             return MainOperatingSystemPathIPSW;
         }
 
+        public void CreateOperatingSystemInstance(string FileNameIPSW, int Position)
+        {
+            string[] SplittedFileName;
+            string Version;
+            string BuildNumber;
+
+            SplittedFileName = FileNameIPSW.Split('_');
+
+            Version = SplittedFileName[1];
+            BuildNumber = SplittedFileName[2];
+
+            if (Version[0] == '5')
+            {
+                IOperatingSystem iOS5Instance = new iOS5(Version, BuildNumber);
+                OperatingSystemsArray[Position] = iOS5Instance;
+            }
+            else if (Version[0] == '6')
+            {
+                IOperatingSystem iOS6Instance = new iOS6(Version, BuildNumber);
+                OperatingSystemsArray[Position] = iOS6Instance;
+            }
+        }
+
+        private string getiOSVersion(string FileNameIPSW)
+        {
+            string[] SplittedFileName;
+            SplittedFileName = FileNameIPSW.Split('_');
+            return SplittedFileName[1];
+        }
+
+        private string getiOSBuildNumber(string FileNameIPSW)
+        {
+            string[] SplittedFileName;
+            SplittedFileName = FileNameIPSW.Split('_');
+            return SplittedFileName[2];
+        }
+
         public void setSecondaryOperatingSystemPathIPSW(string FilePath)
         {
             SecondaryOperatingSystemPathIPSW = FilePath;
@@ -73,28 +111,43 @@ namespace iMultiBoot
             {
                 if (SecondaryOperatingSystemFiles[i].Contains("iBoot.") == true)
                 {
-                    ImagesToFlash.Add(SecondaryOperatingSystemFiles[i]);
+                    if (OperatingSystemsArray[1].iBoot == null)
+                    {
+                        OperatingSystemsArray[1].iBoot = SecondaryOperatingSystemFiles[i];
+                    }
+                    ImagesToFlash.Add(OperatingSystemsArray[1].iBoot);
                 }
                 else if (SecondaryOperatingSystemFiles[i].Contains("LLB") == true)
                 {
-                    string ImageFileName = Path.GetFileName(SecondaryOperatingSystemFiles[i]);
-                    string[] SplittedImageFileName = ImageFileName.Split('.');
-                    string UpdatedImageFileName = "";
-                    SplittedImageFileName[0] = SplittedImageFileName[0] + "B";
-                    UpdatedImageFileName = SplittedImageFileName[0] + "." + SplittedImageFileName[1] + "." + SplittedImageFileName[2] + "." + SplittedImageFileName[3];
-                    File.Copy(SecondaryOperatingSystemFiles[i], WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName);
+                    if (OperatingSystemsArray[1].LowLevelBootloader == null)
+                    {
+                        OperatingSystemsArray[1].LowLevelBootloader = SecondaryOperatingSystemFiles[i];
+                    }
+                    ImagesToFlash.Add(OperatingSystemsArray[1].LowLevelBootloader);
                 }
                 else if (SecondaryOperatingSystemFiles[i].Contains("DeviceTree") == true)
                 {
-                    ImagesToFlash.Add(SecondaryOperatingSystemFiles[i]);
+                    if (OperatingSystemsArray[1].DeviceTree == null)
+                    {
+                        OperatingSystemsArray[1].DeviceTree = SecondaryOperatingSystemFiles[i];
+                    }
+                    ImagesToFlash.Add(OperatingSystemsArray[1].DeviceTree);
                 }
                 else if (SecondaryOperatingSystemFiles[i].Contains("applelogo") == true)
                 {
-                    ImagesToFlash.Add(SecondaryOperatingSystemFiles[i]);
+                    if (OperatingSystemsArray[1].BootLogo == null)
+                    {
+                        OperatingSystemsArray[1].BootLogo = SecondaryOperatingSystemFiles[i];
+                    }
+                    ImagesToFlash.Add(OperatingSystemsArray[1].BootLogo);
                 }
                 else if (SecondaryOperatingSystemFiles[i].Contains("recoverymode") == true)
                 {
-                    ImagesToFlash.Add(SecondaryOperatingSystemFiles[i]);
+                    if (OperatingSystemsArray[1].RecoveryLogo == null)
+                    {
+                        OperatingSystemsArray[1].RecoveryLogo = SecondaryOperatingSystemFiles[i];
+                    }
+                    ImagesToFlash.Add(OperatingSystemsArray[1].RecoveryLogo);
                 }
             }
 
@@ -198,6 +251,14 @@ namespace iMultiBoot
 
                 DecryptFirmwareImages(SecondaryOperatingSystemIPSW.getFileNameIPSW(), ImagesToFlashSecondaryOS);
                 PatchFirmwareImages(SecondaryOperatingSystemIPSW.getFileNameIPSW(), ImagesToFlashSecondaryOS);
+
+                string WorkingDirectorySecondaryOS = WorkingDirectory + SecondaryOperatingSystemIPSW.getBuildNumber() + "_Secondary";
+                string ImageFileName = Path.GetFileName(OperatingSystemsArray[1].LowLevelBootloader);
+                string[] SplittedImageFileName = ImageFileName.Split('.');
+                string UpdatedImageFileName = "";
+                SplittedImageFileName[0] = SplittedImageFileName[0] + "B";
+                UpdatedImageFileName = SplittedImageFileName[0] + "." + SplittedImageFileName[1] + "." + SplittedImageFileName[2] + "." + SplittedImageFileName[3];
+                File.Copy(OperatingSystemsArray[1].LowLevelBootloader, WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName);
 
                 for (int i = 0; i < ImagesToFlashSecondaryOS.Count; i++)
                 {

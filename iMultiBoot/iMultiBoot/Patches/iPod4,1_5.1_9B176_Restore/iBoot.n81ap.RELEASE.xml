@@ -17,17 +17,17 @@
 	</Patch>
 	<Patch>
 		<ID>Bootlogo Image Type</ID>
-		<Position>00000D28</Position>
+		<Position>00000D2A</Position>
 		<Data>62</Data>
 	</Patch>
 	<Patch>
 		<ID>Recovery Logo Image Type</ID>
-		<Position>00000F10</Position>
+		<Position>00000F16</Position>
 		<Data>62</Data>
 	</Patch>
 	<Patch>
 		<ID>DeviceTree Image Type</ID>
-		<Position>000113E8</Position>
+		<Position>000113EC</Position>
 		<Data>62</Data>
 	</Patch>
 	<Patch>
@@ -94,5 +94,10 @@
 		<ID>Custom Boot-Args</ID>
 		<Position>000328BB</Position>
 		<Data>616D66693D307866662063735F656E666F7263656D656E745F64697361626C653D312070696F2D6572726F723D30202D762072643D6469736B3073317333</Data>
+	</Patch>
+	<Patch>
+		<ID>KernelCache Path</ID>
+		<Position>0003320A</Position>
+		<Data>62</Data>
 	</Patch>
 </Container>
