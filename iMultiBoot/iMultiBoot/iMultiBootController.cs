@@ -17,6 +17,7 @@ namespace iMultiBoot
         bool MainOperatingSystemSelected = false;
         bool SecondaryOperatingSystemSelected = false;
         string SecondaryOperatingSystemPathIPSW = "";
+        string WorkingDirectorySecondaryOS = "";
         IOperatingSystem[] OperatingSystemsArray = new IOperatingSystem[4];
 
         public void setAppleMobileDevice(AppleMobileDevice iDeviceParam)
@@ -258,7 +259,7 @@ namespace iMultiBoot
                 {
                     DmgDecryptionTool.DecryptImage(EncryptedRootFileSystemImagePath, Path.GetDirectoryName(EncryptedRootFileSystemImagePath) + "\\" + Path.GetFileNameWithoutExtension(EncryptedRootFileSystemImagePath) + "_dec.dmg", Key[i]);
                     File.Delete(EncryptedRootFileSystemImagePath);
-                    //File.Move(ImagesToFlash[i] + "_dec", ImagesToFlash[i]);
+                    File.Move(Path.GetDirectoryName(EncryptedRootFileSystemImagePath) + "\\" + Path.GetFileNameWithoutExtension(EncryptedRootFileSystemImagePath) + "_dec.dmg", WorkingDirectorySecondaryOS + "\\" + "RootFileSystem.dmg");
                 }
             }
     }
@@ -299,7 +300,7 @@ namespace iMultiBoot
                 DecryptFirmwareImages(SecondaryOperatingSystemIPSW.getFileNameIPSW(), ImagesToFlashSecondaryOS);
                 PatchFirmwareImages(SecondaryOperatingSystemIPSW.getFileNameIPSW(), ImagesToFlashSecondaryOS);
 
-                string WorkingDirectorySecondaryOS = WorkingDirectory + SecondaryOperatingSystemIPSW.getBuildNumber() + "_Secondary";
+                WorkingDirectorySecondaryOS = WorkingDirectory + SecondaryOperatingSystemIPSW.getBuildNumber() + "_Secondary";
                 string ImageFileName = Path.GetFileName(OperatingSystemsArray[1].LowLevelBootloader);
                 string[] SplittedImageFileName = ImageFileName.Split('.');
                 string UpdatedImageFileName = "";

@@ -37,6 +37,7 @@ namespace iMultiBoot
             Controller.setMainOperatingSystemPathIPSW(vOpenFileDialog.FileName);
             Controller.CreateOperatingSystemInstance(vOpenFileDialog.FileName,0);
             lblSelectedMainOS.Text = Path.GetFileName(vOpenFileDialog.FileName);
+            btnConfigureMainOS.Enabled = true;
         }
 
         private void btnSelectSecondaryOS_Click(object sender, EventArgs e)
@@ -48,6 +49,7 @@ namespace iMultiBoot
             Controller.setSecondaryOperatingSystemPathIPSW(vOpenFileDialog.FileName);
             Controller.CreateOperatingSystemInstance(vOpenFileDialog.FileName,1);
             lblSelectSecondaryOS.Text = Path.GetFileName(vOpenFileDialog.FileName);
+            btnConfigureSecondaryOS.Enabled = true;
         }
 
         private void btnValidate_Click(object sender, EventArgs e)

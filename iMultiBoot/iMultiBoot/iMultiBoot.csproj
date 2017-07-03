@@ -56,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppleMobileDevice.cs" />
+    <Compile Include="frmConfigureOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfigureOS.Designer.cs">
+      <DependentUpon>frmConfigureOS.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDeviceSelection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     <Compile Include="iOS6.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmConfigureOS.resx">
+      <DependentUpon>frmConfigureOS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDeviceSelection.resx">
       <DependentUpon>frmDeviceSelection.cs</DependentUpon>
     </EmbeddedResource>
