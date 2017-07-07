@@ -74,6 +74,11 @@ namespace iMultiBoot
             }
         }
 
+        public IOperatingSystem getOperatingSystemInstance(int Position)
+        {
+            return OperatingSystemsArray[Position];
+        }
+
         private string getiOSVersion(string FileNameIPSW)
         {
             string[] SplittedFileName;
@@ -104,7 +109,10 @@ namespace iMultiBoot
             string[] SecondaryOperatingSystemFiles;
             string WorkingDirectorySecondaryOS = WorkingDirectory + SecondaryOperatingSystemIPSW.getBuildNumber() + "_Secondary";
 
-            Directory.CreateDirectory(WorkingDirectorySecondaryOS);
+            if (Directory.Exists(WorkingDirectorySecondaryOS) == false)
+            {
+                Directory.CreateDirectory(WorkingDirectorySecondaryOS);
+            }
 
             SecondaryOperatingSystemFiles = SecondaryOperatingSystemIPSW.getAllFilesIPSW();
 

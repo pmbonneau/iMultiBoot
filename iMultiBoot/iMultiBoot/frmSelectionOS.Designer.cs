@@ -150,6 +150,7 @@
             this.btnConfigureMainOS.TabIndex = 9;
             this.btnConfigureMainOS.Text = "Configure";
             this.btnConfigureMainOS.UseVisualStyleBackColor = true;
+            this.btnConfigureMainOS.Click += new System.EventHandler(this.btnConfigureMainOS_Click);
             // 
             // btnConfigureSecondaryOS
             // 
@@ -161,6 +162,7 @@
             this.btnConfigureSecondaryOS.TabIndex = 10;
             this.btnConfigureSecondaryOS.Text = "Configure";
             this.btnConfigureSecondaryOS.UseVisualStyleBackColor = true;
+            this.btnConfigureSecondaryOS.Click += new System.EventHandler(this.btnConfigureSecondaryOS_Click);
             // 
             // btnConfigureThirdOS
             // 
