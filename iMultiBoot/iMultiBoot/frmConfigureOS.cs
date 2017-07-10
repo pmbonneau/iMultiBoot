@@ -29,7 +29,7 @@ namespace iMultiBoot
             DialogResult result = vOpenFileDialog.ShowDialog();
             txtDeviceTree.Text = vOpenFileDialog.FileName;
 
-            string GenericDeviceTreeFileName = "DeviceTree." + OperatingSystem.SystemBuildNumber + ".img3";
+            string GenericDeviceTreeFileName = "DeviceTree." + Controller.getAppleMobileDevice().InternalCodeName + "_custom.img3";
 
             Directory.CreateDirectory(Controller.getWorkingDirectory());
 
@@ -45,7 +45,7 @@ namespace iMultiBoot
             DialogResult result = vOpenFileDialog.ShowDialog();
             txtFirstStageBootloader.Text = vOpenFileDialog.FileName;
 
-            string GenericFirstStageBootloaderFileName = "LLB." + OperatingSystem.SystemBuildNumber + ".img3";
+            string GenericFirstStageBootloaderFileName = "LLB." + Controller.getAppleMobileDevice().InternalCodeName + ".RELEASE.img3";
 
             Directory.CreateDirectory(Controller.getWorkingDirectory());
 
@@ -61,7 +61,7 @@ namespace iMultiBoot
             DialogResult result = vOpenFileDialog.ShowDialog();
             txtSecondaryStageBootloader.Text = vOpenFileDialog.FileName;
 
-            string GenericSecondaryStageBootloaderFileName = "iBoot." + OperatingSystem.SystemBuildNumber + ".img3";
+            string GenericSecondaryStageBootloaderFileName = "iBoot." + Controller.getAppleMobileDevice().InternalCodeName + ".RELEASE.img3";
 
             Directory.CreateDirectory(Controller.getWorkingDirectory());
 

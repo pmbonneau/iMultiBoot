@@ -8,9 +8,11 @@ namespace iMultiBoot
 {
     public class AppleMobileDevice
     {
-        string InternalCodeName = "";
         int NandTotalCapacity = 0;
         double NandRemainingCapacity = 0.0;
+
+        public string InternalCodeName { get; set; }
+
         public AppleMobileDevice(string pInternalCodeName)
         {
             InternalCodeName = pInternalCodeName;

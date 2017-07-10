@@ -32,7 +32,7 @@ namespace iMultiBoot
             int NandTotalCapacity = 0;
             if (Convert.ToString(cmbDeviceSelection.SelectedItem) == "iPod Touch 4th (N81AP)")
             {
-                InternalCodeName = "N81AP";
+                InternalCodeName = "n81ap";
             }
             iDevice = new AppleMobileDevice(InternalCodeName);
 

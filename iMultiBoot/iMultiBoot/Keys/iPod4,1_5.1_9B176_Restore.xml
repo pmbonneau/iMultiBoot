@@ -24,6 +24,12 @@
 		<IV>b59e73fad51f62ff4c70b45c0ae5b29f</IV>
 		<Key>43218cea11263379a601c3cb8b4eb4c703171d9341ca83f09d78289e1308caca</Key>
 	</DecryptionKeys>
+  <DecryptionKeys>
+		<ID>DeviceTree_iOS6</ID>
+		<File>DeviceTree.n81ap_custom.img3</File>
+		<IV>830c518baddc2e82ad27de186a56e451</IV>
+		<Key>fd12079909ae24b2f8140720854608d12c066def4dc07b66f142259d2970426c</Key>
+	</DecryptionKeys>
 	<DecryptionKeys>
 		<ID>LLB</ID>
 		<File>LLB.n81ap.RELEASE.img3</File>

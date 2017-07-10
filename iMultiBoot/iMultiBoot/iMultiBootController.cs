@@ -217,7 +217,6 @@ namespace iMultiBoot
                     if (Path.GetFileName(ImagesToFlash[i]) == FileName[j])
                     {
                         XPwnTools.DecryptFirmwareImage(ImagesToFlash[i], ImagesToFlash[i] + "_dec", IV[j], Key[j]);
-                        Thread.Sleep(5000);
                         File.Delete(ImagesToFlash[i]);
                         File.Move(ImagesToFlash[i] + "_dec", ImagesToFlash[i]);
                     }
@@ -270,7 +269,7 @@ namespace iMultiBoot
                     File.Move(Path.GetDirectoryName(EncryptedRootFileSystemImagePath) + "\\" + Path.GetFileNameWithoutExtension(EncryptedRootFileSystemImagePath) + "_dec.dmg", WorkingDirectorySecondaryOS + "\\" + "RootFileSystem.dmg");
                 }
             }
-    }
+        }
 
         private void PatchFirmwareImages(string PatchContainerFileName, List<string> ImagesToFlash)
         {
@@ -317,7 +316,6 @@ namespace iMultiBoot
                 File.Copy(OperatingSystemsArray[1].LowLevelBootloader, WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName);
 
                 DecryptRootFileSystemImage(SecondaryOperatingSystemIPSW.getFileNameIPSW(), SecondaryOperatingSystemIPSW.getRootFileSystemImagePath());
-                //File.Move(SecondaryOperatingSystemIPSW.getRootFileSystemImagePath(), WorkingDirectorySecondaryOS + "\\" + Path.GetFileName(SecondaryOperatingSystemIPSW.getRootFileSystemImagePath()));
 
                 for (int i = 0; i < ImagesToFlashSecondaryOS.Count; i++)
                 {
