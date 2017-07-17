@@ -29,22 +29,24 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.btnManagePartitions = new System.Windows.Forms.Button();
+            this.btnInstallOperatingSystems = new System.Windows.Forms.Button();
             this.btnConfigureSoftware = new System.Windows.Forms.Button();
-            this.btnInstall = new System.Windows.Forms.Button();
+            this.btnBuildFirmware = new System.Windows.Forms.Button();
             this.btnSelectOperatingSystems = new System.Windows.Forms.Button();
             this.btnSelectDevice = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnBegin = new System.Windows.Forms.Button();
             this.lblCopyrights = new System.Windows.Forms.Label();
-            this.btnTest = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
             // 
-            this.pnlMain.Controls.Add(this.btnTest);
+            this.pnlMain.Controls.Add(this.btnManagePartitions);
+            this.pnlMain.Controls.Add(this.btnInstallOperatingSystems);
             this.pnlMain.Controls.Add(this.btnConfigureSoftware);
-            this.pnlMain.Controls.Add(this.btnInstall);
+            this.pnlMain.Controls.Add(this.btnBuildFirmware);
             this.pnlMain.Controls.Add(this.btnSelectOperatingSystems);
             this.pnlMain.Controls.Add(this.btnSelectDevice);
             this.pnlMain.Location = new System.Drawing.Point(2, 38);
@@ -52,6 +54,28 @@
             this.pnlMain.Size = new System.Drawing.Size(579, 295);
             this.pnlMain.TabIndex = 1;
             this.pnlMain.Visible = false;
+            // 
+            // btnManagePartitions
+            // 
+            this.btnManagePartitions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManagePartitions.Location = new System.Drawing.Point(10, 119);
+            this.btnManagePartitions.Name = "btnManagePartitions";
+            this.btnManagePartitions.Size = new System.Drawing.Size(171, 35);
+            this.btnManagePartitions.TabIndex = 5;
+            this.btnManagePartitions.Text = "Manage Partitions";
+            this.btnManagePartitions.UseVisualStyleBackColor = true;
+            this.btnManagePartitions.Click += new System.EventHandler(this.btnManagePartitions_Click);
+            // 
+            // btnInstallOperatingSystems
+            // 
+            this.btnInstallOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstallOperatingSystems.Location = new System.Drawing.Point(359, 13);
+            this.btnInstallOperatingSystems.Name = "btnInstallOperatingSystems";
+            this.btnInstallOperatingSystems.Size = new System.Drawing.Size(211, 35);
+            this.btnInstallOperatingSystems.TabIndex = 4;
+            this.btnInstallOperatingSystems.Text = "Install Operating Systems";
+            this.btnInstallOperatingSystems.UseVisualStyleBackColor = true;
+            this.btnInstallOperatingSystems.Click += new System.EventHandler(this.btnInstallOperatingSystems_Click);
             // 
             // btnConfigureSoftware
             // 
@@ -64,21 +88,21 @@
             this.btnConfigureSoftware.UseVisualStyleBackColor = true;
             this.btnConfigureSoftware.Click += new System.EventHandler(this.btnConfigureSoftware_Click);
             // 
-            // btnInstall
+            // btnBuildFirmware
             // 
-            this.btnInstall.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInstall.Location = new System.Drawing.Point(213, 257);
-            this.btnInstall.Name = "btnInstall";
-            this.btnInstall.Size = new System.Drawing.Size(171, 35);
-            this.btnInstall.TabIndex = 2;
-            this.btnInstall.Text = "Proceed to Install";
-            this.btnInstall.UseVisualStyleBackColor = true;
-            this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
+            this.btnBuildFirmware.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuildFirmware.Location = new System.Drawing.Point(10, 234);
+            this.btnBuildFirmware.Name = "btnBuildFirmware";
+            this.btnBuildFirmware.Size = new System.Drawing.Size(171, 35);
+            this.btnBuildFirmware.TabIndex = 2;
+            this.btnBuildFirmware.Text = "Build Firmware";
+            this.btnBuildFirmware.UseVisualStyleBackColor = true;
+            this.btnBuildFirmware.Click += new System.EventHandler(this.btnBuildFirmware_Click);
             // 
             // btnSelectOperatingSystems
             // 
             this.btnSelectOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectOperatingSystems.Location = new System.Drawing.Point(10, 117);
+            this.btnSelectOperatingSystems.Location = new System.Drawing.Point(10, 173);
             this.btnSelectOperatingSystems.Name = "btnSelectOperatingSystems";
             this.btnSelectOperatingSystems.Size = new System.Drawing.Size(171, 35);
             this.btnSelectOperatingSystems.TabIndex = 1;
@@ -130,17 +154,6 @@
             this.lblCopyrights.TabIndex = 4;
             this.lblCopyrights.Text = "©2017 Pierre-Marc Bonneau, all rights reserved.";
             // 
-            // btnTest
-            // 
-            this.btnTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTest.Location = new System.Drawing.Point(377, 13);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(171, 35);
-            this.btnTest.TabIndex = 4;
-            this.btnTest.Text = "Test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,9 +180,10 @@
         private System.Windows.Forms.Label lblCopyrights;
         private System.Windows.Forms.Button btnSelectOperatingSystems;
         private System.Windows.Forms.Button btnSelectDevice;
-        private System.Windows.Forms.Button btnInstall;
+        private System.Windows.Forms.Button btnBuildFirmware;
         private System.Windows.Forms.Button btnConfigureSoftware;
-        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnInstallOperatingSystems;
+        private System.Windows.Forms.Button btnManagePartitions;
     }
 }
 

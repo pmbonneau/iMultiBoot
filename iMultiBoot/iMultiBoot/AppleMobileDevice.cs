@@ -8,34 +8,28 @@ namespace iMultiBoot
 {
     public class AppleMobileDevice
     {
-        int NandTotalCapacity = 0;
-        double NandRemainingCapacity = 0.0;
-
         public string InternalCodeName { get; set; }
+        public int NandTotalCapacity { get; set; }
+        public int NandBlockSize { get; set; }
+        public int DataPartitionCapacity { get; set; }
+        public int DataPartitionRemainingCapacity { get; set; }
+        public Partition SystemPartition { get; set; }
+        public Partition DataPartition { get; set; }
+        public List<Partition> PartitionList { get; set; }
 
         public AppleMobileDevice(string pInternalCodeName)
         {
             InternalCodeName = pInternalCodeName;
         }
 
-        public void setNandTotalCapacity(int pNandTotalCapacity)
+        public AppleMobileDevice(string pInternalCodeName, Partition pSystemPartition, Partition pDataPartition)
         {
-            NandTotalCapacity = pNandTotalCapacity;
-        }
-
-        public int getNandTotalCapacity()
-        {
-            return NandTotalCapacity;
-        }
-
-        public void setNandRemainingCapacity(double pNandRemainingCapacity)
-        {
-            NandRemainingCapacity = pNandRemainingCapacity;
-        }
-
-        public double getNandRemainingCapacity()
-        {
-            return NandRemainingCapacity;
+            InternalCodeName = pInternalCodeName;
+            SystemPartition = pSystemPartition;
+            DataPartition = pDataPartition;
+            PartitionList = new List<Partition>();
+            PartitionList.Add(pSystemPartition);
+            PartitionList.Add(pDataPartition);
         }
     }
 }

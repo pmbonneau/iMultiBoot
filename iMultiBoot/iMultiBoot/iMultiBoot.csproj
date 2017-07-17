@@ -36,6 +36,9 @@
     <Reference Include="BinaryPatcherLib">
       <HintPath>..\..\..\BinaryPatcher\BinaryPatcher\BinaryPatcherLib\bin\Debug\BinaryPatcherLib.dll</HintPath>
     </Reference>
+    <Reference Include="DiskUtilityLib">
+      <HintPath>..\..\..\iOS-DiskUtility\iOS-DiskUtility\DiskUtilityLib\bin\Debug\DiskUtilityLib.dll</HintPath>
+    </Reference>
     <Reference Include="IPSWlib">
       <HintPath>..\..\..\IPSW-Editor\IPSWlib\IPSWlib\bin\Debug\IPSWlib.dll</HintPath>
     </Reference>
@@ -52,6 +55,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="ToolsManagerLib">
       <HintPath>..\..\..\ToolsManager\ToolsManagerLib\ToolsManagerLib\bin\Debug\ToolsManagerLib.dll</HintPath>
+    </Reference>
+    <Reference Include="WinSCPnet, Version=1.3.7.7601, Culture=neutral, PublicKeyToken=2271ec4a3c56d0bf, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinSCP.5.9.6\lib\WinSCPnet.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +81,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPartitionManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPartitionManager.Designer.cs">
+      <DependentUpon>frmPartitionManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSelectionOS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,8 +103,11 @@
     <Compile Include="iMultiBootController.cs" />
     <Compile Include="iOS5.cs" />
     <Compile Include="iOS6.cs" />
+    <Compile Include="ISecureShell.cs" />
     <Compile Include="main.cs" />
+    <Compile Include="Partition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecureShell.cs" />
     <EmbeddedResource Include="frmConfigureOS.resx">
       <DependentUpon>frmConfigureOS.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPartitionManager.resx">
+      <DependentUpon>frmPartitionManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSelectionOS.resx">
       <DependentUpon>frmSelectionOS.cs</DependentUpon>
@@ -116,6 +135,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -197,6 +217,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ssleay32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WinSCP.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="xpwntool.exe">

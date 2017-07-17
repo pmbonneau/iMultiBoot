@@ -29,27 +29,40 @@ namespace iMultiBoot
         private void btnValidate_Click(object sender, EventArgs e)
         {
             string InternalCodeName = "";
-            int NandTotalCapacity = 0;
+            int NandTotalCapacity = 32000;
+            int NandBlockSize = 0;
+            int DataPartitionCapacity = 0;
             if (Convert.ToString(cmbDeviceSelection.SelectedItem) == "iPod Touch 4th (N81AP)")
             {
                 InternalCodeName = "n81ap";
+                NandBlockSize = 8192;
             }
-            iDevice = new AppleMobileDevice(InternalCodeName);
 
             if (Convert.ToString(cmbCapacitySelection.SelectedItem) == "8 GB")
             {
-                NandTotalCapacity = 8;
+                NandTotalCapacity = 8000;
+                DataPartitionCapacity = 5600;
             }
             else if (Convert.ToString(cmbCapacitySelection.SelectedItem) == "16 GB")
             {
-                NandTotalCapacity = 16;
+                NandTotalCapacity = 16000;
+                DataPartitionCapacity = 12000;
             }
             else if (Convert.ToString(cmbCapacitySelection.SelectedItem) == "32 GB")
             {
-                NandTotalCapacity = 32;
+                NandTotalCapacity = 32000;
+                DataPartitionCapacity = 26000;
             }
-            iDevice.setNandTotalCapacity(NandTotalCapacity);
-            iDevice.setNandRemainingCapacity(Convert.ToDouble(txtRemainingCapacity.Text));
+
+            Partition SystemPartition = new Partition("System", NandTotalCapacity - DataPartitionCapacity);
+            Partition DataPartition = new Partition("Data", DataPartitionCapacity);
+
+            iDevice = new AppleMobileDevice(InternalCodeName, SystemPartition, DataPartition);
+
+            iDevice.NandTotalCapacity = NandTotalCapacity;
+            iDevice.DataPartitionRemainingCapacity = (int)(Convert.ToDouble(txtDataRemainingCapacity.Text) * 1000);
+            iDevice.NandBlockSize = NandBlockSize;
+
             Controller.setAppleMobileDevice(iDevice);
             Close();
         }

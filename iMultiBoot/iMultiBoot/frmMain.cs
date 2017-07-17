@@ -42,14 +42,20 @@ namespace iMultiBoot
             SelectionOS.Show();
         }
 
-        private void btnInstall_Click(object sender, EventArgs e)
+        private void btnBuildFirmware_Click(object sender, EventArgs e)
         {
             Controller.PrepareMainOperatingSystemIPSW();
         }
 
-        private void btnTest_Click(object sender, EventArgs e)
+        private void btnManagePartitions_Click(object sender, EventArgs e)
         {
+            frmPartitionManager PartitionManager = new frmPartitionManager(Controller.getAppleMobileDevice(), Controller);
+            PartitionManager.Show();
+        }
 
+        private void btnInstallOperatingSystems_Click(object sender, EventArgs e)
+        {
+            Controller.PartitionDeviceStorage();
         }
     }
 }

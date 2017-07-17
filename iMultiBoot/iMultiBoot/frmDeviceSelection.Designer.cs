@@ -34,8 +34,10 @@
             this.lblCopyrights = new System.Windows.Forms.Label();
             this.lblSelectDevice = new System.Windows.Forms.Label();
             this.lblTotalCapacity = new System.Windows.Forms.Label();
-            this.lblRemainingCapacity = new System.Windows.Forms.Label();
-            this.txtRemainingCapacity = new System.Windows.Forms.TextBox();
+            this.lblDataCapacity = new System.Windows.Forms.Label();
+            this.txtDataCapacity = new System.Windows.Forms.TextBox();
+            this.lblDataRemainingCapacity = new System.Windows.Forms.Label();
+            this.txtDataRemainingCapacity = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmbCapacitySelection
@@ -106,23 +108,41 @@
             this.lblTotalCapacity.TabIndex = 7;
             this.lblTotalCapacity.Text = "Total Capacity :";
             // 
-            // lblRemainingCapacity
+            // lblDataCapacity
             // 
-            this.lblRemainingCapacity.AutoSize = true;
-            this.lblRemainingCapacity.ForeColor = System.Drawing.Color.White;
-            this.lblRemainingCapacity.Location = new System.Drawing.Point(351, 9);
-            this.lblRemainingCapacity.Name = "lblRemainingCapacity";
-            this.lblRemainingCapacity.Size = new System.Drawing.Size(107, 13);
-            this.lblRemainingCapacity.TabIndex = 8;
-            this.lblRemainingCapacity.Text = "Remaining Capacity :";
+            this.lblDataCapacity.AutoSize = true;
+            this.lblDataCapacity.ForeColor = System.Drawing.Color.White;
+            this.lblDataCapacity.Location = new System.Drawing.Point(12, 70);
+            this.lblDataCapacity.Name = "lblDataCapacity";
+            this.lblDataCapacity.Size = new System.Drawing.Size(145, 13);
+            this.lblDataCapacity.TabIndex = 10;
+            this.lblDataCapacity.Text = "Data Partition Capacity (GB) :";
             // 
-            // txtRemainingCapacity
+            // txtDataCapacity
             // 
-            this.txtRemainingCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemainingCapacity.Location = new System.Drawing.Point(354, 25);
-            this.txtRemainingCapacity.Name = "txtRemainingCapacity";
-            this.txtRemainingCapacity.Size = new System.Drawing.Size(68, 22);
-            this.txtRemainingCapacity.TabIndex = 9;
+            this.txtDataCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataCapacity.Location = new System.Drawing.Point(163, 65);
+            this.txtDataCapacity.Name = "txtDataCapacity";
+            this.txtDataCapacity.Size = new System.Drawing.Size(68, 22);
+            this.txtDataCapacity.TabIndex = 11;
+            // 
+            // lblDataRemainingCapacity
+            // 
+            this.lblDataRemainingCapacity.AutoSize = true;
+            this.lblDataRemainingCapacity.ForeColor = System.Drawing.Color.White;
+            this.lblDataRemainingCapacity.Location = new System.Drawing.Point(12, 104);
+            this.lblDataRemainingCapacity.Name = "lblDataRemainingCapacity";
+            this.lblDataRemainingCapacity.Size = new System.Drawing.Size(198, 13);
+            this.lblDataRemainingCapacity.TabIndex = 8;
+            this.lblDataRemainingCapacity.Text = "Data Partition Remaining Capacity (GB) :";
+            // 
+            // txtDataRemainingCapacity
+            // 
+            this.txtDataRemainingCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataRemainingCapacity.Location = new System.Drawing.Point(210, 99);
+            this.txtDataRemainingCapacity.Name = "txtDataRemainingCapacity";
+            this.txtDataRemainingCapacity.Size = new System.Drawing.Size(68, 22);
+            this.txtDataRemainingCapacity.TabIndex = 9;
             // 
             // frmDeviceSelection
             // 
@@ -130,8 +150,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(463, 199);
-            this.Controls.Add(this.txtRemainingCapacity);
-            this.Controls.Add(this.lblRemainingCapacity);
+            this.Controls.Add(this.txtDataCapacity);
+            this.Controls.Add(this.lblDataCapacity);
+            this.Controls.Add(this.txtDataRemainingCapacity);
+            this.Controls.Add(this.lblDataRemainingCapacity);
             this.Controls.Add(this.lblTotalCapacity);
             this.Controls.Add(this.lblSelectDevice);
             this.Controls.Add(this.lblCopyrights);
@@ -152,7 +174,9 @@
         private System.Windows.Forms.Label lblCopyrights;
         private System.Windows.Forms.Label lblSelectDevice;
         private System.Windows.Forms.Label lblTotalCapacity;
-        private System.Windows.Forms.Label lblRemainingCapacity;
-        private System.Windows.Forms.TextBox txtRemainingCapacity;
+        private System.Windows.Forms.Label lblDataCapacity;
+        private System.Windows.Forms.TextBox txtDataCapacity;
+        private System.Windows.Forms.Label lblDataRemainingCapacity;
+        private System.Windows.Forms.TextBox txtDataRemainingCapacity;
     }
 }
