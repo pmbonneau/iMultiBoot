@@ -77,9 +77,6 @@
             // lbPartitionTable
             // 
             this.lbPartitionTable.FormattingEnabled = true;
-            this.lbPartitionTable.Items.AddRange(new object[] {
-            "System",
-            "Data"});
             this.lbPartitionTable.Location = new System.Drawing.Point(15, 66);
             this.lbPartitionTable.Name = "lbPartitionTable";
             this.lbPartitionTable.Size = new System.Drawing.Size(168, 56);
@@ -240,6 +237,7 @@
             this.btnValidate.TabIndex = 9;
             this.btnValidate.Text = "Validate";
             this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
             // gbPartitionTablePreparation
             // 

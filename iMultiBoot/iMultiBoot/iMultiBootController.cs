@@ -364,11 +364,11 @@ namespace iMultiBoot
             ResizeMainDataPartition();
             for (int i = 2; i < iDevice.PartitionList.Count; i++)
             {
-                CreatePartition(iDevice.PartitionList[i].Name, iDevice.PartitionList[i].Size);
+                CreatePartition(iDevice.PartitionList[i]);
             }
         }
 
-        private void CreatePartition(string PartitionName, int NewPartitionSize)
+        private void CreatePartition(Partition pPartition)
         {
             GPTfdisk GPTfdiskEditor = new GPTfdisk();
             GPTfdiskEditor.FileSystemBlockSize = iDevice.NandBlockSize;
@@ -376,11 +376,11 @@ namespace iMultiBoot
             int PartitionLastSector;
             string CommandOutput = "";
             int PositionLastSector;
-            CommandOutput = SSH.ExecuteRemoteCommandWithOutput(GPTfdiskEditor.getConsoleOutputPartitionInfo(Convert.ToString(iDevice.PartitionList.Count - 1)));
+            CommandOutput = SSH.ExecuteRemoteCommandWithOutput(GPTfdiskEditor.getConsoleOutputPartitionInfo(pPartition.Number));
             PositionLastSector = CommandOutput.IndexOf("Last");
             PartitionLastSectorTempString = CommandOutput.Substring(PositionLastSector + 13, 7);
             PartitionLastSector = Convert.ToInt32(PartitionLastSectorTempString.TrimEnd());
-            SSH.ExecuteRemoteCommand(GPTfdiskEditor.CreateNewPartition(PartitionName, Convert.ToString(iDevice.PartitionList.Count), PartitionLastSector, Convert.ToInt32(NewPartitionSize)));
+            SSH.ExecuteRemoteCommand(GPTfdiskEditor.CreateNewPartition(pPartition.Name, Convert.ToString(iDevice.PartitionList.Count), PartitionLastSector, pPartition.Size));
         }
 
         private void DeletePartition(string PartitionNumberToDelete)

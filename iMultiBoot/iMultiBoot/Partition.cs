@@ -10,6 +10,7 @@ namespace iMultiBoot
     {
         public string Name { get; set; }
         public int Size { get; set; }
+        public string Number { get; set; }
         public int LastSector { get; set; }
 
         public Partition(string pName, int pSize)
