@@ -60,10 +60,10 @@ namespace iMultiBoot
             iDevice = new AppleMobileDevice(InternalCodeName, SystemPartition, DataPartition);
 
             iDevice.NandTotalCapacity = NandTotalCapacity;
-            iDevice.DataPartitionRemainingCapacity = (int)(Convert.ToDouble(txtDataRemainingCapacity.Text) * 1000);
             iDevice.NandBlockSize = NandBlockSize;
 
             Controller.setAppleMobileDevice(iDevice);
+
             Close();
         }
     }

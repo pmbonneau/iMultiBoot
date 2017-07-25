@@ -21,6 +21,7 @@ namespace iMultiBoot
         public void setAppleMobileDevice(AppleMobileDevice iDeviceParam)
         {
             iDevice = iDeviceParam;
+            CompleteDeviceWithStorageInfo(iDevice);
         }
 
         public AppleMobileDevice getAppleMobileDevice()
@@ -69,6 +70,22 @@ namespace iMultiBoot
             {
                 IOperatingSystem iOS6Instance = new iOS6(Version, BuildNumber);
                 OperatingSystemsArray[Position] = iOS6Instance;
+            }
+        }
+
+        private void CompleteDeviceWithStorageInfo(AppleMobileDevice iDevice)
+        {
+            XmlDocument XmlContainer = new XmlDocument();
+            XmlContainer.Load(".\\Devices\\" + iDevice.InternalCodeName + ".xml");
+
+            XmlNodeList SystemNodeList = XmlContainer.SelectNodes("/Device/System");
+            foreach (XmlNode SystemNode in SystemNodeList)
+            {
+                if (SystemNode.ChildNodes[2].InnerText == Convert.ToString(iDevice.NandTotalCapacity))
+                {
+                    iDevice.SystemPartition.Size = Convert.ToInt16(SystemNode.ChildNodes[3].InnerText);
+                    iDevice.DataPartition.Size = Convert.ToInt16(SystemNode.ChildNodes[4].InnerText);
+                }
             }
         }
 

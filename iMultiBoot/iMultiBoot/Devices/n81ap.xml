@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Device>
+  <Codename>n81ap</Codename>
+  <System>
+    <Version>6.1.6</Version>
+    <BuildNumber>10B500</BuildNumber>
+    <NandCapacity>32000</NandCapacity>
+    <SysPartition>3200</SysPartition>
+    <DataPartition>28800</DataPartition>
+  </System>
+  <System>
+    <Version>6.1.6</Version>
+    <BuildNumber>10B500</BuildNumber>
+    <NandCapacity>16000</NandCapacity>
+    <SysPartition>2800</SysPartition>
+    <DataPartition>13200</DataPartition>
+  </System>
+  <System>
+    <Version>5.1</Version>
+    <BuildNumber>9B176</BuildNumber>
+    <NandCapacity>16000</NandCapacity>
+    <SysPartition>2800</SysPartition>
+    <DataPartition>13200</DataPartition>
+  </System>
+</Device>
