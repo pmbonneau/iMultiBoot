@@ -5,6 +5,8 @@
     <Version>6.1.6</Version>
     <BuildNumber>10B500</BuildNumber>
     <NandCapacity>32000</NandCapacity>
+    <PartitionTable>GPT</PartitionTable>
+    <LwVM>True</LwVM>
     <SysPartition>3200</SysPartition>
     <DataPartition>28800</DataPartition>
   </System>
@@ -12,6 +14,8 @@
     <Version>6.1.6</Version>
     <BuildNumber>10B500</BuildNumber>
     <NandCapacity>16000</NandCapacity>
+    <PartitionTable>GPT</PartitionTable>
+    <LwVM>True</LwVM>
     <SysPartition>2800</SysPartition>
     <DataPartition>13200</DataPartition>
   </System>
@@ -19,6 +23,8 @@
     <Version>5.1</Version>
     <BuildNumber>9B176</BuildNumber>
     <NandCapacity>16000</NandCapacity>
+    <PartitionTable>GPT</PartitionTable>
+    <LwVM>True</LwVM>
     <SysPartition>2800</SysPartition>
     <DataPartition>13200</DataPartition>
   </System>

@@ -42,5 +42,13 @@ namespace iMultiBoot
         {
             return session.ExecuteCommand(CommandToExecute).Output;
         }
+
+        public void UploadFile(string pLocalFilePath, string pRemoteFilePath)
+        {
+            TransferOptions transferOptions = new TransferOptions();
+            transferOptions.TransferMode = TransferMode.Binary;
+            TransferOperationResult transferResult;
+            transferResult = session.PutFiles(pLocalFilePath, pRemoteFilePath, false, transferOptions);
+        }
     }
 }

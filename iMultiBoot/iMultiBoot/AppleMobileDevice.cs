@@ -11,6 +11,8 @@ namespace iMultiBoot
         public string InternalCodeName { get; set; }
         public int NandTotalCapacity { get; set; }
         public int NandBlockSize { get; set; }
+        public string PartitionTableType { get; set; }
+        public bool UseLwVM { get; set; }
         public Partition SystemPartition { get; set; }
         public Partition DataPartition { get; set; }
         public List<Partition> PartitionList { get; set; }

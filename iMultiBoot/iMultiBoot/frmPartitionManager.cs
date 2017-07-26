@@ -48,7 +48,7 @@ namespace iMultiBoot
         private void btnCreatePartition_Click(object sender, EventArgs e)
         {
             Partition NewPartition = new Partition(txtPartitionCreationName.Text,Convert.ToInt32(txtPartitionCreationSize.Text));
-            NewPartition.Number = Convert.ToString(Device.PartitionList.Count);
+            NewPartition.Number = Convert.ToString(Device.PartitionList.Count + 1);
             Device.PartitionList.Add(NewPartition);
             lbPartitionTable.Items.Add(NewPartition.Name);
             txtPartitionCreationName.Text = "";
