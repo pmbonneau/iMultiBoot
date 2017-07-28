@@ -10,6 +10,8 @@ namespace iMultiBoot
     {
         string SystemVersion { get; set; }
         string SystemBuildNumber { get; set; }
+        Partition SystemPartition { get; set; }
+        Partition DataPartition { get; set; }
         string LowLevelBootloader { get; set; }
         string iBoot { get; set; }
         string DeviceTree { get; set; }

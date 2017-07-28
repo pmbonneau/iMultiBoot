@@ -49,6 +49,8 @@
             this.gbPartitionTablePreparation = new System.Windows.Forms.GroupBox();
             this.txtNewDataPartitionSize = new System.Windows.Forms.TextBox();
             this.lblDataPartitionSize = new System.Windows.Forms.Label();
+            this.cbProtected = new System.Windows.Forms.CheckBox();
+            this.cbJournaled = new System.Windows.Forms.CheckBox();
             this.gbPartitionInformation.SuspendLayout();
             this.gbPartitionCreation.SuspendLayout();
             this.gbPartitionTablePreparation.SuspendLayout();
@@ -147,6 +149,8 @@
             // 
             // gbPartitionCreation
             // 
+            this.gbPartitionCreation.Controls.Add(this.cbJournaled);
+            this.gbPartitionCreation.Controls.Add(this.cbProtected);
             this.gbPartitionCreation.Controls.Add(this.txtPartitionCreationSize);
             this.gbPartitionCreation.Controls.Add(this.lblPartitionCreationSize);
             this.gbPartitionCreation.Controls.Add(this.txtPartitionCreationName);
@@ -155,7 +159,7 @@
             this.gbPartitionCreation.ForeColor = System.Drawing.Color.White;
             this.gbPartitionCreation.Location = new System.Drawing.Point(15, 360);
             this.gbPartitionCreation.Name = "gbPartitionCreation";
-            this.gbPartitionCreation.Size = new System.Drawing.Size(463, 71);
+            this.gbPartitionCreation.Size = new System.Drawing.Size(463, 110);
             this.gbPartitionCreation.TabIndex = 5;
             this.gbPartitionCreation.TabStop = false;
             this.gbPartitionCreation.Text = "Partition Creation";
@@ -208,7 +212,7 @@
             // btnCreatePartition
             // 
             this.btnCreatePartition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreatePartition.Location = new System.Drawing.Point(353, 437);
+            this.btnCreatePartition.Location = new System.Drawing.Point(353, 493);
             this.btnCreatePartition.Name = "btnCreatePartition";
             this.btnCreatePartition.Size = new System.Drawing.Size(125, 33);
             this.btnCreatePartition.TabIndex = 7;
@@ -231,7 +235,7 @@
             // btnValidate
             // 
             this.btnValidate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidate.Location = new System.Drawing.Point(353, 476);
+            this.btnValidate.Location = new System.Drawing.Point(353, 532);
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(125, 33);
             this.btnValidate.TabIndex = 9;
@@ -270,12 +274,32 @@
             this.lblDataPartitionSize.TabIndex = 12;
             this.lblDataPartitionSize.Text = "Data Partition Size :";
             // 
+            // cbProtected
+            // 
+            this.cbProtected.AutoSize = true;
+            this.cbProtected.Location = new System.Drawing.Point(18, 74);
+            this.cbProtected.Name = "cbProtected";
+            this.cbProtected.Size = new System.Drawing.Size(85, 20);
+            this.cbProtected.TabIndex = 14;
+            this.cbProtected.Text = "Protected";
+            this.cbProtected.UseVisualStyleBackColor = true;
+            // 
+            // cbJournaled
+            // 
+            this.cbJournaled.AutoSize = true;
+            this.cbJournaled.Location = new System.Drawing.Point(144, 74);
+            this.cbJournaled.Name = "cbJournaled";
+            this.cbJournaled.Size = new System.Drawing.Size(87, 20);
+            this.cbJournaled.TabIndex = 15;
+            this.cbJournaled.Text = "Journaled";
+            this.cbJournaled.UseVisualStyleBackColor = true;
+            // 
             // frmPartitionManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(490, 521);
+            this.ClientSize = new System.Drawing.Size(490, 577);
             this.Controls.Add(this.gbPartitionTablePreparation);
             this.Controls.Add(this.btnValidate);
             this.Controls.Add(this.btnCreatePartition);
@@ -322,5 +346,7 @@
         private System.Windows.Forms.GroupBox gbPartitionTablePreparation;
         private System.Windows.Forms.TextBox txtNewDataPartitionSize;
         private System.Windows.Forms.Label lblDataPartitionSize;
+        private System.Windows.Forms.CheckBox cbJournaled;
+        private System.Windows.Forms.CheckBox cbProtected;
     }
 }

@@ -8,6 +8,7 @@ namespace iMultiBoot
     {
         IOperatingSystem OperatingSystem;
         iMultiBootController Controller;
+        Partition SelectedPartition;
 
         public frmConfigureOS()
         {
@@ -19,6 +20,10 @@ namespace iMultiBoot
             InitializeComponent();
             OperatingSystem = pOperatingSystem;
             Controller = pController;
+            for (int i = 0; i < Controller.getAppleMobileDevice().PartitionList.Count; i++)
+            {
+                lbPartitionTable.Items.Add(Controller.getAppleMobileDevice().PartitionList[i].Name);
+            }
         }
 
         private void btnDeviceTree_Click(object sender, EventArgs e)
@@ -67,6 +72,21 @@ namespace iMultiBoot
 
             File.Copy(vOpenFileDialog.FileName, Controller.getWorkingDirectory() + "\\" + GenericSecondaryStageBootloaderFileName);
             OperatingSystem.DeviceTree = Controller.getWorkingDirectory() + "\\" + GenericSecondaryStageBootloaderFileName;
+        }
+
+        private void lbPartitionTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedPartition = Controller.getAppleMobileDevice().PartitionList[lbPartitionTable.SelectedIndex];
+        }
+
+        private void btnSetSystem_Click(object sender, EventArgs e)
+        {
+            OperatingSystem.SystemPartition = SelectedPartition;
+        }
+
+        private void btnSetData_Click(object sender, EventArgs e)
+        {
+            OperatingSystem.DataPartition = SelectedPartition;
         }
     }
 }

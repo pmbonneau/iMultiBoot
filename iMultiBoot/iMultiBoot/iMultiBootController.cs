@@ -385,7 +385,12 @@ namespace iMultiBoot
             for (int i = 2; i < iDevice.PartitionList.Count; i++)
             {
                 CreatePartition(iDevice.PartitionList[i]);
+                iDevice.PartitionList[i].MountPoint = "/" + iDevice.PartitionList[i].Name;
+                SSH.ExecuteRemoteCommand("mkdir " + iDevice.PartitionList[i].MountPoint);
+                SSH.ExecuteRemoteCommand(FormatVolume(iDevice.PartitionList[i]));
+                SSH.ExecuteRemoteCommand(MountVolume(iDevice.PartitionList[i]));
             }
+
         }
 
         private void CreatePartition(Partition pPartition)
@@ -410,9 +415,26 @@ namespace iMultiBoot
             SSH.ExecuteRemoteCommand(GPTfdiskEditor.DeletePartition(PartitionNumberToDelete));
         }
 
-        public void FormatVolume(Partition pPartition, bool JournaledFlag, bool ProtectedFlag)
+        public string FormatVolume(Partition pPartition)
         {
+            DiskUtilityLib.NewFS NewFS = new DiskUtilityLib.NewFS();
+            string TargetDiskDevice;
+            if (iDevice.UseLwVM == true)
+            {
+                TargetDiskDevice = "disk0s1s" + pPartition.Number;
+            }
+            else
+            {
+                TargetDiskDevice = "disk0s" + pPartition.Number;
+            }
+            pPartition.DiskDevicePath = "/dev/" + TargetDiskDevice;
+            return NewFS.HFS(pPartition.Name, Convert.ToString(iDevice.NandBlockSize), TargetDiskDevice, pPartition.JournaledFlag, pPartition.ProtectedFlag);
+        }
 
+        public string MountVolume(Partition pPartition)
+        {
+            DiskUtilityLib.Mount Mount = new DiskUtilityLib.Mount();
+            return Mount.HFS(pPartition.DiskDevicePath, pPartition.MountPoint);
         }
     }
 }

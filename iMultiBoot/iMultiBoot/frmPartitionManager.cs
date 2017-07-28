@@ -49,6 +49,15 @@ namespace iMultiBoot
         {
             Partition NewPartition = new Partition(txtPartitionCreationName.Text,Convert.ToInt32(txtPartitionCreationSize.Text));
             NewPartition.Number = Convert.ToString(Device.PartitionList.Count + 1);
+            if (cbJournaled.Checked == true)
+            {
+                NewPartition.JournaledFlag = true;
+            }
+
+            if (cbProtected.Checked == true)
+            {
+                NewPartition.ProtectedFlag = true;
+            }
             Device.PartitionList.Add(NewPartition);
             lbPartitionTable.Items.Add(NewPartition.Name);
             txtPartitionCreationName.Text = "";
