@@ -31,6 +31,8 @@
             this.lblWorkingDirectory = new System.Windows.Forms.Label();
             this.txtWorkingDirectory = new System.Windows.Forms.TextBox();
             this.btnBrowseTempDir = new System.Windows.Forms.Button();
+            this.lblDeviceWorkingDirectory = new System.Windows.Forms.Label();
+            this.txtDeviceWorkingDirectory = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblWorkingDirectory
@@ -63,12 +65,34 @@
             this.btnBrowseTempDir.UseVisualStyleBackColor = true;
             this.btnBrowseTempDir.Click += new System.EventHandler(this.btnBrowseTempDir_Click);
             // 
+            // lblDeviceWorkingDirectory
+            // 
+            this.lblDeviceWorkingDirectory.AutoSize = true;
+            this.lblDeviceWorkingDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeviceWorkingDirectory.ForeColor = System.Drawing.Color.White;
+            this.lblDeviceWorkingDirectory.Location = new System.Drawing.Point(12, 83);
+            this.lblDeviceWorkingDirectory.Name = "lblDeviceWorkingDirectory";
+            this.lblDeviceWorkingDirectory.Size = new System.Drawing.Size(167, 16);
+            this.lblDeviceWorkingDirectory.TabIndex = 3;
+            this.lblDeviceWorkingDirectory.Text = "Device Working Directory :";
+            // 
+            // txtDeviceWorkingDirectory
+            // 
+            this.txtDeviceWorkingDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDeviceWorkingDirectory.Location = new System.Drawing.Point(185, 80);
+            this.txtDeviceWorkingDirectory.Name = "txtDeviceWorkingDirectory";
+            this.txtDeviceWorkingDirectory.Size = new System.Drawing.Size(207, 22);
+            this.txtDeviceWorkingDirectory.TabIndex = 4;
+            this.txtDeviceWorkingDirectory.Text = "//var";
+            // 
             // frmSoftwareConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(510, 281);
+            this.Controls.Add(this.txtDeviceWorkingDirectory);
+            this.Controls.Add(this.lblDeviceWorkingDirectory);
             this.Controls.Add(this.btnBrowseTempDir);
             this.Controls.Add(this.txtWorkingDirectory);
             this.Controls.Add(this.lblWorkingDirectory);
@@ -84,5 +108,7 @@
         private System.Windows.Forms.Label lblWorkingDirectory;
         private System.Windows.Forms.TextBox txtWorkingDirectory;
         private System.Windows.Forms.Button btnBrowseTempDir;
+        private System.Windows.Forms.Label lblDeviceWorkingDirectory;
+        private System.Windows.Forms.TextBox txtDeviceWorkingDirectory;
     }
 }

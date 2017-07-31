@@ -10,6 +10,7 @@ namespace iMultiBoot
     {
         AppleMobileDevice iDevice;
         string WorkingDirectory = "";
+        string DeviceWorkingDirectory = "";
         string MainOperatingSystemPathIPSW = "";
         bool MainOperatingSystemSelected = false;
         bool SecondaryOperatingSystemSelected = false;
@@ -242,7 +243,7 @@ namespace iMultiBoot
             }
         }
 
-        private void DecryptRootFileSystemImage(string DecryptionKeysContainerFileName, string EncryptedRootFileSystemImagePath)
+        private string DecryptRootFileSystemImage(string DecryptionKeysContainerFileName, string EncryptedRootFileSystemImagePath)
         {
             ToolsManagerLib.DmgUtility DmgDecryptionTool = new ToolsManagerLib.DmgUtility();
             string[] ID;
@@ -284,9 +285,9 @@ namespace iMultiBoot
                 {
                     DmgDecryptionTool.DecryptImage(EncryptedRootFileSystemImagePath, Path.GetDirectoryName(EncryptedRootFileSystemImagePath) + "\\" + Path.GetFileNameWithoutExtension(EncryptedRootFileSystemImagePath) + "_dec.dmg", Key[i]);
                     File.Delete(EncryptedRootFileSystemImagePath);
-                    File.Move(Path.GetDirectoryName(EncryptedRootFileSystemImagePath) + "\\" + Path.GetFileNameWithoutExtension(EncryptedRootFileSystemImagePath) + "_dec.dmg", WorkingDirectorySecondaryOS + "\\" + "RootFileSystem.dmg");
                 }
             }
+            return Path.GetDirectoryName(EncryptedRootFileSystemImagePath) + "\\" + Path.GetFileNameWithoutExtension(EncryptedRootFileSystemImagePath) + "_dec.dmg";
         }
 
         private void PatchFirmwareImages(string PatchContainerFileName, List<string> ImagesToFlash)
@@ -332,8 +333,20 @@ namespace iMultiBoot
                 SplittedImageFileName[0] = SplittedImageFileName[0] + "B";
                 UpdatedImageFileName = SplittedImageFileName[0] + "." + SplittedImageFileName[1] + "." + SplittedImageFileName[2] + "." + SplittedImageFileName[3];
                 File.Copy(OperatingSystemsArray[1].LowLevelBootloader, WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName);
+                OperatingSystemsArray[1].LowLevelBootloader = WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName;
 
-                DecryptRootFileSystemImage(SecondaryOperatingSystemIPSW.getFileNameIPSW(), SecondaryOperatingSystemIPSW.getRootFileSystemImagePath());
+                string DecryptedRootFileSystemImagePath = DecryptRootFileSystemImage(SecondaryOperatingSystemIPSW.getFileNameIPSW(), SecondaryOperatingSystemIPSW.getRootFileSystemImagePath());
+                File.Move(DecryptedRootFileSystemImagePath, WorkingDirectorySecondaryOS + "\\" + "RootFileSystem.dmg");
+                OperatingSystemsArray[1].RootFileSystem = WorkingDirectorySecondaryOS + "\\" + "RootFileSystem.dmg";
+
+                for (int i = 0; i < SecondaryOperatingSystemIPSW.getAllFilesIPSW().Length; i++)
+                {
+                    if (SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i].Contains("kernel"))
+                    {
+                        File.Copy(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i], WorkingDirectorySecondaryOS + "\\" + Path.GetFileName(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i]));
+                        OperatingSystemsArray[1].KernelCache = WorkingDirectorySecondaryOS + "\\" + Path.GetFileName(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i]);
+                    }
+                }
 
                 for (int i = 0; i < ImagesToFlashSecondaryOS.Count; i++)
                 {
@@ -354,6 +367,12 @@ namespace iMultiBoot
         public void ConnectSSH()
         {
             SSH = new SecureShell();
+        }
+
+        public void InstallRequiredTools()
+        {
+            SSH.UploadFile(".\\Tools\\test.deb", "\\");
+            SSH.ExecuteRemoteCommand("dpkg -i /test.deb");
         }
 
         private void ResizeMainDataPartition()
@@ -428,13 +447,59 @@ namespace iMultiBoot
                 TargetDiskDevice = "disk0s" + pPartition.Number;
             }
             pPartition.DiskDevicePath = "/dev/" + TargetDiskDevice;
-            return NewFS.HFS(pPartition.Name, Convert.ToString(iDevice.NandBlockSize), TargetDiskDevice, pPartition.JournaledFlag, pPartition.ProtectedFlag);
+            return NewFS.HFS(pPartition.Name, Convert.ToString(iDevice.NandBlockSize), pPartition.DiskDevicePath, pPartition.JournaledFlag, pPartition.ProtectedFlag);
         }
 
-        public string MountVolume(Partition pPartition)
+        private string MountVolume(Partition pPartition)
         {
             DiskUtilityLib.Mount Mount = new DiskUtilityLib.Mount();
             return Mount.HFS(pPartition.DiskDevicePath, pPartition.MountPoint);
+        }
+
+        private string MountVolume(string pDiskDevicePath, string pMountPoint)
+        {
+            DiskUtilityLib.Mount Mount = new DiskUtilityLib.Mount();
+            return Mount.HFS(pDiskDevicePath, pMountPoint);
+        }
+
+        public void setDeviceWorkingDirectory(string pDeviceWorkingDirectory)
+        {
+            DeviceWorkingDirectory = pDeviceWorkingDirectory + "//" + "iMultiBoot" + "//";
+        }
+
+        public string getDeviceWorkingDirectory()
+        {
+            return DeviceWorkingDirectory;
+        }
+
+        public void RestoreOperatingSystems()
+        {
+            SSH.ExecuteRemoteCommand("mkdir " + DeviceWorkingDirectory);
+            for (int i = 1; i < OperatingSystemsArray.Length; i++)
+            {
+                OperatingSystemsArray[i].RemoteWorkingDirectory = DeviceWorkingDirectory + OperatingSystemsArray[i].SystemBuildNumber + "//";
+                SSH.ExecuteRemoteCommand("mkdir " + OperatingSystemsArray[i].RemoteWorkingDirectory);
+                SSH.UploadFile(OperatingSystemsArray[i].RootFileSystem, OperatingSystemsArray[i].RemoteWorkingDirectory);
+                string RemoteRootFileSystemImagePath = OperatingSystemsArray[i].RemoteWorkingDirectory + Path.GetFileName(OperatingSystemsArray[i].RootFileSystem);
+                SSH.ExecuteRemoteCommand(RestoreRootFileSystem(RemoteRootFileSystemImagePath, OperatingSystemsArray[i].SystemPartition));
+            }
+        }
+
+        private string RestoreRootFileSystem(string pRemoteRootFileSystemImagePath, Partition pDestinationPartition)
+        {
+            DiskUtilityLib.Attach DeviceAttach = new DiskUtilityLib.Attach();
+            string DeviceMountPointOS = DeviceWorkingDirectory + pDestinationPartition.Name;
+            SSH.ExecuteRemoteCommand("mkdir " + DeviceMountPointOS);
+            string DiskDevice = "/dev/" + SSH.ExecuteRemoteCommandWithOutput(DeviceAttach.LinkToDiskDevice(pRemoteRootFileSystemImagePath));
+
+            SSH.ExecuteRemoteCommand(MountVolume(DiskDevice, DeviceMountPointOS));
+            return "rsync -rav " + DeviceMountPointOS + "//*" + " //" + pDestinationPartition.Name;
+        }
+
+        private string InstallKernelCache(IOperatingSystem OperatingSystem)
+        {
+            SSH.UploadFile(OperatingSystem.KernelCache, OperatingSystem.RemoteWorkingDirectory);
+            return "";
         }
     }
 }

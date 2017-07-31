@@ -82,11 +82,14 @@ namespace iMultiBoot
         private void btnSetSystem_Click(object sender, EventArgs e)
         {
             OperatingSystem.SystemPartition = SelectedPartition;
+            txtSystemPartition.Text = SelectedPartition.Name;
+
         }
 
         private void btnSetData_Click(object sender, EventArgs e)
         {
             OperatingSystem.DataPartition = SelectedPartition;
+            txtDataPartition.Text = SelectedPartition.Name;
         }
     }
 }

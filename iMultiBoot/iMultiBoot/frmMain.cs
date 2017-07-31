@@ -56,7 +56,9 @@ namespace iMultiBoot
         private void btnInstallOperatingSystems_Click(object sender, EventArgs e)
         {
             Controller.ConnectSSH();
+            Controller.InstallRequiredTools();
             Controller.PartitionDeviceStorage();
+            Controller.RestoreOperatingSystems();
         }
     }
 }
