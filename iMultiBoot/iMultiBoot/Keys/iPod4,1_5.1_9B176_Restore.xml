@@ -42,4 +42,10 @@
 		<IV>16641c07fe97051c445d21258722f3d1</IV>
 		<Key>d302a0ba7253453bce4431dd5a2a04fbf4da9868c340eae633a0202fe0995155</Key>
 	</DecryptionKeys>
+	<DecryptionKeys>
+		<ID>Kernelcache</ID>
+		<File>kernelcache.release.n81</File>
+		<IV>54f4e3ccb841cd9dcdd9d863534f73ee</IV>
+		<Key>c1223786e83a731e3302e8b8226577428710db176e46a741582c2479cc6d61eb</Key>
+	</DecryptionKeys>
 </Container>

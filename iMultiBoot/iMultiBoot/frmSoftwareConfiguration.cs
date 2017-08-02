@@ -31,7 +31,10 @@ namespace iMultiBoot
             DialogResult result = vFolderBrowserDialog.ShowDialog();
             Controller.setWorkingDirectory(vFolderBrowserDialog.SelectedPath);
             txtWorkingDirectory.Text = Controller.getWorkingDirectory();
+        }
 
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
             Controller.setDeviceWorkingDirectory(txtDeviceWorkingDirectory.Text);
         }
     }

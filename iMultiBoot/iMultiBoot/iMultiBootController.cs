@@ -321,6 +321,7 @@ namespace iMultiBoot
             if (SecondaryOperatingSystemSelected == true)
             {
                 IPSWlib.Editor SecondaryOperatingSystemIPSW = new IPSWlib.Editor(SecondaryOperatingSystemPathIPSW, WorkingDirectory);
+                OperatingSystemsArray[1].FileNameIPSW = SecondaryOperatingSystemIPSW.getFileNameIPSW();
                 ImagesToFlashSecondaryOS = addSecondaryOperatingSystemImagesToFlash(SecondaryOperatingSystemIPSW, ImagesToFlashSecondaryOS);
 
                 DecryptFirmwareImages(SecondaryOperatingSystemIPSW.getFileNameIPSW(), ImagesToFlashSecondaryOS);
@@ -371,8 +372,26 @@ namespace iMultiBoot
 
         public void InstallRequiredTools()
         {
-            SSH.UploadFile(".\\Tools\\test.deb", "\\");
-            SSH.ExecuteRemoteCommand("dpkg -i /test.deb");
+            string RemoteToolsDirectory = DeviceWorkingDirectory + "Tools//";
+            SSH.ExecuteRemoteCommand("mkdir " + RemoteToolsDirectory);
+
+            SSH.UploadFile(".\\Tools\\kloader6.deb", RemoteToolsDirectory);
+            SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "kloader6.deb");
+
+            SSH.UploadFile(".\\Tools\\xpwntool.deb", RemoteToolsDirectory);
+            SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "xpwntool.deb");
+
+            SSH.UploadFile(".\\Tools\\hfsresize.deb", RemoteToolsDirectory);
+            SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "hfsresize.deb");
+
+            SSH.UploadFile(".\\Tools\\gptfdisk.deb", RemoteToolsDirectory);
+            SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "gptfdisk.deb");
+
+            SSH.UploadFile(".\\Tools\\attach.deb", RemoteToolsDirectory);
+            SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "attach.deb");
+
+            SSH.UploadFile(".\\Tools\\detach.deb", RemoteToolsDirectory);
+            SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "detach.deb");
         }
 
         private void ResizeMainDataPartition()
@@ -499,6 +518,23 @@ namespace iMultiBoot
         private string InstallKernelCache(IOperatingSystem OperatingSystem)
         {
             SSH.UploadFile(OperatingSystem.KernelCache, OperatingSystem.RemoteWorkingDirectory);
+
+            string KernelcacheIV = "";
+            string KernelcacheKey = "";
+            XmlDocument XmlContainer = new XmlDocument();
+            XmlContainer.Load(".\\Keys\\" + OperatingSystem.FileNameIPSW + ".xml");
+
+            XmlNodeList SystemNodeList = XmlContainer.SelectNodes("/Container/DecryptionKeys/ID");
+
+            foreach (XmlNode SystemNode in SystemNodeList)
+            {
+                if (SystemNode.InnerText == "Kernelcache")
+                {
+
+                }
+            }
+
+            SSH.ExecuteRemoteCommand("");
             return "";
         }
     }

@@ -10,6 +10,7 @@ namespace iMultiBoot
     {
         string SystemVersion { get; set; }
         string SystemBuildNumber { get; set; }
+        string FileNameIPSW { get; set; }
         string RemoteWorkingDirectory { get; set; }
         Partition SystemPartition { get; set; }
         Partition DataPartition { get; set; }

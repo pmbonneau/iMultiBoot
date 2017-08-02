@@ -33,6 +33,7 @@
             this.btnBrowseTempDir = new System.Windows.Forms.Button();
             this.lblDeviceWorkingDirectory = new System.Windows.Forms.Label();
             this.txtDeviceWorkingDirectory = new System.Windows.Forms.TextBox();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblWorkingDirectory
@@ -85,12 +86,24 @@
             this.txtDeviceWorkingDirectory.TabIndex = 4;
             this.txtDeviceWorkingDirectory.Text = "//var";
             // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveSettings.Location = new System.Drawing.Point(390, 233);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(105, 36);
+            this.btnSaveSettings.TabIndex = 5;
+            this.btnSaveSettings.Text = "Save Settings";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            // 
             // frmSoftwareConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(510, 281);
+            this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.txtDeviceWorkingDirectory);
             this.Controls.Add(this.lblDeviceWorkingDirectory);
             this.Controls.Add(this.btnBrowseTempDir);
@@ -110,5 +123,6 @@
         private System.Windows.Forms.Button btnBrowseTempDir;
         private System.Windows.Forms.Label lblDeviceWorkingDirectory;
         private System.Windows.Forms.TextBox txtDeviceWorkingDirectory;
+        private System.Windows.Forms.Button btnSaveSettings;
     }
 }
