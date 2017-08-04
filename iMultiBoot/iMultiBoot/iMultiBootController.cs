@@ -322,6 +322,7 @@ namespace iMultiBoot
             {
                 IPSWlib.Editor SecondaryOperatingSystemIPSW = new IPSWlib.Editor(SecondaryOperatingSystemPathIPSW, WorkingDirectory);
                 OperatingSystemsArray[1].FileNameIPSW = SecondaryOperatingSystemIPSW.getFileNameIPSW();
+                OperatingSystemsArray[1].SystemID = 'B';
                 ImagesToFlashSecondaryOS = addSecondaryOperatingSystemImagesToFlash(SecondaryOperatingSystemIPSW, ImagesToFlashSecondaryOS);
 
                 DecryptFirmwareImages(SecondaryOperatingSystemIPSW.getFileNameIPSW(), ImagesToFlashSecondaryOS);
@@ -501,6 +502,10 @@ namespace iMultiBoot
                 SSH.UploadFile(OperatingSystemsArray[i].RootFileSystem, OperatingSystemsArray[i].RemoteWorkingDirectory);
                 string RemoteRootFileSystemImagePath = OperatingSystemsArray[i].RemoteWorkingDirectory + Path.GetFileName(OperatingSystemsArray[i].RootFileSystem);
                 SSH.ExecuteRemoteCommand(RestoreRootFileSystem(RemoteRootFileSystemImagePath, OperatingSystemsArray[i].SystemPartition));
+                SSH.ExecuteRemoteCommand(RestoreDataPartition(OperatingSystemsArray[i]));
+                BuildFStab(OperatingSystemsArray[i]);
+                FixSystemBag(OperatingSystemsArray[i]);
+                SSH.ExecuteRemoteCommand(InstallKernelCache(OperatingSystemsArray[i]));
             }
         }
 
@@ -515,6 +520,11 @@ namespace iMultiBoot
             return "rsync -rav " + DeviceMountPointOS + "//*" + " //" + pDestinationPartition.Name;
         }
 
+        private string RestoreDataPartition(IOperatingSystem pOperatingSystem)
+        {
+            return "rsync -rav " + pOperatingSystem.SystemPartition.MountPoint + "//var//*" + " " + pOperatingSystem.DataPartition.MountPoint;
+        }
+
         private string InstallKernelCache(IOperatingSystem OperatingSystem)
         {
             SSH.UploadFile(OperatingSystem.KernelCache, OperatingSystem.RemoteWorkingDirectory);
@@ -524,18 +534,34 @@ namespace iMultiBoot
             XmlDocument XmlContainer = new XmlDocument();
             XmlContainer.Load(".\\Keys\\" + OperatingSystem.FileNameIPSW + ".xml");
 
-            XmlNodeList SystemNodeList = XmlContainer.SelectNodes("/Container/DecryptionKeys/ID");
+            XmlNodeList PatchNodeListID = XmlContainer.SelectNodes("/Container/DecryptionKeys/ID");
 
-            foreach (XmlNode SystemNode in SystemNodeList)
+            foreach (XmlNode NodeID in PatchNodeListID)
             {
-                if (SystemNode.InnerText == "Kernelcache")
+                if (NodeID.InnerText == "Kernelcache")
                 {
-
+                    KernelcacheIV = NodeID.NextSibling.NextSibling.InnerText;
+                    KernelcacheKey = NodeID.NextSibling.NextSibling.NextSibling.InnerText;
                 }
             }
+            return "xpwntool " + OperatingSystem.RemoteWorkingDirectory + Path.GetFileName(OperatingSystem.KernelCache) + " " + "/System/Library/Caches/com.apple.kernelcaches/kernelcach" + char.ToLower(OperatingSystem.SystemID) + " -iv " + KernelcacheIV + " -k " + KernelcacheKey + " -decrypt";
+        }
 
-            SSH.ExecuteRemoteCommand("");
-            return "";
+        private void BuildFStab(IOperatingSystem pOperatingSystem)
+        {
+            List<string> FStabContent = new List<string>();
+            FStabContent.Add(pOperatingSystem.SystemPartition.DiskDevicePath + " / hfs rw 0 1");
+            FStabContent.Add(pOperatingSystem.DataPartition.DiskDevicePath + " /private/var hfs rw 0 2");
+            File.Create(WorkingDirectorySecondaryOS + "//" + "fstab");
+            File.AppendAllLines(WorkingDirectorySecondaryOS + "//" + "fstab", (FStabContent));
+            SSH.ExecuteRemoteCommand("rm " + pOperatingSystem.SystemPartition.MountPoint + "/etc/fstab");
+            SSH.UploadFile(WorkingDirectorySecondaryOS + "//" + "fstab", pOperatingSystem.SystemPartition.MountPoint + "/etc/");
+        }
+
+        private void FixSystemBag(IOperatingSystem pOperatingSystem)
+        {
+            SSH.ExecuteRemoteCommand("mkdir " + pOperatingSystem.DataPartition.MountPoint + "/keybags");
+            SSH.ExecuteRemoteCommand("cp -rfp " + "/var/keybags/systembag.kb" + " " + pOperatingSystem.DataPartition.MountPoint + "/keybags/");
         }
     }
 }
