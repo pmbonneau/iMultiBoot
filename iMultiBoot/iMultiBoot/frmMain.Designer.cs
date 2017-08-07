@@ -38,11 +38,20 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnBegin = new System.Windows.Forms.Button();
             this.lblCopyrights = new System.Windows.Forms.Label();
+            this.gbConnectionSSH = new System.Windows.Forms.GroupBox();
+            this.lblDeviceHostName = new System.Windows.Forms.Label();
+            this.txtDeviceHostName = new System.Windows.Forms.TextBox();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.lblUserPassword = new System.Windows.Forms.Label();
+            this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.pnlMain.SuspendLayout();
+            this.gbConnectionSSH.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
             // 
+            this.pnlMain.Controls.Add(this.gbConnectionSSH);
             this.pnlMain.Controls.Add(this.btnManagePartitions);
             this.pnlMain.Controls.Add(this.btnInstallOperatingSystems);
             this.pnlMain.Controls.Add(this.btnConfigureSoftware);
@@ -69,7 +78,7 @@
             // btnInstallOperatingSystems
             // 
             this.btnInstallOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInstallOperatingSystems.Location = new System.Drawing.Point(359, 13);
+            this.btnInstallOperatingSystems.Location = new System.Drawing.Point(359, 234);
             this.btnInstallOperatingSystems.Name = "btnInstallOperatingSystems";
             this.btnInstallOperatingSystems.Size = new System.Drawing.Size(211, 35);
             this.btnInstallOperatingSystems.TabIndex = 4;
@@ -154,6 +163,72 @@
             this.lblCopyrights.TabIndex = 4;
             this.lblCopyrights.Text = "©2017 Pierre-Marc Bonneau, all rights reserved.";
             // 
+            // gbConnectionSSH
+            // 
+            this.gbConnectionSSH.Controls.Add(this.txtUserPassword);
+            this.gbConnectionSSH.Controls.Add(this.lblUserPassword);
+            this.gbConnectionSSH.Controls.Add(this.txtUserName);
+            this.gbConnectionSSH.Controls.Add(this.lblUserName);
+            this.gbConnectionSSH.Controls.Add(this.txtDeviceHostName);
+            this.gbConnectionSSH.Controls.Add(this.lblDeviceHostName);
+            this.gbConnectionSSH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbConnectionSSH.ForeColor = System.Drawing.Color.White;
+            this.gbConnectionSSH.Location = new System.Drawing.Point(359, 13);
+            this.gbConnectionSSH.Name = "gbConnectionSSH";
+            this.gbConnectionSSH.Size = new System.Drawing.Size(211, 195);
+            this.gbConnectionSSH.TabIndex = 6;
+            this.gbConnectionSSH.TabStop = false;
+            this.gbConnectionSSH.Text = "SSH Connection";
+            // 
+            // lblDeviceHostName
+            // 
+            this.lblDeviceHostName.AutoSize = true;
+            this.lblDeviceHostName.Location = new System.Drawing.Point(6, 19);
+            this.lblDeviceHostName.Name = "lblDeviceHostName";
+            this.lblDeviceHostName.Size = new System.Drawing.Size(128, 16);
+            this.lblDeviceHostName.TabIndex = 0;
+            this.lblDeviceHostName.Text = "Device Host Name :";
+            // 
+            // txtDeviceHostName
+            // 
+            this.txtDeviceHostName.Location = new System.Drawing.Point(9, 38);
+            this.txtDeviceHostName.Name = "txtDeviceHostName";
+            this.txtDeviceHostName.Size = new System.Drawing.Size(125, 22);
+            this.txtDeviceHostName.TabIndex = 1;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Location = new System.Drawing.Point(6, 73);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(83, 16);
+            this.lblUserName.TabIndex = 2;
+            this.lblUserName.Text = "User Name :";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(9, 92);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(100, 22);
+            this.txtUserName.TabIndex = 3;
+            // 
+            // lblUserPassword
+            // 
+            this.lblUserPassword.AutoSize = true;
+            this.lblUserPassword.Location = new System.Drawing.Point(6, 125);
+            this.lblUserPassword.Name = "lblUserPassword";
+            this.lblUserPassword.Size = new System.Drawing.Size(106, 16);
+            this.lblUserPassword.TabIndex = 4;
+            this.lblUserPassword.Text = "User Password :";
+            // 
+            // txtUserPassword
+            // 
+            this.txtUserPassword.Location = new System.Drawing.Point(9, 144);
+            this.txtUserPassword.Name = "txtUserPassword";
+            this.txtUserPassword.Size = new System.Drawing.Size(100, 22);
+            this.txtUserPassword.TabIndex = 5;
+            this.txtUserPassword.UseSystemPasswordChar = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,6 +242,8 @@
             this.Name = "frmMain";
             this.Text = "iMultiBoot v0.1a (0A0617a)";
             this.pnlMain.ResumeLayout(false);
+            this.gbConnectionSSH.ResumeLayout(false);
+            this.gbConnectionSSH.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +261,13 @@
         private System.Windows.Forms.Button btnConfigureSoftware;
         private System.Windows.Forms.Button btnInstallOperatingSystems;
         private System.Windows.Forms.Button btnManagePartitions;
+        private System.Windows.Forms.GroupBox gbConnectionSSH;
+        private System.Windows.Forms.TextBox txtUserPassword;
+        private System.Windows.Forms.Label lblUserPassword;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.TextBox txtDeviceHostName;
+        private System.Windows.Forms.Label lblDeviceHostName;
     }
 }
 

@@ -7,16 +7,22 @@ namespace iMultiBoot
     {
         public SessionOptions sessionOptions;
         public Session session;
+
         public SecureShell()
+        {
+
+        }
+
+        public void Connect(string DeviceHostName, string UserName, string UserPassword)
         {
             try
             {
                 sessionOptions = new SessionOptions
                 {
                     Protocol = Protocol.Sftp,
-                    HostName = "",
-                    UserName = "",
-                    Password = ""
+                    HostName = DeviceHostName,
+                    UserName = UserName,
+                    Password = UserPassword
                 };
 
                 sessionOptions.GiveUpSecurityAndAcceptAnySshHostKey = true;

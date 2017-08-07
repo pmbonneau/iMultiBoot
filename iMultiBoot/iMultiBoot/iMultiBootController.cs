@@ -366,9 +366,10 @@ namespace iMultiBoot
             iDeviceRestore.EraseRestore(WorkingDirectory + MainOperatingSystemIPSW.getFileNameIPSW() + ".ipsw");
         }
 
-        public void ConnectSSH()
+        public void ConnectSSH(string DeviceHostName, string UserName, string UserPassword)
         {
             SSH = new SecureShell();
+            SSH.Connect(DeviceHostName, UserName, UserPassword);
         }
 
         public void InstallRequiredTools()
