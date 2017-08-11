@@ -34,6 +34,8 @@
             this.lblDeviceWorkingDirectory = new System.Windows.Forms.Label();
             this.txtDeviceWorkingDirectory = new System.Windows.Forms.TextBox();
             this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.btnSerializeController = new System.Windows.Forms.Button();
+            this.btnDeserializeController = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblWorkingDirectory
@@ -97,12 +99,36 @@
             this.btnSaveSettings.UseVisualStyleBackColor = true;
             this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
+            // btnSerializeController
+            // 
+            this.btnSerializeController.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSerializeController.Location = new System.Drawing.Point(15, 137);
+            this.btnSerializeController.Name = "btnSerializeController";
+            this.btnSerializeController.Size = new System.Drawing.Size(143, 36);
+            this.btnSerializeController.TabIndex = 6;
+            this.btnSerializeController.Text = "Serialize Controller";
+            this.btnSerializeController.UseVisualStyleBackColor = true;
+            this.btnSerializeController.Click += new System.EventHandler(this.btnSerializeController_Click);
+            // 
+            // btnDeserializeController
+            // 
+            this.btnDeserializeController.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeserializeController.Location = new System.Drawing.Point(185, 137);
+            this.btnDeserializeController.Name = "btnDeserializeController";
+            this.btnDeserializeController.Size = new System.Drawing.Size(161, 36);
+            this.btnDeserializeController.TabIndex = 7;
+            this.btnDeserializeController.Text = "Deserialize Controller";
+            this.btnDeserializeController.UseVisualStyleBackColor = true;
+            this.btnDeserializeController.Click += new System.EventHandler(this.btnDeserializeController_Click);
+            // 
             // frmSoftwareConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(510, 281);
+            this.Controls.Add(this.btnDeserializeController);
+            this.Controls.Add(this.btnSerializeController);
             this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.txtDeviceWorkingDirectory);
             this.Controls.Add(this.lblDeviceWorkingDirectory);
@@ -124,5 +150,7 @@
         private System.Windows.Forms.Label lblDeviceWorkingDirectory;
         private System.Windows.Forms.TextBox txtDeviceWorkingDirectory;
         private System.Windows.Forms.Button btnSaveSettings;
+        private System.Windows.Forms.Button btnSerializeController;
+        private System.Windows.Forms.Button btnDeserializeController;
     }
 }

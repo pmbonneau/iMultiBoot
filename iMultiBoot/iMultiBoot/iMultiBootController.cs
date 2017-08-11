@@ -6,6 +6,7 @@ using System;
 
 namespace iMultiBoot
 {
+    [Serializable]
     public class iMultiBootController
     {
         AppleMobileDevice iDevice;
@@ -15,7 +16,6 @@ namespace iMultiBoot
         bool MainOperatingSystemSelected = false;
         bool SecondaryOperatingSystemSelected = false;
         string SecondaryOperatingSystemPathIPSW = "";
-        string WorkingDirectorySecondaryOS = "";
         IOperatingSystem[] OperatingSystemsArray = new IOperatingSystem[4];
         SecureShell SSH;
 
@@ -328,25 +328,25 @@ namespace iMultiBoot
                 DecryptFirmwareImages(SecondaryOperatingSystemIPSW.getFileNameIPSW(), ImagesToFlashSecondaryOS);
                 PatchFirmwareImages(SecondaryOperatingSystemIPSW.getFileNameIPSW(), ImagesToFlashSecondaryOS);
 
-                WorkingDirectorySecondaryOS = WorkingDirectory + SecondaryOperatingSystemIPSW.getBuildNumber() + "_Secondary";
+                OperatingSystemsArray[1].LocalWorkingDirectory = WorkingDirectory + SecondaryOperatingSystemIPSW.getBuildNumber() + "_Secondary";
                 string ImageFileName = Path.GetFileName(OperatingSystemsArray[1].LowLevelBootloader);
                 string[] SplittedImageFileName = ImageFileName.Split('.');
                 string UpdatedImageFileName = "";
                 SplittedImageFileName[0] = SplittedImageFileName[0] + "B";
                 UpdatedImageFileName = SplittedImageFileName[0] + "." + SplittedImageFileName[1] + "." + SplittedImageFileName[2] + "." + SplittedImageFileName[3];
-                File.Copy(OperatingSystemsArray[1].LowLevelBootloader, WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName);
-                OperatingSystemsArray[1].LowLevelBootloader = WorkingDirectorySecondaryOS + "\\" + UpdatedImageFileName;
+                File.Copy(OperatingSystemsArray[1].LowLevelBootloader, OperatingSystemsArray[1].LocalWorkingDirectory + "\\" + UpdatedImageFileName);
+                OperatingSystemsArray[1].LowLevelBootloader = OperatingSystemsArray[1].LocalWorkingDirectory + "\\" + UpdatedImageFileName;
 
                 string DecryptedRootFileSystemImagePath = DecryptRootFileSystemImage(SecondaryOperatingSystemIPSW.getFileNameIPSW(), SecondaryOperatingSystemIPSW.getRootFileSystemImagePath());
-                File.Move(DecryptedRootFileSystemImagePath, WorkingDirectorySecondaryOS + "\\" + "RootFileSystem.dmg");
-                OperatingSystemsArray[1].RootFileSystem = WorkingDirectorySecondaryOS + "\\" + "RootFileSystem.dmg";
+                File.Move(DecryptedRootFileSystemImagePath, OperatingSystemsArray[1].LocalWorkingDirectory + "\\" + "RootFileSystem.dmg");
+                OperatingSystemsArray[1].RootFileSystem = OperatingSystemsArray[1].LocalWorkingDirectory + "\\" + "RootFileSystem.dmg";
 
                 for (int i = 0; i < SecondaryOperatingSystemIPSW.getAllFilesIPSW().Length; i++)
                 {
                     if (SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i].Contains("kernel"))
                     {
-                        File.Copy(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i], WorkingDirectorySecondaryOS + "\\" + Path.GetFileName(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i]));
-                        OperatingSystemsArray[1].KernelCache = WorkingDirectorySecondaryOS + "\\" + Path.GetFileName(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i]);
+                        File.Copy(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i], OperatingSystemsArray[1].LocalWorkingDirectory + "\\" + Path.GetFileName(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i]));
+                        OperatingSystemsArray[1].KernelCache = OperatingSystemsArray[1].LocalWorkingDirectory + "\\" + Path.GetFileName(SecondaryOperatingSystemIPSW.getAllFilesIPSW()[i]);
                     }
                 }
 
@@ -507,6 +507,7 @@ namespace iMultiBoot
                 BuildFStab(OperatingSystemsArray[i]);
                 FixSystemBag(OperatingSystemsArray[i]);
                 SSH.ExecuteRemoteCommand(InstallKernelCache(OperatingSystemsArray[i]));
+                InstallLowLevelBootloader(OperatingSystemsArray[i]);
             }
         }
 
@@ -553,16 +554,39 @@ namespace iMultiBoot
             List<string> FStabContent = new List<string>();
             FStabContent.Add(pOperatingSystem.SystemPartition.DiskDevicePath + " / hfs rw 0 1");
             FStabContent.Add(pOperatingSystem.DataPartition.DiskDevicePath + " /private/var hfs rw 0 2");
-            File.Create(WorkingDirectorySecondaryOS + "//" + "fstab");
-            File.AppendAllLines(WorkingDirectorySecondaryOS + "//" + "fstab", (FStabContent));
+            File.AppendAllLines(pOperatingSystem.LocalWorkingDirectory + "\\" + "fstab", (FStabContent));
             SSH.ExecuteRemoteCommand("rm " + pOperatingSystem.SystemPartition.MountPoint + "/etc/fstab");
-            SSH.UploadFile(WorkingDirectorySecondaryOS + "//" + "fstab", pOperatingSystem.SystemPartition.MountPoint + "/etc/");
+            SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "\\" + "fstab", pOperatingSystem.SystemPartition.MountPoint + "/etc/fstab");
         }
 
         private void FixSystemBag(IOperatingSystem pOperatingSystem)
         {
             SSH.ExecuteRemoteCommand("mkdir " + pOperatingSystem.DataPartition.MountPoint + "/keybags");
             SSH.ExecuteRemoteCommand("cp -rfp " + "/var/keybags/systembag.kb" + " " + pOperatingSystem.DataPartition.MountPoint + "/keybags/");
+        }
+
+        private void InstallLowLevelBootloader(IOperatingSystem pOperatingSystem)
+        {
+            SSH.ExecuteRemoteCommand("mkdir /Bootloaders");
+            SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "//" + Path.GetFileName(pOperatingSystem.LowLevelBootloader), "/Bootloaders");
+        }
+
+        private void InstallBootLauncher(IOperatingSystem pOperatingSystem)
+        {
+            string RemoteToolsDirectory = DeviceWorkingDirectory + "Tools//";
+            switch (pOperatingSystem.SystemVersion)
+            {
+                case "5.1":
+                    SSH.UploadFile(".\\Tools\\ios5bootstrap.deb", RemoteToolsDirectory);
+                    SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "ios5bootstrap.deb");
+                    List<string> iOS5BootstrapScriptContent = new List<string>();
+                    iOS5BootstrapScriptContent.Add(pOperatingSystem.SystemPartition.DiskDevicePath + "#!/bin/bash");
+                    iOS5BootstrapScriptContent.Add(pOperatingSystem.DataPartition.DiskDevicePath + "kloader6 " + "/Bootloaders/" + Path.GetFileName(pOperatingSystem.LowLevelBootloader));
+                    File.AppendAllLines(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", (iOS5BootstrapScriptContent));
+                    SSH.ExecuteRemoteCommand("rm /usr/bin/iOS5Bootstrap.sh");
+                    SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "//" + "iOS5Bootstrap.sh", "/usr/bin/");
+                    break;
+            }
         }
     }
 }

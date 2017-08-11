@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace iMultiBoot
 {
+    [Serializable]
     class iOS6 : IOperatingSystem
     {
         public string SystemVersion { get; set; }
         public string SystemBuildNumber { get; set; }
         public char SystemID { get; set; }
         public string FileNameIPSW { get; set; }
+        public string LocalWorkingDirectory { get; set; }
         public string RemoteWorkingDirectory { get; set; }
         public Partition SystemPartition { get; set; }
         public Partition DataPartition { get; set; }

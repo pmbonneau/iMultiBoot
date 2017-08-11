@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace iMultiBoot
 {
@@ -36,6 +32,26 @@ namespace iMultiBoot
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {
             Controller.setDeviceWorkingDirectory(txtDeviceWorkingDirectory.Text);
+        }
+
+        private void btnSerializeController_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog vSaveFileDialog = new SaveFileDialog();
+            DialogResult result = vSaveFileDialog.ShowDialog();
+            Stream DataStream = File.Open(vSaveFileDialog.FileName, FileMode.Create);
+            BinaryFormatter ObjectToBinary = new BinaryFormatter();
+            ObjectToBinary.Serialize(DataStream, Controller);
+            DataStream.Close();
+        }
+
+        private void btnDeserializeController_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog vOpenFileDialog = new OpenFileDialog();
+            DialogResult result = vOpenFileDialog.ShowDialog();
+            Stream DataStream = File.Open(vOpenFileDialog.FileName, FileMode.Open);
+            BinaryFormatter ObjectFromBinary = new BinaryFormatter();
+            Controller = (iMultiBootController)ObjectFromBinary.Deserialize(DataStream);
+            DataStream.Close();
         }
     }
 }

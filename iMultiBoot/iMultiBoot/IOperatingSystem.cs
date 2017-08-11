@@ -12,6 +12,7 @@ namespace iMultiBoot
         string SystemBuildNumber { get; set; }
         char SystemID { get; set; }
         string FileNameIPSW { get; set; }
+        string LocalWorkingDirectory { get; set; }
         string RemoteWorkingDirectory { get; set; }
         Partition SystemPartition { get; set; }
         Partition DataPartition { get; set; }

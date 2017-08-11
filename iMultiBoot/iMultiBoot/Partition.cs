@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace iMultiBoot
 {
+    [Serializable]
     public class Partition
     {
         public string Name { get; set; }

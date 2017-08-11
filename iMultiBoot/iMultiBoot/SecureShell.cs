@@ -3,6 +3,7 @@ using WinSCP;
 
 namespace iMultiBoot
 {
+    [Serializable]
     public class SecureShell
     {
         public SessionOptions sessionOptions;
