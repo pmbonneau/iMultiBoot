@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using DiskUtilityLib;
 using System;
+using System.Text;
 
 namespace iMultiBoot
 {
@@ -374,6 +375,8 @@ namespace iMultiBoot
 
         public void InstallRequiredTools()
         {
+            SSH.ExecuteRemoteCommand("mkdir " + DeviceWorkingDirectory);
+
             string RemoteToolsDirectory = DeviceWorkingDirectory + "Tools//";
             SSH.ExecuteRemoteCommand("mkdir " + RemoteToolsDirectory);
 
@@ -394,6 +397,9 @@ namespace iMultiBoot
 
             SSH.UploadFile(".\\Tools\\detach.deb", RemoteToolsDirectory);
             SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "detach.deb");
+
+            SSH.UploadFile(".\\Tools\\rsync.deb", RemoteToolsDirectory);
+            SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "rsync.deb");
         }
 
         private void ResizeMainDataPartition()
@@ -495,7 +501,6 @@ namespace iMultiBoot
 
         public void RestoreOperatingSystems()
         {
-            SSH.ExecuteRemoteCommand("mkdir " + DeviceWorkingDirectory);
             for (int i = 1; i < OperatingSystemsArray.Length; i++)
             {
                 OperatingSystemsArray[i].RemoteWorkingDirectory = DeviceWorkingDirectory + OperatingSystemsArray[i].SystemBuildNumber + "//";
@@ -508,6 +513,8 @@ namespace iMultiBoot
                 FixSystemBag(OperatingSystemsArray[i]);
                 SSH.ExecuteRemoteCommand(InstallKernelCache(OperatingSystemsArray[i]));
                 InstallLowLevelBootloader(OperatingSystemsArray[i]);
+                InstallBootLauncher(OperatingSystemsArray[i]);
+                SSH.ExecuteRemoteCommand("reboot");
             }
         }
 
@@ -568,7 +575,7 @@ namespace iMultiBoot
         private void InstallLowLevelBootloader(IOperatingSystem pOperatingSystem)
         {
             SSH.ExecuteRemoteCommand("mkdir /Bootloaders");
-            SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "//" + Path.GetFileName(pOperatingSystem.LowLevelBootloader), "/Bootloaders");
+            SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "\\" + Path.GetFileName(pOperatingSystem.LowLevelBootloader), "/Bootloaders/");
         }
 
         private void InstallBootLauncher(IOperatingSystem pOperatingSystem)
@@ -579,12 +586,13 @@ namespace iMultiBoot
                 case "5.1":
                     SSH.UploadFile(".\\Tools\\ios5bootstrap.deb", RemoteToolsDirectory);
                     SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "ios5bootstrap.deb");
-                    List<string> iOS5BootstrapScriptContent = new List<string>();
-                    iOS5BootstrapScriptContent.Add(pOperatingSystem.SystemPartition.DiskDevicePath + "#!/bin/bash");
-                    iOS5BootstrapScriptContent.Add(pOperatingSystem.DataPartition.DiskDevicePath + "kloader6 " + "/Bootloaders/" + Path.GetFileName(pOperatingSystem.LowLevelBootloader));
-                    File.AppendAllLines(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", (iOS5BootstrapScriptContent));
+                    StreamWriter FileWriter = new StreamWriter(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", false, Encoding.UTF8);
+                    FileWriter.WriteLine("#!/bin/bash");
+                    FileWriter.Write("kloader6 " + "/Bootloaders/" + Path.GetFileName(pOperatingSystem.LowLevelBootloader));
+                    FileWriter.Close();
                     SSH.ExecuteRemoteCommand("rm /usr/bin/iOS5Bootstrap.sh");
-                    SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "//" + "iOS5Bootstrap.sh", "/usr/bin/");
+                    SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", "/usr/bin/");
+                    SSH.ExecuteRemoteCommand("chmod 755 /usr/bin/iOS5Bootstrap.sh");
                     break;
             }
         }

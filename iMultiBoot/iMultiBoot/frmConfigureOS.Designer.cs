@@ -39,20 +39,32 @@
             this.txtDeviceTree = new System.Windows.Forms.TextBox();
             this.lblDeviceTree = new System.Windows.Forms.Label();
             this.gbFileSystemSection = new System.Windows.Forms.GroupBox();
+            this.btnSetData = new System.Windows.Forms.Button();
+            this.btnSetSystem = new System.Windows.Forms.Button();
+            this.txtDataPartition = new System.Windows.Forms.TextBox();
+            this.txtSystemPartition = new System.Windows.Forms.TextBox();
+            this.lblDataPartition = new System.Windows.Forms.Label();
+            this.lblSystemPartition = new System.Windows.Forms.Label();
             this.lblCurrentPartitionTable = new System.Windows.Forms.Label();
             this.lbPartitionTable = new System.Windows.Forms.ListBox();
-            this.lblSystemPartition = new System.Windows.Forms.Label();
-            this.lblDataPartition = new System.Windows.Forms.Label();
-            this.txtSystemPartition = new System.Windows.Forms.TextBox();
-            this.txtDataPartition = new System.Windows.Forms.TextBox();
-            this.btnSetSystem = new System.Windows.Forms.Button();
-            this.btnSetData = new System.Windows.Forms.Button();
+            this.lblBootLogo = new System.Windows.Forms.Label();
+            this.txtBootLogo = new System.Windows.Forms.TextBox();
+            this.btnBootLogo = new System.Windows.Forms.Button();
+            this.lblRootFileSystem = new System.Windows.Forms.Label();
+            this.txtRootFileSystem = new System.Windows.Forms.TextBox();
+            this.btnRootFileSystem = new System.Windows.Forms.Button();
             this.gbFirmwareSection.SuspendLayout();
             this.gbFileSystemSection.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbFirmwareSection
             // 
+            this.gbFirmwareSection.Controls.Add(this.btnRootFileSystem);
+            this.gbFirmwareSection.Controls.Add(this.txtRootFileSystem);
+            this.gbFirmwareSection.Controls.Add(this.lblRootFileSystem);
+            this.gbFirmwareSection.Controls.Add(this.btnBootLogo);
+            this.gbFirmwareSection.Controls.Add(this.txtBootLogo);
+            this.gbFirmwareSection.Controls.Add(this.lblBootLogo);
             this.gbFirmwareSection.Controls.Add(this.btnSecondaryStageBootloader);
             this.gbFirmwareSection.Controls.Add(this.btnFirstStageBootloader);
             this.gbFirmwareSection.Controls.Add(this.txtSecondaryStageBootloader);
@@ -66,7 +78,7 @@
             this.gbFirmwareSection.ForeColor = System.Drawing.Color.White;
             this.gbFirmwareSection.Location = new System.Drawing.Point(12, 12);
             this.gbFirmwareSection.Name = "gbFirmwareSection";
-            this.gbFirmwareSection.Size = new System.Drawing.Size(499, 174);
+            this.gbFirmwareSection.Size = new System.Drawing.Size(499, 273);
             this.gbFirmwareSection.TabIndex = 0;
             this.gbFirmwareSection.TabStop = false;
             this.gbFirmwareSection.Text = "Firmware Section";
@@ -164,12 +176,68 @@
             this.gbFileSystemSection.Controls.Add(this.lbPartitionTable);
             this.gbFileSystemSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbFileSystemSection.ForeColor = System.Drawing.Color.White;
-            this.gbFileSystemSection.Location = new System.Drawing.Point(13, 209);
+            this.gbFileSystemSection.Location = new System.Drawing.Point(13, 304);
             this.gbFileSystemSection.Name = "gbFileSystemSection";
             this.gbFileSystemSection.Size = new System.Drawing.Size(498, 131);
             this.gbFileSystemSection.TabIndex = 1;
             this.gbFileSystemSection.TabStop = false;
             this.gbFileSystemSection.Text = "FileSystem Section";
+            // 
+            // btnSetData
+            // 
+            this.btnSetData.ForeColor = System.Drawing.Color.Black;
+            this.btnSetData.Location = new System.Drawing.Point(184, 81);
+            this.btnSetData.Name = "btnSetData";
+            this.btnSetData.Size = new System.Drawing.Size(75, 41);
+            this.btnSetData.TabIndex = 10;
+            this.btnSetData.Text = "Set as Data";
+            this.btnSetData.UseVisualStyleBackColor = true;
+            this.btnSetData.Click += new System.EventHandler(this.btnSetData_Click);
+            // 
+            // btnSetSystem
+            // 
+            this.btnSetSystem.ForeColor = System.Drawing.Color.Black;
+            this.btnSetSystem.Location = new System.Drawing.Point(184, 34);
+            this.btnSetSystem.Name = "btnSetSystem";
+            this.btnSetSystem.Size = new System.Drawing.Size(75, 41);
+            this.btnSetSystem.TabIndex = 9;
+            this.btnSetSystem.Text = "Set as System";
+            this.btnSetSystem.UseVisualStyleBackColor = true;
+            this.btnSetSystem.Click += new System.EventHandler(this.btnSetSystem_Click);
+            // 
+            // txtDataPartition
+            // 
+            this.txtDataPartition.Enabled = false;
+            this.txtDataPartition.Location = new System.Drawing.Point(391, 94);
+            this.txtDataPartition.Name = "txtDataPartition";
+            this.txtDataPartition.Size = new System.Drawing.Size(100, 22);
+            this.txtDataPartition.TabIndex = 8;
+            // 
+            // txtSystemPartition
+            // 
+            this.txtSystemPartition.Enabled = false;
+            this.txtSystemPartition.Location = new System.Drawing.Point(391, 43);
+            this.txtSystemPartition.Name = "txtSystemPartition";
+            this.txtSystemPartition.Size = new System.Drawing.Size(100, 22);
+            this.txtSystemPartition.TabIndex = 7;
+            // 
+            // lblDataPartition
+            // 
+            this.lblDataPartition.AutoSize = true;
+            this.lblDataPartition.Location = new System.Drawing.Point(290, 97);
+            this.lblDataPartition.Name = "lblDataPartition";
+            this.lblDataPartition.Size = new System.Drawing.Size(94, 16);
+            this.lblDataPartition.TabIndex = 6;
+            this.lblDataPartition.Text = "Data Partition :";
+            // 
+            // lblSystemPartition
+            // 
+            this.lblSystemPartition.AutoSize = true;
+            this.lblSystemPartition.Location = new System.Drawing.Point(275, 46);
+            this.lblSystemPartition.Name = "lblSystemPartition";
+            this.lblSystemPartition.Size = new System.Drawing.Size(110, 16);
+            this.lblSystemPartition.TabIndex = 5;
+            this.lblSystemPartition.Text = "System Partition :";
             // 
             // lblCurrentPartitionTable
             // 
@@ -192,68 +260,65 @@
             this.lbPartitionTable.TabIndex = 0;
             this.lbPartitionTable.SelectedIndexChanged += new System.EventHandler(this.lbPartitionTable_SelectedIndexChanged);
             // 
-            // lblSystemPartition
+            // lblBootLogo
             // 
-            this.lblSystemPartition.AutoSize = true;
-            this.lblSystemPartition.Location = new System.Drawing.Point(275, 46);
-            this.lblSystemPartition.Name = "lblSystemPartition";
-            this.lblSystemPartition.Size = new System.Drawing.Size(110, 16);
-            this.lblSystemPartition.TabIndex = 5;
-            this.lblSystemPartition.Text = "System Partition :";
+            this.lblBootLogo.AutoSize = true;
+            this.lblBootLogo.Location = new System.Drawing.Point(19, 187);
+            this.lblBootLogo.Name = "lblBootLogo";
+            this.lblBootLogo.Size = new System.Drawing.Size(76, 16);
+            this.lblBootLogo.TabIndex = 10;
+            this.lblBootLogo.Text = "Boot Logo :";
             // 
-            // lblDataPartition
+            // txtBootLogo
             // 
-            this.lblDataPartition.AutoSize = true;
-            this.lblDataPartition.Location = new System.Drawing.Point(290, 97);
-            this.lblDataPartition.Name = "lblDataPartition";
-            this.lblDataPartition.Size = new System.Drawing.Size(94, 16);
-            this.lblDataPartition.TabIndex = 6;
-            this.lblDataPartition.Text = "Data Partition :";
+            this.txtBootLogo.Location = new System.Drawing.Point(108, 184);
+            this.txtBootLogo.Name = "txtBootLogo";
+            this.txtBootLogo.Size = new System.Drawing.Size(278, 22);
+            this.txtBootLogo.TabIndex = 11;
             // 
-            // txtSystemPartition
+            // btnBootLogo
             // 
-            this.txtSystemPartition.Enabled = false;
-            this.txtSystemPartition.Location = new System.Drawing.Point(391, 43);
-            this.txtSystemPartition.Name = "txtSystemPartition";
-            this.txtSystemPartition.Size = new System.Drawing.Size(100, 22);
-            this.txtSystemPartition.TabIndex = 7;
+            this.btnBootLogo.ForeColor = System.Drawing.Color.Black;
+            this.btnBootLogo.Location = new System.Drawing.Point(402, 184);
+            this.btnBootLogo.Name = "btnBootLogo";
+            this.btnBootLogo.Size = new System.Drawing.Size(75, 23);
+            this.btnBootLogo.TabIndex = 12;
+            this.btnBootLogo.Text = "Browse";
+            this.btnBootLogo.UseVisualStyleBackColor = true;
+            this.btnBootLogo.Click += new System.EventHandler(this.btnBootLogo_Click);
             // 
-            // txtDataPartition
+            // lblRootFileSystem
             // 
-            this.txtDataPartition.Enabled = false;
-            this.txtDataPartition.Location = new System.Drawing.Point(391, 94);
-            this.txtDataPartition.Name = "txtDataPartition";
-            this.txtDataPartition.Size = new System.Drawing.Size(100, 22);
-            this.txtDataPartition.TabIndex = 8;
+            this.lblRootFileSystem.AutoSize = true;
+            this.lblRootFileSystem.Location = new System.Drawing.Point(19, 233);
+            this.lblRootFileSystem.Name = "lblRootFileSystem";
+            this.lblRootFileSystem.Size = new System.Drawing.Size(116, 16);
+            this.lblRootFileSystem.TabIndex = 13;
+            this.lblRootFileSystem.Text = "Root File System :";
             // 
-            // btnSetSystem
+            // txtRootFileSystem
             // 
-            this.btnSetSystem.ForeColor = System.Drawing.Color.Black;
-            this.btnSetSystem.Location = new System.Drawing.Point(184, 34);
-            this.btnSetSystem.Name = "btnSetSystem";
-            this.btnSetSystem.Size = new System.Drawing.Size(75, 41);
-            this.btnSetSystem.TabIndex = 9;
-            this.btnSetSystem.Text = "Set as System";
-            this.btnSetSystem.UseVisualStyleBackColor = true;
-            this.btnSetSystem.Click += new System.EventHandler(this.btnSetSystem_Click);
+            this.txtRootFileSystem.Location = new System.Drawing.Point(141, 230);
+            this.txtRootFileSystem.Name = "txtRootFileSystem";
+            this.txtRootFileSystem.Size = new System.Drawing.Size(244, 22);
+            this.txtRootFileSystem.TabIndex = 14;
             // 
-            // btnSetData
+            // btnRootFileSystem
             // 
-            this.btnSetData.ForeColor = System.Drawing.Color.Black;
-            this.btnSetData.Location = new System.Drawing.Point(184, 81);
-            this.btnSetData.Name = "btnSetData";
-            this.btnSetData.Size = new System.Drawing.Size(75, 41);
-            this.btnSetData.TabIndex = 10;
-            this.btnSetData.Text = "Set as Data";
-            this.btnSetData.UseVisualStyleBackColor = true;
-            this.btnSetData.Click += new System.EventHandler(this.btnSetData_Click);
+            this.btnRootFileSystem.ForeColor = System.Drawing.Color.Black;
+            this.btnRootFileSystem.Location = new System.Drawing.Point(402, 229);
+            this.btnRootFileSystem.Name = "btnRootFileSystem";
+            this.btnRootFileSystem.Size = new System.Drawing.Size(75, 23);
+            this.btnRootFileSystem.TabIndex = 15;
+            this.btnRootFileSystem.Text = "Browse";
+            this.btnRootFileSystem.UseVisualStyleBackColor = true;
             // 
             // frmConfigureOS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(523, 352);
+            this.ClientSize = new System.Drawing.Size(523, 447);
             this.Controls.Add(this.gbFileSystemSection);
             this.Controls.Add(this.gbFirmwareSection);
             this.Name = "frmConfigureOS";
@@ -287,5 +352,11 @@
         private System.Windows.Forms.TextBox txtSystemPartition;
         private System.Windows.Forms.Label lblDataPartition;
         private System.Windows.Forms.Label lblSystemPartition;
+        private System.Windows.Forms.Button btnRootFileSystem;
+        private System.Windows.Forms.TextBox txtRootFileSystem;
+        private System.Windows.Forms.Label lblRootFileSystem;
+        private System.Windows.Forms.Button btnBootLogo;
+        private System.Windows.Forms.TextBox txtBootLogo;
+        private System.Windows.Forms.Label lblBootLogo;
     }
 }

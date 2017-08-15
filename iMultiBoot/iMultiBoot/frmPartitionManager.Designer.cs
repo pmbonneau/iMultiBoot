@@ -38,6 +38,8 @@
             this.txtPartitionInformationNumber = new System.Windows.Forms.TextBox();
             this.lblPartitionInformationNumber = new System.Windows.Forms.Label();
             this.gbPartitionCreation = new System.Windows.Forms.GroupBox();
+            this.cbJournaled = new System.Windows.Forms.CheckBox();
+            this.cbProtected = new System.Windows.Forms.CheckBox();
             this.txtPartitionCreationSize = new System.Windows.Forms.TextBox();
             this.lblPartitionCreationSize = new System.Windows.Forms.Label();
             this.txtPartitionCreationName = new System.Windows.Forms.TextBox();
@@ -49,8 +51,6 @@
             this.gbPartitionTablePreparation = new System.Windows.Forms.GroupBox();
             this.txtNewDataPartitionSize = new System.Windows.Forms.TextBox();
             this.lblDataPartitionSize = new System.Windows.Forms.Label();
-            this.cbProtected = new System.Windows.Forms.CheckBox();
-            this.cbJournaled = new System.Windows.Forms.CheckBox();
             this.gbPartitionInformation.SuspendLayout();
             this.gbPartitionCreation.SuspendLayout();
             this.gbPartitionTablePreparation.SuspendLayout();
@@ -164,6 +164,26 @@
             this.gbPartitionCreation.TabStop = false;
             this.gbPartitionCreation.Text = "Partition Creation";
             // 
+            // cbJournaled
+            // 
+            this.cbJournaled.AutoSize = true;
+            this.cbJournaled.Location = new System.Drawing.Point(144, 74);
+            this.cbJournaled.Name = "cbJournaled";
+            this.cbJournaled.Size = new System.Drawing.Size(87, 20);
+            this.cbJournaled.TabIndex = 15;
+            this.cbJournaled.Text = "Journaled";
+            this.cbJournaled.UseVisualStyleBackColor = true;
+            // 
+            // cbProtected
+            // 
+            this.cbProtected.AutoSize = true;
+            this.cbProtected.Location = new System.Drawing.Point(18, 74);
+            this.cbProtected.Name = "cbProtected";
+            this.cbProtected.Size = new System.Drawing.Size(85, 20);
+            this.cbProtected.TabIndex = 14;
+            this.cbProtected.Text = "Protected";
+            this.cbProtected.UseVisualStyleBackColor = true;
+            // 
             // txtPartitionCreationSize
             // 
             this.txtPartitionCreationSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -200,6 +220,7 @@
             // 
             // btnDeletePartition
             // 
+            this.btnDeletePartition.Enabled = false;
             this.btnDeletePartition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletePartition.Location = new System.Drawing.Point(353, 321);
             this.btnDeletePartition.Name = "btnDeletePartition";
@@ -211,6 +232,7 @@
             // 
             // btnCreatePartition
             // 
+            this.btnCreatePartition.Enabled = false;
             this.btnCreatePartition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreatePartition.Location = new System.Drawing.Point(353, 493);
             this.btnCreatePartition.Name = "btnCreatePartition";
@@ -222,6 +244,7 @@
             // 
             // btnResizeDataPartition
             // 
+            this.btnResizeDataPartition.Enabled = false;
             this.btnResizeDataPartition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResizeDataPartition.ForeColor = System.Drawing.Color.Black;
             this.btnResizeDataPartition.Location = new System.Drawing.Point(289, 31);
@@ -273,26 +296,6 @@
             this.lblDataPartitionSize.Size = new System.Drawing.Size(123, 16);
             this.lblDataPartitionSize.TabIndex = 12;
             this.lblDataPartitionSize.Text = "Data Partition Size :";
-            // 
-            // cbProtected
-            // 
-            this.cbProtected.AutoSize = true;
-            this.cbProtected.Location = new System.Drawing.Point(18, 74);
-            this.cbProtected.Name = "cbProtected";
-            this.cbProtected.Size = new System.Drawing.Size(85, 20);
-            this.cbProtected.TabIndex = 14;
-            this.cbProtected.Text = "Protected";
-            this.cbProtected.UseVisualStyleBackColor = true;
-            // 
-            // cbJournaled
-            // 
-            this.cbJournaled.AutoSize = true;
-            this.cbJournaled.Location = new System.Drawing.Point(144, 74);
-            this.cbJournaled.Name = "cbJournaled";
-            this.cbJournaled.Size = new System.Drawing.Size(87, 20);
-            this.cbJournaled.TabIndex = 15;
-            this.cbJournaled.Text = "Journaled";
-            this.cbJournaled.UseVisualStyleBackColor = true;
             // 
             // frmPartitionManager
             // 

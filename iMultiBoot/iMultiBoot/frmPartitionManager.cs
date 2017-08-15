@@ -30,10 +30,17 @@ namespace iMultiBoot
             Partition NewPartition = new Partition("Data", Convert.ToInt32(txtNewDataPartitionSize.Text));
             Device.DataPartition = NewPartition;
             Device.PartitionList.Add(NewPartition);
+            btnCreatePartition.Enabled = true;
+            btnDeletePartition.Enabled = true;
         }
 
         private void lbPartitionTable_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnResizeDataPartition.Enabled = false;
+            if (lbPartitionTable.SelectedIndex == 1)
+            {
+                btnResizeDataPartition.Enabled = true;
+            }
             txtPartitionInformationNumber.Text = Convert.ToString(lbPartitionTable.SelectedIndex + 1);
             txtPartitionInformationSize.Text = Convert.ToString(Device.PartitionList[lbPartitionTable.SelectedIndex].Size);
         }

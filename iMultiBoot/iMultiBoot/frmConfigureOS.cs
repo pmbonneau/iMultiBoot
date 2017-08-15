@@ -36,7 +36,10 @@ namespace iMultiBoot
 
             string GenericDeviceTreeFileName = "DeviceTree." + Controller.getAppleMobileDevice().InternalCodeName + "_custom.img3";
 
-            Directory.CreateDirectory(Controller.getWorkingDirectory());
+            if (Directory.Exists(Controller.getWorkingDirectory()) == false)
+            {
+                Directory.CreateDirectory(Controller.getWorkingDirectory());
+            }
 
             File.Copy(vOpenFileDialog.FileName, Controller.getWorkingDirectory() + "\\" + GenericDeviceTreeFileName);
             OperatingSystem.DeviceTree = Controller.getWorkingDirectory() + "\\" + GenericDeviceTreeFileName;
@@ -52,10 +55,13 @@ namespace iMultiBoot
 
             string GenericFirstStageBootloaderFileName = "LLB." + Controller.getAppleMobileDevice().InternalCodeName + ".RELEASE.img3";
 
-            Directory.CreateDirectory(Controller.getWorkingDirectory());
+            if (Directory.Exists(Controller.getWorkingDirectory()) == false)
+            {
+                Directory.CreateDirectory(Controller.getWorkingDirectory());
+            }
 
             File.Copy(vOpenFileDialog.FileName, Controller.getWorkingDirectory() + "\\" + GenericFirstStageBootloaderFileName);
-            OperatingSystem.DeviceTree = Controller.getWorkingDirectory() + "\\" + GenericFirstStageBootloaderFileName;
+            OperatingSystem.LowLevelBootloader = Controller.getWorkingDirectory() + "\\" + GenericFirstStageBootloaderFileName;
         }
 
         private void btnSecondaryStageBootloader_Click(object sender, EventArgs e)
@@ -68,10 +74,32 @@ namespace iMultiBoot
 
             string GenericSecondaryStageBootloaderFileName = "iBoot." + Controller.getAppleMobileDevice().InternalCodeName + ".RELEASE.img3";
 
-            Directory.CreateDirectory(Controller.getWorkingDirectory());
+            if (Directory.Exists(Controller.getWorkingDirectory()) == false)
+            {
+                Directory.CreateDirectory(Controller.getWorkingDirectory());
+            }
 
             File.Copy(vOpenFileDialog.FileName, Controller.getWorkingDirectory() + "\\" + GenericSecondaryStageBootloaderFileName);
-            OperatingSystem.DeviceTree = Controller.getWorkingDirectory() + "\\" + GenericSecondaryStageBootloaderFileName;
+            OperatingSystem.iBoot = Controller.getWorkingDirectory() + "\\" + GenericSecondaryStageBootloaderFileName;
+        }
+
+        private void btnBootLogo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog vOpenFileDialog = new OpenFileDialog();
+            vOpenFileDialog.Title = "Select Custom Boot Logo Image";
+            vOpenFileDialog.Filter = "IMG3 Files|*.img3";
+            DialogResult result = vOpenFileDialog.ShowDialog();
+            txtBootLogo.Text = vOpenFileDialog.FileName;
+
+            string GenericBootLogoImageFileName = "applelogo." + Controller.getAppleMobileDevice().InternalCodeName + "_custom.img3";
+
+            if (Directory.Exists(Controller.getWorkingDirectory()) == false)
+            {
+                Directory.CreateDirectory(Controller.getWorkingDirectory());
+            }
+
+            File.Copy(vOpenFileDialog.FileName, Controller.getWorkingDirectory() + "\\" + GenericBootLogoImageFileName);
+            OperatingSystem.BootLogo = Controller.getWorkingDirectory() + "\\" + GenericBootLogoImageFileName;
         }
 
         private void lbPartitionTable_SelectedIndexChanged(object sender, EventArgs e)
