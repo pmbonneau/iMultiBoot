@@ -109,6 +109,11 @@ namespace iMultiBoot
 
         private void btnSetSystem_Click(object sender, EventArgs e)
         {
+            if (lbPartitionTable.SelectedIndex == 0 || lbPartitionTable.SelectedIndex == 1)
+            {
+                MessageBox.Show("Can't set " + SelectedPartition.Name + " as system partition for a secondary OS instance.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             OperatingSystem.SystemPartition = SelectedPartition;
             txtSystemPartition.Text = SelectedPartition.Name;
 
@@ -116,8 +121,18 @@ namespace iMultiBoot
 
         private void btnSetData_Click(object sender, EventArgs e)
         {
+            if (lbPartitionTable.SelectedIndex == 0 || lbPartitionTable.SelectedIndex == 1)
+            {
+                MessageBox.Show("Can't set " + SelectedPartition.Name + " as data partition for a secondary OS instance.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             OperatingSystem.DataPartition = SelectedPartition;
             txtDataPartition.Text = SelectedPartition.Name;
+        }
+
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

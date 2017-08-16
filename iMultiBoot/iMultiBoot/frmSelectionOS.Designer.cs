@@ -36,7 +36,7 @@
             this.lblSelectSecondaryOS = new System.Windows.Forms.Label();
             this.lblSelectThirdOS = new System.Windows.Forms.Label();
             this.lblSelectFourthOS = new System.Windows.Forms.Label();
-            this.btnValidate = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
             this.btnConfigureMainOS = new System.Windows.Forms.Button();
             this.btnConfigureSecondaryOS = new System.Windows.Forms.Button();
             this.btnConfigureThirdOS = new System.Windows.Forms.Button();
@@ -129,16 +129,16 @@
             this.lblSelectFourthOS.TabIndex = 7;
             this.lblSelectFourthOS.Text = "No OS Selected";
             // 
-            // btnValidate
+            // btnSaveSettings
             // 
-            this.btnValidate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidate.Location = new System.Drawing.Point(12, 280);
-            this.btnValidate.Name = "btnValidate";
-            this.btnValidate.Size = new System.Drawing.Size(122, 37);
-            this.btnValidate.TabIndex = 8;
-            this.btnValidate.Text = "Validate";
-            this.btnValidate.UseVisualStyleBackColor = true;
-            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
+            this.btnSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveSettings.Location = new System.Drawing.Point(462, 280);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(119, 37);
+            this.btnSaveSettings.TabIndex = 8;
+            this.btnSaveSettings.Text = "Save Settings";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
             // btnConfigureMainOS
             // 
@@ -196,7 +196,7 @@
             this.Controls.Add(this.btnConfigureThirdOS);
             this.Controls.Add(this.btnConfigureSecondaryOS);
             this.Controls.Add(this.btnConfigureMainOS);
-            this.Controls.Add(this.btnValidate);
+            this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.lblSelectFourthOS);
             this.Controls.Add(this.lblSelectThirdOS);
             this.Controls.Add(this.lblSelectSecondaryOS);
@@ -222,7 +222,7 @@
         private System.Windows.Forms.Label lblSelectSecondaryOS;
         private System.Windows.Forms.Label lblSelectThirdOS;
         private System.Windows.Forms.Label lblSelectFourthOS;
-        private System.Windows.Forms.Button btnValidate;
+        private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Button btnConfigureMainOS;
         private System.Windows.Forms.Button btnConfigureSecondaryOS;
         private System.Windows.Forms.Button btnConfigureThirdOS;

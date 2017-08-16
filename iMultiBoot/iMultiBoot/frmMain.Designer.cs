@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.gbConnectionSSH = new System.Windows.Forms.GroupBox();
+            this.txtUserPassword = new System.Windows.Forms.TextBox();
+            this.lblUserPassword = new System.Windows.Forms.Label();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.txtDeviceHostName = new System.Windows.Forms.TextBox();
+            this.lblDeviceHostName = new System.Windows.Forms.Label();
             this.btnManagePartitions = new System.Windows.Forms.Button();
             this.btnInstallOperatingSystems = new System.Windows.Forms.Button();
             this.btnConfigureSoftware = new System.Windows.Forms.Button();
@@ -38,13 +45,6 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnBegin = new System.Windows.Forms.Button();
             this.lblCopyrights = new System.Windows.Forms.Label();
-            this.gbConnectionSSH = new System.Windows.Forms.GroupBox();
-            this.lblDeviceHostName = new System.Windows.Forms.Label();
-            this.txtDeviceHostName = new System.Windows.Forms.TextBox();
-            this.lblUserName = new System.Windows.Forms.Label();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.lblUserPassword = new System.Windows.Forms.Label();
-            this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.pnlMain.SuspendLayout();
             this.gbConnectionSSH.SuspendLayout();
             this.SuspendLayout();
@@ -60,16 +60,86 @@
             this.pnlMain.Controls.Add(this.btnSelectDevice);
             this.pnlMain.Location = new System.Drawing.Point(2, 38);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(579, 295);
+            this.pnlMain.Size = new System.Drawing.Size(579, 273);
             this.pnlMain.TabIndex = 1;
             this.pnlMain.Visible = false;
             // 
+            // gbConnectionSSH
+            // 
+            this.gbConnectionSSH.Controls.Add(this.txtUserPassword);
+            this.gbConnectionSSH.Controls.Add(this.lblUserPassword);
+            this.gbConnectionSSH.Controls.Add(this.txtUserName);
+            this.gbConnectionSSH.Controls.Add(this.lblUserName);
+            this.gbConnectionSSH.Controls.Add(this.txtDeviceHostName);
+            this.gbConnectionSSH.Controls.Add(this.lblDeviceHostName);
+            this.gbConnectionSSH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbConnectionSSH.ForeColor = System.Drawing.Color.White;
+            this.gbConnectionSSH.Location = new System.Drawing.Point(359, 7);
+            this.gbConnectionSSH.Name = "gbConnectionSSH";
+            this.gbConnectionSSH.Size = new System.Drawing.Size(211, 201);
+            this.gbConnectionSSH.TabIndex = 6;
+            this.gbConnectionSSH.TabStop = false;
+            this.gbConnectionSSH.Text = "SSH Connection";
+            // 
+            // txtUserPassword
+            // 
+            this.txtUserPassword.Enabled = false;
+            this.txtUserPassword.Location = new System.Drawing.Point(9, 144);
+            this.txtUserPassword.Name = "txtUserPassword";
+            this.txtUserPassword.Size = new System.Drawing.Size(100, 22);
+            this.txtUserPassword.TabIndex = 5;
+            this.txtUserPassword.UseSystemPasswordChar = true;
+            // 
+            // lblUserPassword
+            // 
+            this.lblUserPassword.AutoSize = true;
+            this.lblUserPassword.Location = new System.Drawing.Point(6, 125);
+            this.lblUserPassword.Name = "lblUserPassword";
+            this.lblUserPassword.Size = new System.Drawing.Size(106, 16);
+            this.lblUserPassword.TabIndex = 4;
+            this.lblUserPassword.Text = "User Password :";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Enabled = false;
+            this.txtUserName.Location = new System.Drawing.Point(9, 92);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(100, 22);
+            this.txtUserName.TabIndex = 3;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Location = new System.Drawing.Point(6, 73);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(83, 16);
+            this.lblUserName.TabIndex = 2;
+            this.lblUserName.Text = "User Name :";
+            // 
+            // txtDeviceHostName
+            // 
+            this.txtDeviceHostName.Enabled = false;
+            this.txtDeviceHostName.Location = new System.Drawing.Point(9, 38);
+            this.txtDeviceHostName.Name = "txtDeviceHostName";
+            this.txtDeviceHostName.Size = new System.Drawing.Size(125, 22);
+            this.txtDeviceHostName.TabIndex = 1;
+            // 
+            // lblDeviceHostName
+            // 
+            this.lblDeviceHostName.AutoSize = true;
+            this.lblDeviceHostName.Location = new System.Drawing.Point(6, 19);
+            this.lblDeviceHostName.Name = "lblDeviceHostName";
+            this.lblDeviceHostName.Size = new System.Drawing.Size(128, 16);
+            this.lblDeviceHostName.TabIndex = 0;
+            this.lblDeviceHostName.Text = "Device Host Name :";
+            // 
             // btnManagePartitions
             // 
+            this.btnManagePartitions.Enabled = false;
             this.btnManagePartitions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManagePartitions.Location = new System.Drawing.Point(10, 119);
             this.btnManagePartitions.Name = "btnManagePartitions";
-            this.btnManagePartitions.Size = new System.Drawing.Size(171, 35);
+            this.btnManagePartitions.Size = new System.Drawing.Size(211, 35);
             this.btnManagePartitions.TabIndex = 5;
             this.btnManagePartitions.Text = "Manage Partitions";
             this.btnManagePartitions.UseVisualStyleBackColor = true;
@@ -77,8 +147,9 @@
             // 
             // btnInstallOperatingSystems
             // 
-            this.btnInstallOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInstallOperatingSystems.Location = new System.Drawing.Point(359, 234);
+            this.btnInstallOperatingSystems.Enabled = false;
+            this.btnInstallOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstallOperatingSystems.Location = new System.Drawing.Point(359, 226);
             this.btnInstallOperatingSystems.Name = "btnInstallOperatingSystems";
             this.btnInstallOperatingSystems.Size = new System.Drawing.Size(211, 35);
             this.btnInstallOperatingSystems.TabIndex = 4;
@@ -89,9 +160,9 @@
             // btnConfigureSoftware
             // 
             this.btnConfigureSoftware.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfigureSoftware.Location = new System.Drawing.Point(10, 13);
+            this.btnConfigureSoftware.Location = new System.Drawing.Point(10, 14);
             this.btnConfigureSoftware.Name = "btnConfigureSoftware";
-            this.btnConfigureSoftware.Size = new System.Drawing.Size(171, 35);
+            this.btnConfigureSoftware.Size = new System.Drawing.Size(211, 35);
             this.btnConfigureSoftware.TabIndex = 3;
             this.btnConfigureSoftware.Text = "Configure Software";
             this.btnConfigureSoftware.UseVisualStyleBackColor = true;
@@ -99,21 +170,23 @@
             // 
             // btnBuildFirmware
             // 
-            this.btnBuildFirmware.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuildFirmware.Location = new System.Drawing.Point(10, 234);
+            this.btnBuildFirmware.Enabled = false;
+            this.btnBuildFirmware.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuildFirmware.Location = new System.Drawing.Point(10, 226);
             this.btnBuildFirmware.Name = "btnBuildFirmware";
-            this.btnBuildFirmware.Size = new System.Drawing.Size(171, 35);
+            this.btnBuildFirmware.Size = new System.Drawing.Size(211, 35);
             this.btnBuildFirmware.TabIndex = 2;
-            this.btnBuildFirmware.Text = "Build Firmware";
+            this.btnBuildFirmware.Text = "Build Firmware Package (IPSW)";
             this.btnBuildFirmware.UseVisualStyleBackColor = true;
             this.btnBuildFirmware.Click += new System.EventHandler(this.btnBuildFirmware_Click);
             // 
             // btnSelectOperatingSystems
             // 
+            this.btnSelectOperatingSystems.Enabled = false;
             this.btnSelectOperatingSystems.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectOperatingSystems.Location = new System.Drawing.Point(10, 173);
             this.btnSelectOperatingSystems.Name = "btnSelectOperatingSystems";
-            this.btnSelectOperatingSystems.Size = new System.Drawing.Size(171, 35);
+            this.btnSelectOperatingSystems.Size = new System.Drawing.Size(211, 35);
             this.btnSelectOperatingSystems.TabIndex = 1;
             this.btnSelectOperatingSystems.Text = "Select Operating Systems";
             this.btnSelectOperatingSystems.UseVisualStyleBackColor = true;
@@ -122,9 +195,9 @@
             // btnSelectDevice
             // 
             this.btnSelectDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectDevice.Location = new System.Drawing.Point(10, 67);
+            this.btnSelectDevice.Location = new System.Drawing.Point(10, 66);
             this.btnSelectDevice.Name = "btnSelectDevice";
-            this.btnSelectDevice.Size = new System.Drawing.Size(171, 35);
+            this.btnSelectDevice.Size = new System.Drawing.Size(211, 35);
             this.btnSelectDevice.TabIndex = 0;
             this.btnSelectDevice.Text = "Select Device";
             this.btnSelectDevice.UseVisualStyleBackColor = true;
@@ -144,7 +217,7 @@
             // btnBegin
             // 
             this.btnBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBegin.Location = new System.Drawing.Point(444, 294);
+            this.btnBegin.Location = new System.Drawing.Point(441, 266);
             this.btnBegin.Name = "btnBegin";
             this.btnBegin.Size = new System.Drawing.Size(131, 36);
             this.btnBegin.TabIndex = 3;
@@ -157,84 +230,18 @@
             this.lblCopyrights.AutoSize = true;
             this.lblCopyrights.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCopyrights.ForeColor = System.Drawing.Color.White;
-            this.lblCopyrights.Location = new System.Drawing.Point(258, 336);
+            this.lblCopyrights.Location = new System.Drawing.Point(254, 313);
             this.lblCopyrights.Name = "lblCopyrights";
             this.lblCopyrights.Size = new System.Drawing.Size(323, 18);
             this.lblCopyrights.TabIndex = 4;
             this.lblCopyrights.Text = "©2017 Pierre-Marc Bonneau, all rights reserved.";
-            // 
-            // gbConnectionSSH
-            // 
-            this.gbConnectionSSH.Controls.Add(this.txtUserPassword);
-            this.gbConnectionSSH.Controls.Add(this.lblUserPassword);
-            this.gbConnectionSSH.Controls.Add(this.txtUserName);
-            this.gbConnectionSSH.Controls.Add(this.lblUserName);
-            this.gbConnectionSSH.Controls.Add(this.txtDeviceHostName);
-            this.gbConnectionSSH.Controls.Add(this.lblDeviceHostName);
-            this.gbConnectionSSH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbConnectionSSH.ForeColor = System.Drawing.Color.White;
-            this.gbConnectionSSH.Location = new System.Drawing.Point(359, 13);
-            this.gbConnectionSSH.Name = "gbConnectionSSH";
-            this.gbConnectionSSH.Size = new System.Drawing.Size(211, 195);
-            this.gbConnectionSSH.TabIndex = 6;
-            this.gbConnectionSSH.TabStop = false;
-            this.gbConnectionSSH.Text = "SSH Connection";
-            // 
-            // lblDeviceHostName
-            // 
-            this.lblDeviceHostName.AutoSize = true;
-            this.lblDeviceHostName.Location = new System.Drawing.Point(6, 19);
-            this.lblDeviceHostName.Name = "lblDeviceHostName";
-            this.lblDeviceHostName.Size = new System.Drawing.Size(128, 16);
-            this.lblDeviceHostName.TabIndex = 0;
-            this.lblDeviceHostName.Text = "Device Host Name :";
-            // 
-            // txtDeviceHostName
-            // 
-            this.txtDeviceHostName.Location = new System.Drawing.Point(9, 38);
-            this.txtDeviceHostName.Name = "txtDeviceHostName";
-            this.txtDeviceHostName.Size = new System.Drawing.Size(125, 22);
-            this.txtDeviceHostName.TabIndex = 1;
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(6, 73);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(83, 16);
-            this.lblUserName.TabIndex = 2;
-            this.lblUserName.Text = "User Name :";
-            // 
-            // txtUserName
-            // 
-            this.txtUserName.Location = new System.Drawing.Point(9, 92);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(100, 22);
-            this.txtUserName.TabIndex = 3;
-            // 
-            // lblUserPassword
-            // 
-            this.lblUserPassword.AutoSize = true;
-            this.lblUserPassword.Location = new System.Drawing.Point(6, 125);
-            this.lblUserPassword.Name = "lblUserPassword";
-            this.lblUserPassword.Size = new System.Drawing.Size(106, 16);
-            this.lblUserPassword.TabIndex = 4;
-            this.lblUserPassword.Text = "User Password :";
-            // 
-            // txtUserPassword
-            // 
-            this.txtUserPassword.Location = new System.Drawing.Point(9, 144);
-            this.txtUserPassword.Name = "txtUserPassword";
-            this.txtUserPassword.Size = new System.Drawing.Size(100, 22);
-            this.txtUserPassword.TabIndex = 5;
-            this.txtUserPassword.UseSystemPasswordChar = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(584, 362);
+            this.ClientSize = new System.Drawing.Size(584, 340);
             this.Controls.Add(this.lblCopyrights);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.btnBegin);

@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.gbFirmwareSection = new System.Windows.Forms.GroupBox();
+            this.btnRootFileSystem = new System.Windows.Forms.Button();
+            this.txtRootFileSystem = new System.Windows.Forms.TextBox();
+            this.lblRootFileSystem = new System.Windows.Forms.Label();
+            this.btnBootLogo = new System.Windows.Forms.Button();
+            this.txtBootLogo = new System.Windows.Forms.TextBox();
+            this.lblBootLogo = new System.Windows.Forms.Label();
             this.btnSecondaryStageBootloader = new System.Windows.Forms.Button();
             this.btnFirstStageBootloader = new System.Windows.Forms.Button();
             this.txtSecondaryStageBootloader = new System.Windows.Forms.TextBox();
@@ -47,12 +53,7 @@
             this.lblSystemPartition = new System.Windows.Forms.Label();
             this.lblCurrentPartitionTable = new System.Windows.Forms.Label();
             this.lbPartitionTable = new System.Windows.Forms.ListBox();
-            this.lblBootLogo = new System.Windows.Forms.Label();
-            this.txtBootLogo = new System.Windows.Forms.TextBox();
-            this.btnBootLogo = new System.Windows.Forms.Button();
-            this.lblRootFileSystem = new System.Windows.Forms.Label();
-            this.txtRootFileSystem = new System.Windows.Forms.TextBox();
-            this.btnRootFileSystem = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
             this.gbFirmwareSection.SuspendLayout();
             this.gbFileSystemSection.SuspendLayout();
             this.SuspendLayout();
@@ -78,15 +79,70 @@
             this.gbFirmwareSection.ForeColor = System.Drawing.Color.White;
             this.gbFirmwareSection.Location = new System.Drawing.Point(12, 12);
             this.gbFirmwareSection.Name = "gbFirmwareSection";
-            this.gbFirmwareSection.Size = new System.Drawing.Size(499, 273);
+            this.gbFirmwareSection.Size = new System.Drawing.Size(507, 273);
             this.gbFirmwareSection.TabIndex = 0;
             this.gbFirmwareSection.TabStop = false;
             this.gbFirmwareSection.Text = "Firmware Section";
             // 
+            // btnRootFileSystem
+            // 
+            this.btnRootFileSystem.Enabled = false;
+            this.btnRootFileSystem.ForeColor = System.Drawing.Color.Black;
+            this.btnRootFileSystem.Location = new System.Drawing.Point(406, 229);
+            this.btnRootFileSystem.Name = "btnRootFileSystem";
+            this.btnRootFileSystem.Size = new System.Drawing.Size(75, 23);
+            this.btnRootFileSystem.TabIndex = 15;
+            this.btnRootFileSystem.Text = "Browse";
+            this.btnRootFileSystem.UseVisualStyleBackColor = true;
+            // 
+            // txtRootFileSystem
+            // 
+            this.txtRootFileSystem.Enabled = false;
+            this.txtRootFileSystem.Location = new System.Drawing.Point(141, 230);
+            this.txtRootFileSystem.Name = "txtRootFileSystem";
+            this.txtRootFileSystem.Size = new System.Drawing.Size(244, 22);
+            this.txtRootFileSystem.TabIndex = 14;
+            // 
+            // lblRootFileSystem
+            // 
+            this.lblRootFileSystem.AutoSize = true;
+            this.lblRootFileSystem.Location = new System.Drawing.Point(19, 233);
+            this.lblRootFileSystem.Name = "lblRootFileSystem";
+            this.lblRootFileSystem.Size = new System.Drawing.Size(116, 16);
+            this.lblRootFileSystem.TabIndex = 13;
+            this.lblRootFileSystem.Text = "Root File System :";
+            // 
+            // btnBootLogo
+            // 
+            this.btnBootLogo.ForeColor = System.Drawing.Color.Black;
+            this.btnBootLogo.Location = new System.Drawing.Point(406, 184);
+            this.btnBootLogo.Name = "btnBootLogo";
+            this.btnBootLogo.Size = new System.Drawing.Size(75, 23);
+            this.btnBootLogo.TabIndex = 12;
+            this.btnBootLogo.Text = "Browse";
+            this.btnBootLogo.UseVisualStyleBackColor = true;
+            this.btnBootLogo.Click += new System.EventHandler(this.btnBootLogo_Click);
+            // 
+            // txtBootLogo
+            // 
+            this.txtBootLogo.Location = new System.Drawing.Point(108, 184);
+            this.txtBootLogo.Name = "txtBootLogo";
+            this.txtBootLogo.Size = new System.Drawing.Size(278, 22);
+            this.txtBootLogo.TabIndex = 11;
+            // 
+            // lblBootLogo
+            // 
+            this.lblBootLogo.AutoSize = true;
+            this.lblBootLogo.Location = new System.Drawing.Point(19, 187);
+            this.lblBootLogo.Name = "lblBootLogo";
+            this.lblBootLogo.Size = new System.Drawing.Size(76, 16);
+            this.lblBootLogo.TabIndex = 10;
+            this.lblBootLogo.Text = "Boot Logo :";
+            // 
             // btnSecondaryStageBootloader
             // 
             this.btnSecondaryStageBootloader.ForeColor = System.Drawing.Color.Black;
-            this.btnSecondaryStageBootloader.Location = new System.Drawing.Point(402, 83);
+            this.btnSecondaryStageBootloader.Location = new System.Drawing.Point(406, 83);
             this.btnSecondaryStageBootloader.Name = "btnSecondaryStageBootloader";
             this.btnSecondaryStageBootloader.Size = new System.Drawing.Size(75, 23);
             this.btnSecondaryStageBootloader.TabIndex = 9;
@@ -97,7 +153,7 @@
             // btnFirstStageBootloader
             // 
             this.btnFirstStageBootloader.ForeColor = System.Drawing.Color.Black;
-            this.btnFirstStageBootloader.Location = new System.Drawing.Point(402, 31);
+            this.btnFirstStageBootloader.Location = new System.Drawing.Point(406, 31);
             this.btnFirstStageBootloader.Name = "btnFirstStageBootloader";
             this.btnFirstStageBootloader.Size = new System.Drawing.Size(75, 23);
             this.btnFirstStageBootloader.TabIndex = 8;
@@ -140,7 +196,7 @@
             // btnDeviceTree
             // 
             this.btnDeviceTree.ForeColor = System.Drawing.Color.Black;
-            this.btnDeviceTree.Location = new System.Drawing.Point(402, 134);
+            this.btnDeviceTree.Location = new System.Drawing.Point(406, 134);
             this.btnDeviceTree.Name = "btnDeviceTree";
             this.btnDeviceTree.Size = new System.Drawing.Size(75, 23);
             this.btnDeviceTree.TabIndex = 2;
@@ -178,7 +234,7 @@
             this.gbFileSystemSection.ForeColor = System.Drawing.Color.White;
             this.gbFileSystemSection.Location = new System.Drawing.Point(13, 304);
             this.gbFileSystemSection.Name = "gbFileSystemSection";
-            this.gbFileSystemSection.Size = new System.Drawing.Size(498, 131);
+            this.gbFileSystemSection.Size = new System.Drawing.Size(506, 131);
             this.gbFileSystemSection.TabIndex = 1;
             this.gbFileSystemSection.TabStop = false;
             this.gbFileSystemSection.Text = "FileSystem Section";
@@ -260,65 +316,24 @@
             this.lbPartitionTable.TabIndex = 0;
             this.lbPartitionTable.SelectedIndexChanged += new System.EventHandler(this.lbPartitionTable_SelectedIndexChanged);
             // 
-            // lblBootLogo
+            // btnSaveSettings
             // 
-            this.lblBootLogo.AutoSize = true;
-            this.lblBootLogo.Location = new System.Drawing.Point(19, 187);
-            this.lblBootLogo.Name = "lblBootLogo";
-            this.lblBootLogo.Size = new System.Drawing.Size(76, 16);
-            this.lblBootLogo.TabIndex = 10;
-            this.lblBootLogo.Text = "Boot Logo :";
-            // 
-            // txtBootLogo
-            // 
-            this.txtBootLogo.Location = new System.Drawing.Point(108, 184);
-            this.txtBootLogo.Name = "txtBootLogo";
-            this.txtBootLogo.Size = new System.Drawing.Size(278, 22);
-            this.txtBootLogo.TabIndex = 11;
-            // 
-            // btnBootLogo
-            // 
-            this.btnBootLogo.ForeColor = System.Drawing.Color.Black;
-            this.btnBootLogo.Location = new System.Drawing.Point(402, 184);
-            this.btnBootLogo.Name = "btnBootLogo";
-            this.btnBootLogo.Size = new System.Drawing.Size(75, 23);
-            this.btnBootLogo.TabIndex = 12;
-            this.btnBootLogo.Text = "Browse";
-            this.btnBootLogo.UseVisualStyleBackColor = true;
-            this.btnBootLogo.Click += new System.EventHandler(this.btnBootLogo_Click);
-            // 
-            // lblRootFileSystem
-            // 
-            this.lblRootFileSystem.AutoSize = true;
-            this.lblRootFileSystem.Location = new System.Drawing.Point(19, 233);
-            this.lblRootFileSystem.Name = "lblRootFileSystem";
-            this.lblRootFileSystem.Size = new System.Drawing.Size(116, 16);
-            this.lblRootFileSystem.TabIndex = 13;
-            this.lblRootFileSystem.Text = "Root File System :";
-            // 
-            // txtRootFileSystem
-            // 
-            this.txtRootFileSystem.Location = new System.Drawing.Point(141, 230);
-            this.txtRootFileSystem.Name = "txtRootFileSystem";
-            this.txtRootFileSystem.Size = new System.Drawing.Size(244, 22);
-            this.txtRootFileSystem.TabIndex = 14;
-            // 
-            // btnRootFileSystem
-            // 
-            this.btnRootFileSystem.ForeColor = System.Drawing.Color.Black;
-            this.btnRootFileSystem.Location = new System.Drawing.Point(402, 229);
-            this.btnRootFileSystem.Name = "btnRootFileSystem";
-            this.btnRootFileSystem.Size = new System.Drawing.Size(75, 23);
-            this.btnRootFileSystem.TabIndex = 15;
-            this.btnRootFileSystem.Text = "Browse";
-            this.btnRootFileSystem.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveSettings.Location = new System.Drawing.Point(390, 441);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(129, 40);
+            this.btnSaveSettings.TabIndex = 2;
+            this.btnSaveSettings.Text = "Save Settings";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
             // frmConfigureOS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(523, 447);
+            this.ClientSize = new System.Drawing.Size(531, 493);
+            this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.gbFileSystemSection);
             this.Controls.Add(this.gbFirmwareSection);
             this.Name = "frmConfigureOS";
@@ -358,5 +373,6 @@
         private System.Windows.Forms.Button btnBootLogo;
         private System.Windows.Forms.TextBox txtBootLogo;
         private System.Windows.Forms.Label lblBootLogo;
+        private System.Windows.Forms.Button btnSaveSettings;
     }
 }

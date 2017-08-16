@@ -54,13 +54,13 @@
             this.txtWorkingDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWorkingDirectory.Location = new System.Drawing.Point(156, 20);
             this.txtWorkingDirectory.Name = "txtWorkingDirectory";
-            this.txtWorkingDirectory.Size = new System.Drawing.Size(207, 22);
+            this.txtWorkingDirectory.Size = new System.Drawing.Size(236, 22);
             this.txtWorkingDirectory.TabIndex = 1;
             // 
             // btnBrowseTempDir
             // 
             this.btnBrowseTempDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowseTempDir.Location = new System.Drawing.Point(390, 15);
+            this.btnBrowseTempDir.Location = new System.Drawing.Point(412, 15);
             this.btnBrowseTempDir.Name = "btnBrowseTempDir";
             this.btnBrowseTempDir.Size = new System.Drawing.Size(83, 32);
             this.btnBrowseTempDir.TabIndex = 2;
@@ -73,7 +73,7 @@
             this.lblDeviceWorkingDirectory.AutoSize = true;
             this.lblDeviceWorkingDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDeviceWorkingDirectory.ForeColor = System.Drawing.Color.White;
-            this.lblDeviceWorkingDirectory.Location = new System.Drawing.Point(12, 83);
+            this.lblDeviceWorkingDirectory.Location = new System.Drawing.Point(12, 65);
             this.lblDeviceWorkingDirectory.Name = "lblDeviceWorkingDirectory";
             this.lblDeviceWorkingDirectory.Size = new System.Drawing.Size(167, 16);
             this.lblDeviceWorkingDirectory.TabIndex = 3;
@@ -82,8 +82,9 @@
             // txtDeviceWorkingDirectory
             // 
             this.txtDeviceWorkingDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDeviceWorkingDirectory.Location = new System.Drawing.Point(185, 80);
+            this.txtDeviceWorkingDirectory.Location = new System.Drawing.Point(185, 62);
             this.txtDeviceWorkingDirectory.Name = "txtDeviceWorkingDirectory";
+            this.txtDeviceWorkingDirectory.ReadOnly = true;
             this.txtDeviceWorkingDirectory.Size = new System.Drawing.Size(207, 22);
             this.txtDeviceWorkingDirectory.TabIndex = 4;
             this.txtDeviceWorkingDirectory.Text = "//var";
@@ -91,7 +92,7 @@
             // btnSaveSettings
             // 
             this.btnSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveSettings.Location = new System.Drawing.Point(390, 233);
+            this.btnSaveSettings.Location = new System.Drawing.Point(393, 162);
             this.btnSaveSettings.Name = "btnSaveSettings";
             this.btnSaveSettings.Size = new System.Drawing.Size(105, 36);
             this.btnSaveSettings.TabIndex = 5;
@@ -101,10 +102,11 @@
             // 
             // btnSerializeController
             // 
+            this.btnSerializeController.Enabled = false;
             this.btnSerializeController.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerializeController.Location = new System.Drawing.Point(15, 137);
+            this.btnSerializeController.Location = new System.Drawing.Point(18, 108);
             this.btnSerializeController.Name = "btnSerializeController";
-            this.btnSerializeController.Size = new System.Drawing.Size(143, 36);
+            this.btnSerializeController.Size = new System.Drawing.Size(164, 36);
             this.btnSerializeController.TabIndex = 6;
             this.btnSerializeController.Text = "Serialize Controller";
             this.btnSerializeController.UseVisualStyleBackColor = true;
@@ -112,10 +114,11 @@
             // 
             // btnDeserializeController
             // 
+            this.btnDeserializeController.Enabled = false;
             this.btnDeserializeController.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeserializeController.Location = new System.Drawing.Point(185, 137);
+            this.btnDeserializeController.Location = new System.Drawing.Point(18, 162);
             this.btnDeserializeController.Name = "btnDeserializeController";
-            this.btnDeserializeController.Size = new System.Drawing.Size(161, 36);
+            this.btnDeserializeController.Size = new System.Drawing.Size(164, 36);
             this.btnDeserializeController.TabIndex = 7;
             this.btnDeserializeController.Text = "Deserialize Controller";
             this.btnDeserializeController.UseVisualStyleBackColor = true;
@@ -126,7 +129,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(510, 281);
+            this.ClientSize = new System.Drawing.Size(510, 211);
             this.Controls.Add(this.btnDeserializeController);
             this.Controls.Add(this.btnSerializeController);
             this.Controls.Add(this.btnSaveSettings);

@@ -18,6 +18,7 @@ namespace iMultiBoot
         {
             InitializeComponent();
             Controller = pController;
+            txtWorkingDirectory.Text = pController.getWorkingDirectory();
         }
 
         private void btnBrowseTempDir_Click(object sender, EventArgs e)
@@ -25,13 +26,17 @@ namespace iMultiBoot
             FolderBrowserDialog vFolderBrowserDialog = new FolderBrowserDialog();
             vFolderBrowserDialog.Description = "Select Working Directory";
             DialogResult result = vFolderBrowserDialog.ShowDialog();
-            Controller.setWorkingDirectory(vFolderBrowserDialog.SelectedPath);
+            if (vFolderBrowserDialog.SelectedPath != "")
+            {
+                Controller.setWorkingDirectory(vFolderBrowserDialog.SelectedPath);
+            }
             txtWorkingDirectory.Text = Controller.getWorkingDirectory();
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {
             Controller.setDeviceWorkingDirectory(txtDeviceWorkingDirectory.Text);
+            Close();
         }
 
         private void btnSerializeController_Click(object sender, EventArgs e)

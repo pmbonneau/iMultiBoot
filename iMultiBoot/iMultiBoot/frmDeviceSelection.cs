@@ -19,7 +19,7 @@ namespace iMultiBoot
             Controller = pController;
         }
 
-        private void btnValidate_Click(object sender, EventArgs e)
+        private void btnSaveSettings_Click(object sender, EventArgs e)
         {
             string InternalCodeName = "";
             int NandTotalCapacity = 32000;

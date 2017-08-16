@@ -40,6 +40,11 @@ namespace iMultiBoot
             }
         }
 
+        public void Disconnect()
+        {
+            session.Close();
+        }
+
         public void ExecuteRemoteCommand(string CommandToExecute)
         {
             session.ExecuteCommand(CommandToExecute).Check();

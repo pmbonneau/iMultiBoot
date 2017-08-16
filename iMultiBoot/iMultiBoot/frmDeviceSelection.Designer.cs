@@ -30,7 +30,7 @@
         {
             this.cmbCapacitySelection = new System.Windows.Forms.ComboBox();
             this.cmbDeviceSelection = new System.Windows.Forms.ComboBox();
-            this.btnValidate = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
             this.lblSelectDevice = new System.Windows.Forms.Label();
             this.lblTotalCapacity = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -61,16 +61,16 @@
             this.cmbDeviceSelection.Size = new System.Drawing.Size(179, 24);
             this.cmbDeviceSelection.TabIndex = 2;
             // 
-            // btnValidate
+            // btnSaveSettings
             // 
-            this.btnValidate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValidate.Location = new System.Drawing.Point(355, 62);
-            this.btnValidate.Name = "btnValidate";
-            this.btnValidate.Size = new System.Drawing.Size(94, 38);
-            this.btnValidate.TabIndex = 3;
-            this.btnValidate.Text = "Validate";
-            this.btnValidate.UseVisualStyleBackColor = true;
-            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
+            this.btnSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveSettings.Location = new System.Drawing.Point(350, 62);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(99, 38);
+            this.btnSaveSettings.TabIndex = 3;
+            this.btnSaveSettings.Text = "Save Settings";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
             // lblSelectDevice
             // 
@@ -100,7 +100,7 @@
             this.ClientSize = new System.Drawing.Size(461, 112);
             this.Controls.Add(this.lblTotalCapacity);
             this.Controls.Add(this.lblSelectDevice);
-            this.Controls.Add(this.btnValidate);
+            this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.cmbDeviceSelection);
             this.Controls.Add(this.cmbCapacitySelection);
             this.Name = "frmDeviceSelection";
@@ -113,7 +113,7 @@
         #endregion
         private System.Windows.Forms.ComboBox cmbCapacitySelection;
         private System.Windows.Forms.ComboBox cmbDeviceSelection;
-        private System.Windows.Forms.Button btnValidate;
+        private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Label lblSelectDevice;
         private System.Windows.Forms.Label lblTotalCapacity;
     }

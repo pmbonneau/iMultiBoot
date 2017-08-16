@@ -52,11 +52,6 @@ namespace iMultiBoot
             btnConfigureSecondaryOS.Enabled = true;
         }
 
-        private void btnValidate_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void btnConfigureMainOS_Click(object sender, EventArgs e)
         {
             frmConfigureOS ConfigureOS = new frmConfigureOS(Controller.getOperatingSystemInstance(0), Controller);
@@ -67,6 +62,11 @@ namespace iMultiBoot
         {
             frmConfigureOS ConfigureOS = new frmConfigureOS(Controller.getOperatingSystemInstance(1), Controller);
             ConfigureOS.Show();
+        }
+
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

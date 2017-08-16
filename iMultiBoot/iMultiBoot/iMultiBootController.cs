@@ -20,6 +20,11 @@ namespace iMultiBoot
         IOperatingSystem[] OperatingSystemsArray = new IOperatingSystem[4];
         SecureShell SSH;
 
+        public iMultiBootController()
+        {
+            setWorkingDirectory(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName + "\\Roaming");
+        }
+
         public void setAppleMobileDevice(AppleMobileDevice iDeviceParam)
         {
             iDevice = iDeviceParam;
@@ -92,6 +97,8 @@ namespace iMultiBoot
                     iDevice.DataPartition.Size = Convert.ToInt16(SystemNode.ChildNodes[6].InnerText);
                 }
             }
+            iDevice.SystemPartition.Number = "0";
+            iDevice.DataPartition.Number = "1";
         }
 
         public IOperatingSystem getOperatingSystemInstance(int Position)
@@ -515,6 +522,7 @@ namespace iMultiBoot
                 InstallLowLevelBootloader(OperatingSystemsArray[i]);
                 InstallBootLauncher(OperatingSystemsArray[i]);
                 SSH.ExecuteRemoteCommand("reboot");
+                SSH.Disconnect();
             }
         }
 

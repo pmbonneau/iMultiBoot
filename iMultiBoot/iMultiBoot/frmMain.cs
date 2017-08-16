@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iMultiBoot
 {
     public partial class frmMain : Form
     {
+        iMultiBootController Controller;
+
         public frmMain()
         {
             InitializeComponent();
+            Controller = new iMultiBootController();
         }
-
-        iMultiBootController Controller = new iMultiBootController();
 
         private void btnBegin_Click(object sender, EventArgs e)
         {
@@ -34,12 +28,14 @@ namespace iMultiBoot
         {
             frmDeviceSelection DeviceSelection = new frmDeviceSelection(Controller);
             DeviceSelection.Show();
+            btnManagePartitions.Enabled = true;
         }
 
         private void btnSelectOperatingSystems_Click(object sender, EventArgs e)
         {
             frmSelectionOS SelectionOS = new frmSelectionOS(Controller);
             SelectionOS.Show();
+            btnBuildFirmware.Enabled = true;
         }
 
         private void btnBuildFirmware_Click(object sender, EventArgs e)
@@ -51,6 +47,7 @@ namespace iMultiBoot
         {
             frmPartitionManager PartitionManager = new frmPartitionManager(Controller.getAppleMobileDevice(), Controller);
             PartitionManager.Show();
+            btnSelectOperatingSystems.Enabled = true;
         }
 
         private void btnInstallOperatingSystems_Click(object sender, EventArgs e)
