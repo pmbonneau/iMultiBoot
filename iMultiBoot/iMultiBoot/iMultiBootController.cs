@@ -510,20 +510,23 @@ namespace iMultiBoot
         {
             for (int i = 1; i < OperatingSystemsArray.Length; i++)
             {
-                OperatingSystemsArray[i].RemoteWorkingDirectory = DeviceWorkingDirectory + OperatingSystemsArray[i].SystemBuildNumber + "//";
-                SSH.ExecuteRemoteCommand("mkdir " + OperatingSystemsArray[i].RemoteWorkingDirectory);
-                SSH.UploadFile(OperatingSystemsArray[i].RootFileSystem, OperatingSystemsArray[i].RemoteWorkingDirectory);
-                string RemoteRootFileSystemImagePath = OperatingSystemsArray[i].RemoteWorkingDirectory + Path.GetFileName(OperatingSystemsArray[i].RootFileSystem);
-                SSH.ExecuteRemoteCommand(RestoreRootFileSystem(RemoteRootFileSystemImagePath, OperatingSystemsArray[i].SystemPartition));
-                SSH.ExecuteRemoteCommand(RestoreDataPartition(OperatingSystemsArray[i]));
-                BuildFStab(OperatingSystemsArray[i]);
-                FixSystemBag(OperatingSystemsArray[i]);
-                SSH.ExecuteRemoteCommand(InstallKernelCache(OperatingSystemsArray[i]));
-                InstallLowLevelBootloader(OperatingSystemsArray[i]);
-                InstallBootLauncher(OperatingSystemsArray[i]);
-                SSH.ExecuteRemoteCommand("reboot");
-                SSH.Disconnect();
+                if (OperatingSystemsArray[i] != null)
+                {
+                    OperatingSystemsArray[i].RemoteWorkingDirectory = DeviceWorkingDirectory + OperatingSystemsArray[i].SystemBuildNumber + "//";
+                    SSH.ExecuteRemoteCommand("mkdir " + OperatingSystemsArray[i].RemoteWorkingDirectory);
+                    SSH.UploadFile(OperatingSystemsArray[i].RootFileSystem, OperatingSystemsArray[i].RemoteWorkingDirectory);
+                    string RemoteRootFileSystemImagePath = OperatingSystemsArray[i].RemoteWorkingDirectory + Path.GetFileName(OperatingSystemsArray[i].RootFileSystem);
+                    SSH.ExecuteRemoteCommand(RestoreRootFileSystem(RemoteRootFileSystemImagePath, OperatingSystemsArray[i].SystemPartition));
+                    SSH.ExecuteRemoteCommand(RestoreDataPartition(OperatingSystemsArray[i]));
+                    BuildFStab(OperatingSystemsArray[i]);
+                    FixSystemBag(OperatingSystemsArray[i]);
+                    SSH.ExecuteRemoteCommand(InstallKernelCache(OperatingSystemsArray[i]));
+                    InstallLowLevelBootloader(OperatingSystemsArray[i]);
+                    InstallBootLauncher(OperatingSystemsArray[i]);
+                }
             }
+            SSH.ExecuteRemoteCommand("reboot");
+            SSH.Disconnect();
         }
 
         private string RestoreRootFileSystem(string pRemoteRootFileSystemImagePath, Partition pDestinationPartition)

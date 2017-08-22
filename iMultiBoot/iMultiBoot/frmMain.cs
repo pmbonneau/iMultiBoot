@@ -41,6 +41,11 @@ namespace iMultiBoot
         private void btnBuildFirmware_Click(object sender, EventArgs e)
         {
             Controller.PrepareMainOperatingSystemIPSW();
+            gbConnectionSSH.Enabled = true;
+            txtDeviceHostName.Enabled = true;
+            txtUserName.Enabled = true;
+            txtUserPassword.Enabled = true;
+            btnInstallOperatingSystems.Enabled = true;
         }
 
         private void btnManagePartitions_Click(object sender, EventArgs e)

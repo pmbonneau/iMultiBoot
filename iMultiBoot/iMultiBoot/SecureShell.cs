@@ -27,6 +27,7 @@ namespace iMultiBoot
                 };
 
                 sessionOptions.GiveUpSecurityAndAcceptAnySshHostKey = true;
+                //sessionOptions.TimeoutInMilliseconds = 60000;
 
                 session = new Session();
                 session.Open(sessionOptions);

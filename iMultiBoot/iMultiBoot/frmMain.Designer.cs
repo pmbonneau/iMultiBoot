@@ -247,7 +247,7 @@
             this.Controls.Add(this.btnBegin);
             this.Controls.Add(this.lblTitle);
             this.Name = "frmMain";
-            this.Text = "iMultiBoot v0.1a (0A0617a)";
+            this.Text = "iMultiBoot v0.6a (0F0817a)";
             this.pnlMain.ResumeLayout(false);
             this.gbConnectionSSH.ResumeLayout(false);
             this.gbConnectionSSH.PerformLayout();
