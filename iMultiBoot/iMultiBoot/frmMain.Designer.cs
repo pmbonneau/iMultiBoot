@@ -45,6 +45,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnBegin = new System.Windows.Forms.Button();
             this.lblCopyrights = new System.Windows.Forms.Label();
+            this.btnCredits = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             this.gbConnectionSSH.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +61,7 @@
             this.pnlMain.Controls.Add(this.btnSelectDevice);
             this.pnlMain.Location = new System.Drawing.Point(2, 38);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(579, 273);
+            this.pnlMain.Size = new System.Drawing.Size(579, 272);
             this.pnlMain.TabIndex = 1;
             this.pnlMain.Visible = false;
             // 
@@ -217,7 +218,7 @@
             // btnBegin
             // 
             this.btnBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBegin.Location = new System.Drawing.Point(441, 266);
+            this.btnBegin.Location = new System.Drawing.Point(305, 264);
             this.btnBegin.Name = "btnBegin";
             this.btnBegin.Size = new System.Drawing.Size(131, 36);
             this.btnBegin.TabIndex = 3;
@@ -236,6 +237,17 @@
             this.lblCopyrights.TabIndex = 4;
             this.lblCopyrights.Text = "©2017 Pierre-Marc Bonneau, all rights reserved.";
             // 
+            // btnCredits
+            // 
+            this.btnCredits.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCredits.Location = new System.Drawing.Point(441, 264);
+            this.btnCredits.Name = "btnCredits";
+            this.btnCredits.Size = new System.Drawing.Size(131, 36);
+            this.btnCredits.TabIndex = 5;
+            this.btnCredits.Text = "Credits";
+            this.btnCredits.UseVisualStyleBackColor = true;
+            this.btnCredits.Click += new System.EventHandler(this.btnCredits_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,8 +258,10 @@
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.btnBegin);
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.btnCredits);
             this.Name = "frmMain";
             this.Text = "iMultiBoot v0.6a (0F0817a)";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.pnlMain.ResumeLayout(false);
             this.gbConnectionSSH.ResumeLayout(false);
             this.gbConnectionSSH.PerformLayout();
@@ -275,6 +289,7 @@
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.TextBox txtDeviceHostName;
         private System.Windows.Forms.Label lblDeviceHostName;
+        private System.Windows.Forms.Button btnCredits;
     }
 }
 
