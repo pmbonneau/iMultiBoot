@@ -260,7 +260,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnCredits);
             this.Name = "frmMain";
-            this.Text = "iMultiBoot v0.6a (0F0817a)";
+            this.Text = "iMultiBoot v0.6 (0F0917a)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.pnlMain.ResumeLayout(false);
             this.gbConnectionSSH.ResumeLayout(false);

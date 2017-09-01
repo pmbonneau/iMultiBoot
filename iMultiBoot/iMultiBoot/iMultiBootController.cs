@@ -611,15 +611,18 @@ namespace iMultiBoot
 
         public void CleanupWorkingDirectory()
         {
-            DirectoryInfo InfoDirectory = new DirectoryInfo(WorkingDirectory);
-            foreach (FileInfo File in InfoDirectory.GetFiles())
+            if (Directory.Exists(WorkingDirectory))
             {
-                File.Delete();
-            }
+                DirectoryInfo InfoDirectory = new DirectoryInfo(WorkingDirectory);
+                foreach (FileInfo File in InfoDirectory.GetFiles())
+                {
+                    File.Delete();
+                }
 
-            foreach (DirectoryInfo InfoDir in InfoDirectory.GetDirectories())
-            {
-                InfoDir.Delete(true);
+                foreach (DirectoryInfo InfoDir in InfoDirectory.GetDirectories())
+                {
+                    InfoDir.Delete(true);
+                }
             }
         }
     }
