@@ -523,6 +523,7 @@ namespace iMultiBoot
                     SSH.ExecuteRemoteCommand(InstallKernelCache(OperatingSystemsArray[i]));
                     InstallLowLevelBootloader(OperatingSystemsArray[i]);
                     InstallBootLauncher(OperatingSystemsArray[i]);
+                    SSH.ExecuteRemoteCommand("rm -rf " + OperatingSystemsArray[i].RemoteWorkingDirectory);
                 }
             }
             SSH.ExecuteRemoteCommand("reboot");
@@ -605,6 +606,20 @@ namespace iMultiBoot
                     SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", "/usr/bin/");
                     SSH.ExecuteRemoteCommand("chmod 755 /usr/bin/iOS5Bootstrap.sh");
                     break;
+            }
+        }
+
+        public void CleanupWorkingDirectory()
+        {
+            DirectoryInfo InfoDirectory = new DirectoryInfo(WorkingDirectory);
+            foreach (FileInfo File in InfoDirectory.GetFiles())
+            {
+                File.Delete();
+            }
+
+            foreach (DirectoryInfo InfoDir in InfoDirectory.GetDirectories())
+            {
+                InfoDir.Delete(true);
             }
         }
     }

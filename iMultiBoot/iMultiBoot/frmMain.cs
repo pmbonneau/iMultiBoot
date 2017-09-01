@@ -82,7 +82,7 @@ namespace iMultiBoot
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            Controller.CleanupWorkingDirectory();
         }
     }
 }
