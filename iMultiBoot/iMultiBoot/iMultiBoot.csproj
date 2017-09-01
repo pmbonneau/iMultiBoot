@@ -34,13 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BinaryPatcherLib">
-      <HintPath>..\..\..\BinaryPatcher\BinaryPatcher\BinaryPatcherLib\bin\Debug\BinaryPatcherLib.dll</HintPath>
+      <HintPath>..\..\..\BinaryPatcher\BinaryPatcher\BinaryPatcherLib\bin\Release\BinaryPatcherLib.dll</HintPath>
     </Reference>
     <Reference Include="DiskUtilityLib">
-      <HintPath>..\..\..\iOS-DiskUtility\iOS-DiskUtility\DiskUtilityLib\bin\Debug\DiskUtilityLib.dll</HintPath>
+      <HintPath>..\..\..\iOS-DiskUtility\iOS-DiskUtility\DiskUtilityLib\bin\Release\DiskUtilityLib.dll</HintPath>
     </Reference>
     <Reference Include="IPSWlib">
-      <HintPath>..\..\..\IPSW-Editor\IPSWlib\IPSWlib\bin\Debug\IPSWlib.dll</HintPath>
+      <HintPath>..\..\..\IPSW-Editor\IPSWlib\IPSWlib\bin\Release\IPSWlib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,7 +54,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="ToolsManagerLib">
-      <HintPath>..\..\..\ToolsManager\ToolsManagerLib\ToolsManagerLib\bin\Debug\ToolsManagerLib.dll</HintPath>
+      <HintPath>..\..\..\ToolsManager\ToolsManagerLib\ToolsManagerLib\bin\Release\ToolsManagerLib.dll</HintPath>
     </Reference>
     <Reference Include="WinSCPnet, Version=1.3.7.7601, Culture=neutral, PublicKeyToken=2271ec4a3c56d0bf, processorArchitecture=MSIL">
       <HintPath>..\packages\WinSCP.5.9.6\lib\WinSCPnet.dll</HintPath>
