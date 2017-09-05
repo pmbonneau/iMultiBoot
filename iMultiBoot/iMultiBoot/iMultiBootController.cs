@@ -17,7 +17,7 @@ namespace iMultiBoot
         bool MainOperatingSystemSelected = false;
         bool SecondaryOperatingSystemSelected = false;
         string SecondaryOperatingSystemPathIPSW = "";
-        IOperatingSystem[] OperatingSystemsArray = new IOperatingSystem[4];
+        OperatingSystem[] OperatingSystemsArray = new OperatingSystem[4];
         SecureShell SSH;
 
         public iMultiBootController()
@@ -57,26 +57,25 @@ namespace iMultiBoot
             return MainOperatingSystemPathIPSW;
         }
 
-        public void CreateOperatingSystemInstance(string FileNameIPSW, int Position)
-        {
-            string[] SplittedFileName;
-            string Version;
-            string BuildNumber;
+        public void CreateOperatingSystemInstance(string FilePathIPSW, int Position)
+        {           
+            OperatingSystem OperatingSystemInstance = new OperatingSystem(FilePathIPSW);
+            OperatingSystemsArray[Position] = OperatingSystemInstance;
 
-            SplittedFileName = FileNameIPSW.Split('_');
-
-            Version = SplittedFileName[1];
-            BuildNumber = SplittedFileName[2];
-
-            if (Version[0] == '5')
+            switch(Position)
             {
-                IOperatingSystem iOS5Instance = new iOS5(Version, BuildNumber);
-                OperatingSystemsArray[Position] = iOS5Instance;
-            }
-            else if (Version[0] == '6')
-            {
-                IOperatingSystem iOS6Instance = new iOS6(Version, BuildNumber);
-                OperatingSystemsArray[Position] = iOS6Instance;
+                case 0:
+                    OperatingSystemsArray[0].SystemID = 'A';
+                    break;
+                case 1:
+                    OperatingSystemsArray[1].SystemID = 'B';
+                    break;
+                case 2:
+                    OperatingSystemsArray[2].SystemID = 'C';
+                    break;
+                case 3:
+                    OperatingSystemsArray[3].SystemID = 'D';
+                    break;
             }
         }
 
@@ -101,7 +100,7 @@ namespace iMultiBoot
             iDevice.DataPartition.Number = "1";
         }
 
-        public IOperatingSystem getOperatingSystemInstance(int Position)
+        public OperatingSystem getOperatingSystemInstance(int Position)
         {
             return OperatingSystemsArray[Position];
         }
@@ -308,6 +307,20 @@ namespace iMultiBoot
                 {
                     PatchEngine = new BinaryPatcherLib.BinaryPatcher(ImagesToFlash[i], ".\\Patches\\" + PatchContainerFileName + "\\" + Path.GetFileNameWithoutExtension(ImagesToFlash[i]) + ".xml");
                     PatchEngine.ApplyPatchToFile();
+                }
+            }
+        }
+
+        public void PrepareMainOperatingSystemFirmwarePackage()
+        {
+            OperatingSystemsArray[0].FirmwarePackage = new IPSWlib.Editor(OperatingSystemsArray[0].FilePathIPSW, WorkingDirectory);
+            for (int i = 1; i < OperatingSystemsArray.Length; i++)
+            {
+                if (OperatingSystemsArray[i] != null)
+                {
+                    OperatingSystemsArray[i].ImagesToFlash = new List<string>();
+                    OperatingSystemsArray[i].FirmwarePackage = new IPSWlib.Editor(OperatingSystemsArray[i].FilePathIPSW, WorkingDirectory);
+
                 }
             }
         }
@@ -541,12 +554,12 @@ namespace iMultiBoot
             return "rsync -rav " + DeviceMountPointOS + "//*" + " //" + pDestinationPartition.Name;
         }
 
-        private string RestoreDataPartition(IOperatingSystem pOperatingSystem)
+        private string RestoreDataPartition(OperatingSystem pOperatingSystem)
         {
             return "rsync -rav " + pOperatingSystem.SystemPartition.MountPoint + "//var//*" + " " + pOperatingSystem.DataPartition.MountPoint;
         }
 
-        private string InstallKernelCache(IOperatingSystem OperatingSystem)
+        private string InstallKernelCache(OperatingSystem OperatingSystem)
         {
             SSH.UploadFile(OperatingSystem.KernelCache, OperatingSystem.RemoteWorkingDirectory);
 
@@ -568,7 +581,7 @@ namespace iMultiBoot
             return "xpwntool " + OperatingSystem.RemoteWorkingDirectory + Path.GetFileName(OperatingSystem.KernelCache) + " " + "/System/Library/Caches/com.apple.kernelcaches/kernelcach" + char.ToLower(OperatingSystem.SystemID) + " -iv " + KernelcacheIV + " -k " + KernelcacheKey + " -decrypt";
         }
 
-        private void BuildFStab(IOperatingSystem pOperatingSystem)
+        private void BuildFStab(OperatingSystem pOperatingSystem)
         {
             List<string> FStabContent = new List<string>();
             FStabContent.Add(pOperatingSystem.SystemPartition.DiskDevicePath + " / hfs rw 0 1");
@@ -578,19 +591,19 @@ namespace iMultiBoot
             SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "\\" + "fstab", pOperatingSystem.SystemPartition.MountPoint + "/etc/fstab");
         }
 
-        private void FixSystemBag(IOperatingSystem pOperatingSystem)
+        private void FixSystemBag(OperatingSystem pOperatingSystem)
         {
             SSH.ExecuteRemoteCommand("mkdir " + pOperatingSystem.DataPartition.MountPoint + "/keybags");
             SSH.ExecuteRemoteCommand("cp -rfp " + "/var/keybags/systembag.kb" + " " + pOperatingSystem.DataPartition.MountPoint + "/keybags/");
         }
 
-        private void InstallLowLevelBootloader(IOperatingSystem pOperatingSystem)
+        private void InstallLowLevelBootloader(OperatingSystem pOperatingSystem)
         {
             SSH.ExecuteRemoteCommand("mkdir /Bootloaders");
             SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "\\" + Path.GetFileName(pOperatingSystem.LowLevelBootloader), "/Bootloaders/");
         }
 
-        private void InstallBootLauncher(IOperatingSystem pOperatingSystem)
+        private void InstallBootLauncher(OperatingSystem pOperatingSystem)
         {
             string RemoteToolsDirectory = DeviceWorkingDirectory + "Tools//";
             switch (pOperatingSystem.SystemVersion)

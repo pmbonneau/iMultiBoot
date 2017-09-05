@@ -6,7 +6,7 @@ namespace iMultiBoot
 {
     public partial class frmConfigureOS : Form
     {
-        IOperatingSystem OperatingSystem;
+        OperatingSystem OperatingSystem;
         iMultiBootController Controller;
         Partition SelectedPartition;
 
@@ -15,7 +15,7 @@ namespace iMultiBoot
             InitializeComponent();
         }
 
-        public frmConfigureOS(IOperatingSystem pOperatingSystem, iMultiBootController pController)
+        public frmConfigureOS(OperatingSystem pOperatingSystem, iMultiBootController pController)
         {
             InitializeComponent();
             OperatingSystem = pOperatingSystem;
