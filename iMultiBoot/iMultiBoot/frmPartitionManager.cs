@@ -14,8 +14,11 @@ namespace iMultiBoot
             InitializeComponent();
             Device = pDevice;
             Controller = pController;
-            lbPartitionTable.Items.Add(Device.SystemPartition.Name);
-            lbPartitionTable.Items.Add(Device.DataPartition.Name);
+            if (pDevice != null)
+            {
+                lbPartitionTable.Items.Add(Device.SystemPartition.Name);
+                lbPartitionTable.Items.Add(Device.DataPartition.Name);
+            }
             txtDeviceAvailableStorage.Text = Convert.ToString(DeviceAvailableStorage);
         }
 

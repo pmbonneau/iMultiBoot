@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Device>
-  <Codename>n81ap</Codename>
+  <Codename>n90ap</Codename>
   <System>
     <NandCapacity>32000</NandCapacity>
     <PartitionTable>GPT</PartitionTable>

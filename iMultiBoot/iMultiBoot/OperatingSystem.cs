@@ -31,6 +31,7 @@ namespace iMultiBoot
         public string SystemVersion { get; set; }
         public string SystemBuildNumber { get; set; }
         public char SystemID { get; set; }
+        public string InstanceID { get; set; }
         public string LocalWorkingDirectory { get; set; }
         public string RemoteWorkingDirectory { get; set; }
         public Partition SystemPartition { get; set; }

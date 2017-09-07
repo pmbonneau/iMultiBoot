@@ -31,6 +31,17 @@ namespace iMultiBoot
             CompleteDeviceWithStorageInfo(iDevice);
         }
 
+        public string[] getAvailableDevices()
+        {
+            string[] AvailableDevices;
+            AvailableDevices = Directory.GetFiles(".\\Devices\\", "*", SearchOption.AllDirectories);
+            for (int i = 0; i < AvailableDevices.Length; i++)
+            {
+                AvailableDevices[i] = Path.GetFileNameWithoutExtension(AvailableDevices[i]);
+            }
+            return AvailableDevices;
+        }
+
         public AppleMobileDevice getAppleMobileDevice()
         {
             return iDevice;
@@ -66,15 +77,19 @@ namespace iMultiBoot
             {
                 case 0:
                     OperatingSystemsArray[0].SystemID = 'A';
+                    OperatingSystemsArray[0].InstanceID = "Primary";
                     break;
                 case 1:
                     OperatingSystemsArray[1].SystemID = 'B';
+                    OperatingSystemsArray[1].InstanceID = "Secondary";
                     break;
                 case 2:
                     OperatingSystemsArray[2].SystemID = 'C';
+                    OperatingSystemsArray[2].InstanceID = "Third";
                     break;
                 case 3:
                     OperatingSystemsArray[3].SystemID = 'D';
+                    OperatingSystemsArray[3].InstanceID = "Fourth";
                     break;
             }
         }
@@ -88,12 +103,19 @@ namespace iMultiBoot
 
             foreach (XmlNode SystemNode in SystemNodeList)
             {
-                if (SystemNode.ChildNodes[2].InnerText == Convert.ToString(iDevice.NandTotalCapacity))
+                if (SystemNode.ChildNodes[0].InnerText == Convert.ToString(iDevice.NandTotalCapacity))
                 {
-                    iDevice.PartitionTableType = SystemNode.ChildNodes[3].InnerText;
-                    iDevice.UseLwVM = Convert.ToBoolean(SystemNode.ChildNodes[4].InnerText);
-                    iDevice.SystemPartition.Size = Convert.ToInt16(SystemNode.ChildNodes[5].InnerText);
-                    iDevice.DataPartition.Size = Convert.ToInt16(SystemNode.ChildNodes[6].InnerText);
+                    iDevice.PartitionTableType = SystemNode.ChildNodes[1].InnerText;
+                    iDevice.UseLwVM = Convert.ToBoolean(SystemNode.ChildNodes[2].InnerText);
+
+                    int SystemPartitionCapacity = Convert.ToInt16(SystemNode.ChildNodes[3].InnerText);
+                    int DataPartitionCapacity = Convert.ToInt16(SystemNode.ChildNodes[4].InnerText);
+
+                    Partition SystemPartition = new Partition("System", SystemPartitionCapacity);
+                    Partition DataPartition = new Partition("Data", DataPartitionCapacity);
+
+                    iDevice.SystemPartition = SystemPartition;
+                    iDevice.DataPartition = DataPartition;
                 }
             }
             iDevice.SystemPartition.Number = "0";
@@ -128,6 +150,63 @@ namespace iMultiBoot
         public string getSecondaryOperatingSystemPathIPSW()
         {
             return SecondaryOperatingSystemPathIPSW;
+        }
+
+        private void addOperatingSystemFirmwareImagesToFlash(OperatingSystem pOperatingSystem)
+        {
+            string[] OperatingSystemFiles;
+            string WorkingDirectoryOS = WorkingDirectory + pOperatingSystem.SystemBuildNumber + "_" + pOperatingSystem.InstanceID;
+
+            if (Directory.Exists(WorkingDirectoryOS) == false)
+            {
+                Directory.CreateDirectory(WorkingDirectoryOS);
+            }
+
+            OperatingSystemFiles = pOperatingSystem.FirmwarePackage.getAllFilesIPSW();
+
+            for (int i = 0; i < OperatingSystemFiles.Length; i++)
+            {
+                if (OperatingSystemFiles[i].Contains("iBoot.") == true)
+                {
+                    if (OperatingSystemsArray[1].iBoot == null)
+                    {
+                        OperatingSystemsArray[1].iBoot = OperatingSystemFiles[i];
+                    }
+                    pOperatingSystem.ImagesToFlash.Add(OperatingSystemsArray[1].iBoot);
+                }
+                else if (OperatingSystemFiles[i].Contains("LLB") == true)
+                {
+                    if (OperatingSystemsArray[1].LowLevelBootloader == null)
+                    {
+                        OperatingSystemsArray[1].LowLevelBootloader = OperatingSystemFiles[i];
+                    }
+                    pOperatingSystem.ImagesToFlash.Add(OperatingSystemsArray[1].LowLevelBootloader);
+                }
+                else if (OperatingSystemFiles[i].Contains("DeviceTree") == true)
+                {
+                    if (OperatingSystemsArray[1].DeviceTree == null)
+                    {
+                        OperatingSystemsArray[1].DeviceTree = OperatingSystemFiles[i];
+                    }
+                    pOperatingSystem.ImagesToFlash.Add(OperatingSystemsArray[1].DeviceTree);
+                }
+                else if (OperatingSystemFiles[i].Contains("applelogo") == true)
+                {
+                    if (OperatingSystemsArray[1].BootLogo == null)
+                    {
+                        OperatingSystemsArray[1].BootLogo = OperatingSystemFiles[i];
+                    }
+                    pOperatingSystem.ImagesToFlash.Add(OperatingSystemsArray[1].BootLogo);
+                }
+                else if (OperatingSystemFiles[i].Contains("recoverymode") == true)
+                {
+                    if (OperatingSystemsArray[1].RecoveryLogo == null)
+                    {
+                        OperatingSystemsArray[1].RecoveryLogo = OperatingSystemFiles[i];
+                    }
+                    pOperatingSystem.ImagesToFlash.Add(OperatingSystemsArray[1].RecoveryLogo);
+                }
+            }
         }
 
         private List<string> addSecondaryOperatingSystemImagesToFlash(IPSWlib.Editor SecondaryOperatingSystemIPSW, List<string> ImagesToFlash)
@@ -313,6 +392,10 @@ namespace iMultiBoot
 
         public void PrepareMainOperatingSystemFirmwarePackage()
         {
+            if (OperatingSystemsArray[0] == null)
+            {
+                return;
+            }
             OperatingSystemsArray[0].FirmwarePackage = new IPSWlib.Editor(OperatingSystemsArray[0].FilePathIPSW, WorkingDirectory);
             for (int i = 1; i < OperatingSystemsArray.Length; i++)
             {
@@ -321,8 +404,49 @@ namespace iMultiBoot
                     OperatingSystemsArray[i].ImagesToFlash = new List<string>();
                     OperatingSystemsArray[i].FirmwarePackage = new IPSWlib.Editor(OperatingSystemsArray[i].FilePathIPSW, WorkingDirectory);
 
+                    addOperatingSystemFirmwareImagesToFlash(OperatingSystemsArray[i]);
+
+                    DecryptFirmwareImages(OperatingSystemsArray[i].FirmwarePackage.getFileNameIPSW(), OperatingSystemsArray[i].ImagesToFlash);
+
+                    PatchFirmwareImages(OperatingSystemsArray[i].FirmwarePackage.getFileNameIPSW(), OperatingSystemsArray[i].ImagesToFlash);
+
+                    OperatingSystemsArray[i].LocalWorkingDirectory = WorkingDirectory + OperatingSystemsArray[i].SystemBuildNumber + "_" + OperatingSystemsArray[i].InstanceID;
+
+                    string ImageFileName = Path.GetFileName(OperatingSystemsArray[i].LowLevelBootloader);
+                    string[] SplittedImageFileName = ImageFileName.Split('.');
+                    string UpdatedImageFileName = "";
+                    SplittedImageFileName[0] = SplittedImageFileName[0] + OperatingSystemsArray[i].SystemID;
+                    UpdatedImageFileName = SplittedImageFileName[0] + "." + SplittedImageFileName[1] + "." + SplittedImageFileName[2] + "." + SplittedImageFileName[3];
+                    File.Copy(OperatingSystemsArray[i].LowLevelBootloader, OperatingSystemsArray[i].LocalWorkingDirectory + "\\" + UpdatedImageFileName);
+                    OperatingSystemsArray[i].LowLevelBootloader = OperatingSystemsArray[i].LocalWorkingDirectory + "\\" + UpdatedImageFileName;
+
+                    string DecryptedRootFileSystemImagePath = DecryptRootFileSystemImage(OperatingSystemsArray[i].FirmwarePackage.getFileNameIPSW(), OperatingSystemsArray[i].FirmwarePackage.getRootFileSystemImagePath());
+                    File.Move(DecryptedRootFileSystemImagePath, OperatingSystemsArray[i].LocalWorkingDirectory + "\\" + "RootFileSystem.dmg");
+                    OperatingSystemsArray[i].RootFileSystem = OperatingSystemsArray[i].LocalWorkingDirectory + "\\" + "RootFileSystem.dmg";
+
+                    for (int j = 0; j < OperatingSystemsArray[i].FirmwarePackage.getAllFilesIPSW().Length; j++)
+                    {
+                        if (OperatingSystemsArray[i].FirmwarePackage.getAllFilesIPSW()[j].Contains("kernel"))
+                        {
+                            File.Copy(OperatingSystemsArray[i].FirmwarePackage.getAllFilesIPSW()[j], OperatingSystemsArray[1].LocalWorkingDirectory + "\\" + Path.GetFileName(OperatingSystemsArray[i].FirmwarePackage.getAllFilesIPSW()[j]));
+                            OperatingSystemsArray[1].KernelCache = OperatingSystemsArray[1].LocalWorkingDirectory + "\\" + Path.GetFileName(OperatingSystemsArray[i].FirmwarePackage.getAllFilesIPSW()[j]);
+                        }
+                    }
+
+                    for (int j = 0; j < OperatingSystemsArray[i].ImagesToFlash.Count; j++)
+                    {
+                        OperatingSystemsArray[i].ImagesToFlash[j] = OperatingSystemsArray[0].FirmwarePackage.AddToAllFlashFolder(OperatingSystemsArray[i].ImagesToFlash[j], OperatingSystemsArray[i].InstanceID);
+                    }
+
+                    for (int j = 0; j < OperatingSystemsArray[i].ImagesToFlash.Count; j++)
+                    {
+                        OperatingSystemsArray[0].FirmwarePackage.AddToFlashManifest(OperatingSystemsArray[i].ImagesToFlash[j]);
+                    }
                 }
             }
+            OperatingSystemsArray[0].FirmwarePackage.RebuildIPSW(WorkingDirectory + OperatingSystemsArray[0].FirmwarePackage.getFileNameIPSW(), WorkingDirectory + OperatingSystemsArray[0].FirmwarePackage.getFileNameIPSW() + ".ipsw");
+            ToolsManagerLib.iDeviceRestore iDeviceRestore = new ToolsManagerLib.iDeviceRestore();
+            iDeviceRestore.EraseRestore(WorkingDirectory + OperatingSystemsArray[0].FirmwarePackage.getFileNameIPSW() + ".ipsw");
         }
 
         public void PrepareMainOperatingSystemIPSW()

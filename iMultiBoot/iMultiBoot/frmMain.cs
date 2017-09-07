@@ -45,7 +45,7 @@ namespace iMultiBoot
             if (DialogResult == DialogResult.OK)
             {
                 MessageBox.Show("Set your iOS device in DFU Mode or Recovery Mode, then click OK.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Controller.PrepareMainOperatingSystemIPSW();
+                Controller.PrepareMainOperatingSystemFirmwarePackage();
                 gbConnectionSSH.Enabled = true;
                 txtDeviceHostName.Enabled = true;
                 txtUserName.Enabled = true;

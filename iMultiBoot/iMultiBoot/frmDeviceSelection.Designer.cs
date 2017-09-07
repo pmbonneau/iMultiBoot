@@ -43,7 +43,9 @@
             this.cmbCapacitySelection.Items.AddRange(new object[] {
             "8 GB",
             "16 GB",
-            "32 GB"});
+            "32 GB",
+            "64 GB",
+            "128 GB"});
             this.cmbCapacitySelection.Location = new System.Drawing.Point(210, 25);
             this.cmbCapacitySelection.Name = "cmbCapacitySelection";
             this.cmbCapacitySelection.Size = new System.Drawing.Size(125, 24);
@@ -54,8 +56,6 @@
             this.cmbDeviceSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDeviceSelection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDeviceSelection.FormattingEnabled = true;
-            this.cmbDeviceSelection.Items.AddRange(new object[] {
-            "iPod Touch 4th (N81AP)"});
             this.cmbDeviceSelection.Location = new System.Drawing.Point(12, 25);
             this.cmbDeviceSelection.Name = "cmbDeviceSelection";
             this.cmbDeviceSelection.Size = new System.Drawing.Size(179, 24);

@@ -17,6 +17,26 @@ namespace iMultiBoot
         {
             InitializeComponent();
             Controller = pController;
+
+            string[] AvailableDevices = Controller.getAvailableDevices();
+            for (int i = 0; i < AvailableDevices.Length; i++)
+            {
+                switch (AvailableDevices[i])
+                {
+                    case "n81ap":
+                        cmbDeviceSelection.Items.Add("iPod Touch 4th (N81AP)");
+                        break;
+                    case "n88ap":
+                        cmbDeviceSelection.Items.Add("iPhone 3Gs (N88AP)");
+                        break;
+                    case "n90ap":
+                        cmbDeviceSelection.Items.Add("iPhone 4 (N90AP)");
+                        break;
+                    default:
+                        cmbDeviceSelection.Items.Add(AvailableDevices[i]);
+                        break;
+                }
+            }
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
@@ -24,33 +44,43 @@ namespace iMultiBoot
             string InternalCodeName = "";
             int NandTotalCapacity = 32000;
             int NandBlockSize = 0;
-            int DataPartitionCapacity = 0;
-            if (Convert.ToString(cmbDeviceSelection.SelectedItem) == "iPod Touch 4th (N81AP)")
+
+            switch (Convert.ToString(cmbDeviceSelection.SelectedItem))
             {
-                InternalCodeName = "n81ap";
-                NandBlockSize = 8192;
+                case "iPod Touch 4th (N81AP)":
+                    InternalCodeName = "n81ap";
+                    NandBlockSize = 8192;
+                    break;
+                case "iPhone 3Gs (N88AP)":
+                    InternalCodeName = "n88ap";
+                    NandBlockSize = 8192;
+                    break;
+                case "iPhone 4 (N90AP)":
+                    InternalCodeName = "n90ap";
+                    NandBlockSize = 8192;
+                    break;
             }
 
-            if (Convert.ToString(cmbCapacitySelection.SelectedItem) == "8 GB")
+            switch (Convert.ToString(cmbCapacitySelection.SelectedItem))
             {
-                NandTotalCapacity = 8000;
-                DataPartitionCapacity = 5600;
-            }
-            else if (Convert.ToString(cmbCapacitySelection.SelectedItem) == "16 GB")
-            {
-                NandTotalCapacity = 16000;
-                DataPartitionCapacity = 12000;
-            }
-            else if (Convert.ToString(cmbCapacitySelection.SelectedItem) == "32 GB")
-            {
-                NandTotalCapacity = 32000;
-                DataPartitionCapacity = 26000;
+                case "8 GB":
+                    NandTotalCapacity = 8000;
+                    break;
+                case "16 GB":
+                    NandTotalCapacity = 16000;
+                    break;
+                case "32 GB":
+                    NandTotalCapacity = 32000;
+                    break;
+                case "64 GB":
+                    NandTotalCapacity = 64000;
+                    break;
+                case "128 GB":
+                    NandTotalCapacity = 128000;
+                    break;
             }
 
-            Partition SystemPartition = new Partition("System", NandTotalCapacity - DataPartitionCapacity);
-            Partition DataPartition = new Partition("Data", DataPartitionCapacity);
-
-            iDevice = new AppleMobileDevice(InternalCodeName, SystemPartition, DataPartition);
+            iDevice = new AppleMobileDevice(InternalCodeName);
 
             iDevice.NandTotalCapacity = NandTotalCapacity;
             iDevice.NandBlockSize = NandBlockSize;
