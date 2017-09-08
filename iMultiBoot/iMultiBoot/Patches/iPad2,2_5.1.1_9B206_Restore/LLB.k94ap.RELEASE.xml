@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Container>
+	<Patch>
+		<ID>iBoot Image Type</ID>
+		<Position>000008C4</Position>
+		<Data>62</Data>
+	</Patch>
+  <Patch>
+    <ID>Signature Check</ID>
+    <Position>0000FEF8</Position>
+    <Data>00201860</Data>
+  </Patch>
+</Container>

@@ -23,6 +23,9 @@ namespace iMultiBoot
             {
                 switch (AvailableDevices[i])
                 {
+                    case "k94ap":
+                        cmbDeviceSelection.Items.Add("iPad 2nd (K94AP)");
+                        break;
                     case "n81ap":
                         cmbDeviceSelection.Items.Add("iPod Touch 4th (N81AP)");
                         break;
@@ -47,6 +50,10 @@ namespace iMultiBoot
 
             switch (Convert.ToString(cmbDeviceSelection.SelectedItem))
             {
+                case "iPad 2nd (K94AP)":
+                    InternalCodeName = "k94ap";
+                    NandBlockSize = 8192;
+                    break;
                 case "iPod Touch 4th (N81AP)":
                     InternalCodeName = "n81ap";
                     NandBlockSize = 8192;

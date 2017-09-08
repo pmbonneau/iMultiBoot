@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Container>
+  <Patch>
+    <ID>IMG3 Header Type</ID>
+    <Position>00000010</Position>
+    <Data>62</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Type</ID>
+    <Position>00000020</Position>
+    <Data>62</Data>
+  </Patch>
+</Container>

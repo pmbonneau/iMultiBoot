@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Device>
+  <Codename>k94ap</Codename>
+  <System>
+    <NandCapacity>64000</NandCapacity>
+    <PartitionTable>GPT</PartitionTable>
+    <LwVM>True</LwVM>
+    <SysPartition>3200</SysPartition>
+    <DataPartition>28800</DataPartition>
+  </System>
+  <System>
+    <NandCapacity>32000</NandCapacity>
+    <PartitionTable>GPT</PartitionTable>
+    <LwVM>True</LwVM>
+    <SysPartition>3200</SysPartition>
+    <DataPartition>28800</DataPartition>
+  </System>
+  <System>
+    <NandCapacity>16000</NandCapacity>
+    <PartitionTable>GPT</PartitionTable>
+    <LwVM>True</LwVM>
+    <SysPartition>2800</SysPartition>
+    <DataPartition>13200</DataPartition>
+  </System>
+</Device>
