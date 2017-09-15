@@ -21,6 +21,7 @@ namespace iMultiBoot
         public AppleMobileDevice(string pInternalCodeName)
         {
             InternalCodeName = pInternalCodeName;
+            PartitionList = new List<Partition>();
         }
 
         public AppleMobileDevice(string pInternalCodeName, Partition pSystemPartition, Partition pDataPartition)

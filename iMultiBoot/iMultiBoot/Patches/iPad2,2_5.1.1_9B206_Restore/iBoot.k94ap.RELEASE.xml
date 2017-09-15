@@ -1,53 +1,93 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Container>
-	<Patch>
-		<ID>IMG3 Header Type</ID>
-		<Position>00000010</Position>
-		<Data>62</Data>
-	</Patch>
-	<Patch>
-		<ID>IMG3 Tag Type</ID>
-		<Position>00000020</Position>
-		<Data>62</Data>
-	</Patch>
-	<Patch>
-		<ID>Bootlogo Image Type</ID>
-		<Position>00000D2A</Position>
-		<Data>62</Data>
-	</Patch>
-	<Patch>
-		<ID>Recovery Logo Image Type</ID>
-		<Position>00000F16</Position>
-		<Data>62</Data>
-	</Patch>
-	<Patch>
-		<ID>DeviceTree Image Type</ID>
-		<Position>000113EC</Position>
-		<Data>62</Data>
-	</Patch>
-	<Patch>
-		<ID>Boot-Args Redirection</ID>
-		<Position>00015100</Position>
-		<Data>01</Data>
-	</Patch>
-	<Patch>
-		<ID>Signature Check 1</ID>
-		<Position>0001CAC8</Position>
-		<Data>00200020</Data>
-	</Patch>
-	<Patch>
-		<ID>Signature Check 2</ID>
-		<Position>0001CAD4</Position>
-		<Data>00200020</Data>
-	</Patch>
-	<Patch>
-		<ID>Custom Boot-Args</ID>
-		<Position>000328BB</Position>
-		<Data>616D66693D307866662063735F656E666F7263656D656E745F64697361626C653D312070696F2D6572726F723D30202D762072643D6469736B307331733300</Data>
-	</Patch>
-	<Patch>
-		<ID>KernelCache Path</ID>
-		<Position>0003320A</Position>
-		<Data>62</Data>
-	</Patch>
+  <Patch>
+    <ID>IMG3 Header Type</ID>
+    <Position>00000010</Position>
+    <Data>62</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Type</ID>
+    <Position>00000020</Position>
+    <Data>62</Data>
+  </Patch>
+  <Patch>
+    <ID>Bootlogo Image Type</ID>
+    <Position>00000D2A</Position>
+    <Data>62</Data>
+  </Patch>
+  <Patch>
+    <ID>Recovery Logo Image Type</ID>
+    <Position>00000F16</Position>
+    <Data>62</Data>
+  </Patch>
+  <Patch>
+    <ID>DeviceTree Image Type</ID>
+    <Position>00013B14</Position>
+    <Data>62</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 1</ID>
+    <Position>00016640</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 2</ID>
+    <Position>00016666</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 3</ID>
+    <Position>000166A4</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 4</ID>
+    <Position>000166C8</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 5</ID>
+    <Position>000166F4</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 6</ID>
+    <Position>00016718</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 7</ID>
+    <Position>0001673C</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 8</ID>
+    <Position>00016766</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>Boot-Args Redirection</ID>
+    <Position>00017840</Position>
+    <Data>01</Data>
+  </Patch>
+  <Patch>
+    <ID>Signature Check 1</ID>
+    <Position>0001F932</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>Signature Check 2</ID>
+    <Position>0001F938</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>Custom Boot-Args</ID>
+    <Position>000328BB</Position>
+    <Data>616D66693D307866662063735F656E666F7263656D656E745F64697361626C653D312070696F2D6572726F723D30202D762072643D6469736B307331733300</Data>
+  </Patch>
+  <Patch>
+    <ID>KernelCache Path</ID>
+    <Position>00036531</Position>
+    <Data>62</Data>
+  </Patch>
 </Container>

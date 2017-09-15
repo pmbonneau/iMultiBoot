@@ -6,8 +6,58 @@
 		<Data>62</Data>
 	</Patch>
   <Patch>
-    <ID>Signature Check</ID>
-    <Position>0000FEF8</Position>
-    <Data>00201860</Data>
+    <ID>IMG3 Tag Check 1</ID>
+    <Position>0000D794</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 2</ID>
+    <Position>0000D7BA</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 3</ID>
+    <Position>0000D7F8</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 4</ID>
+    <Position>0000D81C</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 5</ID>
+    <Position>0000D848</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 6</ID>
+    <Position>0000D86C</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 7</ID>
+    <Position>0000D890</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 8</ID>
+    <Position>0000D8BA</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>IMG3 Tag Check 8</ID>
+    <Position>0000D8BA</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>Signature Check 1</ID>
+    <Position>000126A6</Position>
+    <Data>00200020</Data>
+  </Patch>
+  <Patch>
+    <ID>Signature Check 2</ID>
+    <Position>000126AC</Position>
+    <Data>00200020</Data>
   </Patch>
 </Container>

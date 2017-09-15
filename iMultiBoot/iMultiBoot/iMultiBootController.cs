@@ -116,6 +116,9 @@ namespace iMultiBoot
 
                     iDevice.SystemPartition = SystemPartition;
                     iDevice.DataPartition = DataPartition;
+
+                    iDevice.PartitionList.Add(SystemPartition);
+                    iDevice.PartitionList.Add(DataPartition);
                 }
             }
             iDevice.SystemPartition.Number = "0";
