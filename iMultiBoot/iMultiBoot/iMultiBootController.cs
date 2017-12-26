@@ -733,12 +733,25 @@ namespace iMultiBoot
         private void InstallBootLauncher(OperatingSystem pOperatingSystem)
         {
             string RemoteToolsDirectory = DeviceWorkingDirectory + "Tools//";
+            StreamWriter FileWriter;
             switch (pOperatingSystem.SystemVersion)
             {
                 case "5.1":
                     SSH.UploadFile(".\\Tools\\ios5bootstrap.deb", RemoteToolsDirectory);
                     SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "ios5bootstrap.deb");
-                    StreamWriter FileWriter = new StreamWriter(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", false, Encoding.UTF8);
+                    FileWriter = new StreamWriter(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", false, Encoding.UTF8);
+                    FileWriter.WriteLine("#!/bin/bash");
+                    FileWriter.Write("kloader6 " + "/Bootloaders/" + Path.GetFileName(pOperatingSystem.LowLevelBootloader));
+                    FileWriter.Close();
+                    SSH.ExecuteRemoteCommand("rm /usr/bin/iOS5Bootstrap.sh");
+                    SSH.UploadFile(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", "/usr/bin/");
+                    SSH.ExecuteRemoteCommand("chmod 755 /usr/bin/iOS5Bootstrap.sh");
+                    break;
+
+                case "5.1.1":
+                    SSH.UploadFile(".\\Tools\\ios5bootstrap.deb", RemoteToolsDirectory);
+                    SSH.ExecuteRemoteCommand("dpkg -i " + RemoteToolsDirectory + "ios5bootstrap.deb");
+                    FileWriter = new StreamWriter(pOperatingSystem.LocalWorkingDirectory + "\\" + "iOS5Bootstrap.sh", false, Encoding.UTF8);
                     FileWriter.WriteLine("#!/bin/bash");
                     FileWriter.Write("kloader6 " + "/Bootloaders/" + Path.GetFileName(pOperatingSystem.LowLevelBootloader));
                     FileWriter.Close();
